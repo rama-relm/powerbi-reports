@@ -1,0 +1,420 @@
+table 'Date Table'
+	lineageTag: 9e6645e9-328b-4b88-befc-073406df03cc
+	dataCategory: Time
+
+	measure 'Missing Quotes' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Quote])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 0e151c7e-4716-4d46-ad27-1ae998b7d5e8
+
+	measure 'Missing Binder' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Binder])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: a9221da2-ec25-4539-8902-3de1bf1115cb
+
+	measure 'Missing Invoice' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Invoice])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: eaa8d832-fb7f-4b70-9d12-54988ee316b9
+
+	measure 'Missing Rater' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Raters])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: c21dda16-13d6-46e3-a667-46b29682cd23
+
+	measure 'Missing UW Summary' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[UW Summary])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: b2764516-2b83-4fd7-aadb-903ba7ce6b64
+
+	measure 'UW Summary' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[UW Summary])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: f67b6183-3a0e-4b78-a64a-f303063703a7
+
+	measure 'Loss Runs' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Internal/External Loss Runs])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: cbde2f0f-d8f5-4358-a970-5f469159af38
+
+	measure Warranty =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Warranty])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: c5a42f2c-d3bd-4685-9024-27f1e78932a7
+
+	measure 'Submission Docs' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Submission docs _including applications_])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: b9172d33-0319-4934-b869-86384b2148b9
+
+	measure Communication =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Communication])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 1c975a79-b5f8-4bb9-80d0-d4f6b880459a
+
+	measure 'OFAC Check' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[OFAC check])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 6057406c-6798-4774-8e3c-ffebe0dcf488
+
+	measure 'Approval Document' =
+			
+			SUMX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR IsMissing =
+			        CALCULATE(MAX(audit_master_consolidation[Approval Document by UW])) = "No"
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), IF(IsMissing, 1, 0))
+			)
+		formatString: 0
+		lineageTag: 6804db05-21fc-4a66-a3e1-52686f4ee29b
+
+	measure Total_Missing_Items =
+			
+			SUMX(
+			    'Date Table',
+			    'Date Table'[Approval Document]+
+			    'Date Table'[Missing Quotes] +
+			    'Date Table'[Missing Binder] +
+			    'Date Table'[Missing Invoice] +
+			    'Date Table'[Missing Rater] +
+			    'Date Table'[UW Summary] +
+			    'Date Table'[Loss Runs] +
+			    'Date Table'[Warranty] +
+			    'Date Table'[Communication] +
+			    'Date Table'[Submission Docs] +
+			    'Date Table'[OFAC Check]
+			)
+		formatString: 0
+		lineageTag: 501f714c-e701-4fc4-875a-f6ca1094d12f
+
+	measure Missing_By_Doc =
+			
+			SWITCH(
+			    SELECTEDVALUE(Document_Type[Document]),
+			
+			    "Quote", [Missing Quotes],
+			    "Binder", [Missing Binder],
+			    "Invoice", [Missing Invoice],
+			    "Approval", [Approval Document],
+			    "Raters", [Missing Rater],
+			    "UW Summary", [UW Summary],
+			    "Loss Runs", [Loss Runs],
+			    "Warranty", [Warranty],
+			    "Submission", [Submission docs],
+			    "Communication", [Communication],
+			    "OFAC", [OFAC check]
+			)
+		formatString: 0
+		lineageTag: a7d89190-84b1-4ece-87ee-ae8f01231635
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: 8334b33a-8e52-44e2-89b2-9cc9a947c84f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: c5bbf97c-b2cc-4e53-87b6-a935a45669b2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 9f345601-4087-4374-8166-63b312f629ff
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 7a31fa3c-0ed7-494d-adec-5a5dcdb5e01f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: d4339b1c-e6d0-4f95-a91d-8c9aaa2dadff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Name = FORMAT('Date Table'[Date], "MMMM")
+		lineageTag: 00bf8935-9a29-4188-80fb-fff28050b91e
+		summarizeBy: none
+		sortByColumn: Month_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Number = MONTH('Date Table'[Date])
+		formatString: 0
+		lineageTag: 10186197-c0a1-4f03-a695-799647a9d784
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year' = FORMAT('Date Table'[Date], "MMM YYYY")
+		lineageTag: c9759dfa-7669-4d15-b19a-37719de3353c
+		summarizeBy: none
+		sortByColumn: YearMonthSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort = YEAR('Date Table'[Date]) * 100 + MONTH('Date Table'[Date])
+		formatString: 0
+		lineageTag: 8b92b2b3-401f-418d-83c4-c33f2b477ea6
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Table' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        DATE(2026, 1, 1),
+				        DATE(YEAR(TODAY()) + 2, 12, 31)
+				    ),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month Name", FORMAT([Date], "MMM"),
+				    "YearMonth", FORMAT([Date], "MMM YYYY")
+				)
+
+	annotation PBI_Id = 14fff73ca5d04f21bf33094a1762093e
+

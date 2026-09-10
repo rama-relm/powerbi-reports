@@ -1,0 +1,328 @@
+table audit_master_consolidation
+	lineageTag: d2269050-c997-4f23-b762-03db8f9a46de
+
+	measure '% Missing (Bound Date)' =
+			
+			
+			AVERAGEX(
+			    VALUES(audit_master_consolidation[Policy #]),
+			
+			    VAR IsSubjective =
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Initial Ops Comments]))),
+			            "subjectivity"
+			        )
+			        ||
+			        CONTAINSSTRING(
+			            LOWER(CALCULATE(MAX(audit_master_consolidation[Second review Ops comments]))),
+			            "subjectivity"
+			        )
+			
+			    VAR MissingCount =
+			        IF(CALCULATE(MAX(audit_master_consolidation[Quote])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Binder])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Invoice])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Policy _Ops issue policies 10-20 business days after bind order received_])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Approval Document by UW])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Raters])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[UW Summary])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Internal/External Loss Runs])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Warranty])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Submission docs _including applications_])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[Communication])) = "No", 1, 0) +
+			        IF(CALCULATE(MAX(audit_master_consolidation[OFAC check])) = "No", 1, 0)
+			
+			    RETURN
+			        IF(IsSubjective, BLANK(), MissingCount / 12)
+			)
+		lineageTag: d43d7f10-c7a3-45e3-9091-5695e05339a3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Missing (5 Days Post Bind)' =
+			
+			CALCULATE(
+			    [% Missing (Bound Date)],
+			    USERELATIONSHIP(
+			        audit_master_consolidation[5 business days post bind review],
+			        'Date Table'[Date]
+			    )
+			)
+		lineageTag: 1c03410f-f6eb-413f-8cd9-b401f4833235
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Completion (Bound Date)' =
+			
+			VAR Missing = [% Missing (Bound Date)]
+			RETURN
+			IF(
+			    ISBLANK(Missing),
+			    BLANK(),
+			    1 - Missing
+			)
+		lineageTag: 9d3b661b-9bcf-480a-abeb-c973529780e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Completion (5 Days Post Bind)' =
+			
+			VAR Missing = [% Missing (5 Days Post Bind)]
+			RETURN
+			IF(
+			    ISBLANK(Missing),
+			    BLANK(),
+			    1 - Missing
+			)
+		lineageTag: 5a417e09-5af8-4bb3-a8cd-0a9c18ed1b57
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Original Account Name'
+		dataType: string
+		lineageTag: a5809b20-50dd-4287-a06e-dcb1c18ccb43
+		summarizeBy: none
+		sourceColumn: Original Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bound Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8baf69cc-bee7-4b20-8298-e9d75497f129
+		summarizeBy: none
+		sourceColumn: Bound Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Inception Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b5ec42db-1de0-436b-a840-4d06fa81c08b
+		summarizeBy: none
+		sourceColumn: Inception Date
+
+		variation Variation
+			isDefault
+			relationship: 6cf95aeb-e77c-4eac-8108-dbd530b9e323
+			defaultHierarchy: LocalDateTable_83a9b4f1-6f0c-48bb-90e8-e47226e97b82.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Ops Date Initial reviewed _bind order received _'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 95eacfe3-fe1f-4583-ba12-e0c31643534f
+		summarizeBy: none
+		sourceColumn: Ops Date Initial reviewed _bind order received _
+
+		variation Variation
+			isDefault
+			relationship: ae928d54-369d-4b68-bb86-52f94b5c6be1
+			defaultHierarchy: LocalDateTable_4cedf03d-25c7-472a-8f2a-33ab75abc860.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column '5 business days post bind review'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b94debc0-7cc2-4aa1-af56-73b8b3110a8f
+		summarizeBy: none
+		sourceColumn: 5 business days post bind review
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Policy #'
+		dataType: string
+		lineageTag: 2bbc454e-2096-4d9e-a922-19ed7ec7a296
+		summarizeBy: none
+		sourceColumn: Policy #
+
+		annotation SummarizationSetBy = Automatic
+
+	column Underwriter
+		dataType: string
+		lineageTag: 4f4f2c57-baae-4a5d-91b2-b4ba49f328d6
+		summarizeBy: none
+		sourceColumn: Underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quote
+		dataType: string
+		lineageTag: 8df2b082-377b-46f1-a98b-4c97ff48a4cf
+		summarizeBy: none
+		sourceColumn: Quote
+
+		annotation SummarizationSetBy = Automatic
+
+	column Binder
+		dataType: string
+		lineageTag: b13283f5-69d6-4bc0-9a09-87f613e8ae4e
+		summarizeBy: none
+		sourceColumn: Binder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice
+		dataType: string
+		lineageTag: 6d5cd322-2f3f-4238-8e19-c3b56fcdab70
+		summarizeBy: none
+		sourceColumn: Invoice
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Policy _Ops issue policies 10-20 business days after bind order received_'
+		dataType: string
+		lineageTag: 403016b7-57a5-4111-9cc9-aa58a6c8b7bf
+		summarizeBy: none
+		sourceColumn: Policy _Ops issue policies 10-20 business days after bind order received_
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Approval Document by UW'
+		dataType: string
+		lineageTag: 1b367a82-e461-4bbf-b1b2-e4b8055b1e3f
+		summarizeBy: none
+		sourceColumn: Approval Document by UW
+
+		annotation SummarizationSetBy = Automatic
+
+	column Raters
+		dataType: string
+		lineageTag: ccfca57f-0652-4bf7-b528-cea60fa20a70
+		summarizeBy: none
+		sourceColumn: Raters
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UW Summary'
+		dataType: string
+		lineageTag: 28ee1ef1-f142-44f0-af2d-52b45baa9d59
+		summarizeBy: none
+		sourceColumn: UW Summary
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Internal/External Loss Runs'
+		dataType: string
+		lineageTag: c4cd5812-2089-4836-8778-a4f8b9f9feb4
+		summarizeBy: none
+		sourceColumn: Internal/External Loss Runs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Warranty
+		dataType: string
+		lineageTag: f09a8d54-c5ee-4e61-8b49-35b428235ad8
+		summarizeBy: none
+		sourceColumn: Warranty
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Submission docs _including applications_'
+		dataType: string
+		lineageTag: b8521b55-3c95-4fb1-8108-ff063bb5ecd8
+		summarizeBy: none
+		sourceColumn: Submission docs _including applications_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Communication
+		dataType: string
+		lineageTag: 1457c80c-2b7a-4d7d-beb4-126367db75b3
+		summarizeBy: none
+		sourceColumn: Communication
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OFAC check'
+		dataType: string
+		lineageTag: 64da6453-4338-4fa6-8907-1e3d3aa9b9af
+		summarizeBy: none
+		sourceColumn: OFAC check
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Initial Ops Comments'
+		dataType: string
+		lineageTag: fb5c24e3-d30e-46ce-9f6f-aff6e4b6aaa0
+		summarizeBy: none
+		sourceColumn: Initial Ops Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Second review Ops comments'
+		dataType: string
+		lineageTag: 383a52b4-f08a-4ac4-a0a0-e810b9b01a6c
+		summarizeBy: none
+		sourceColumn: Second review Ops comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ops Analyst'
+		dataType: string
+		lineageTag: eda2879c-1819-493c-b015-4a87cef2a73e
+		summarizeBy: none
+		sourceColumn: Ops Analyst
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UA Comments'
+		dataType: string
+		lineageTag: f4fd5229-0bfa-4cd1-be8d-a46e01197c00
+		summarizeBy: none
+		sourceColumn: UA Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Claims Comments'
+		dataType: string
+		lineageTag: 8da02641-65dc-4235-bf83-91101a997503
+		summarizeBy: none
+		sourceColumn: Claims Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Submissions comments'
+		dataType: string
+		lineageTag: f40b64a0-91e3-433c-a7e7-d8faead9063f
+		summarizeBy: none
+		sourceColumn: Submissions comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pending Subjectivity'
+		dataType: string
+		lineageTag: e3d28265-fdac-4058-94e0-0b83e496951e
+		summarizeBy: none
+		sourceColumn: Pending Subjectivity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name Changed'
+		dataType: string
+		lineageTag: 79a2deb3-6dc5-4dde-9b59-c414b49aa365
+		summarizeBy: none
+		sourceColumn: Account Name Changed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition audit_master_consolidation = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    dbo_audit_master_consolidation = Source{[Schema="dbo",Item="audit_master_consolidation"]}[Data],
+				    #"Removed Columns" = Table.RemoveColumns(dbo_audit_master_consolidation,{"Bind order received by UW"})
+				in
+				    #"Removed Columns"
+

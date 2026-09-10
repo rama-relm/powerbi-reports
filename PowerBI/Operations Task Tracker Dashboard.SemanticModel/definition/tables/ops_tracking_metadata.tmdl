@@ -1,0 +1,67 @@
+table ops_tracking_metadata
+	lineageTag: 82176cf5-2054-438b-bdce-719430e8356c
+
+	column 'Report Name'
+		dataType: string
+		lineageTag: baeb2273-6ef5-4c29-9ded-a716285fdb0f
+		summarizeBy: none
+		sourceColumn: Report Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Version
+		dataType: string
+		lineageTag: ff81f3d7-33f6-473c-a67d-8667b08ff442
+		summarizeBy: none
+		sourceColumn: Version
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last Data Refresh'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f703e821-b353-44b8-8452-516b9a1e1254
+		summarizeBy: none
+		sourceColumn: Last Data Refresh
+
+		variation Variation
+			isDefault
+			relationship: 142e4352-5dec-40d2-884c-ad76a1da1c12
+			defaultHierarchy: LocalDateTable_6099d560-0a1e-4542-9abb-56a3443d22e8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Records Loaded'
+		dataType: int64
+		formatString: 0
+		lineageTag: 062ed7c6-fdfc-48be-a976-86620460ff42
+		summarizeBy: sum
+		sourceColumn: Total Records Loaded
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Months Included'
+		dataType: string
+		lineageTag: 2e43526c-6b6e-4727-9252-a1e993dfff91
+		summarizeBy: none
+		sourceColumn: Months Included
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Status'
+		dataType: string
+		lineageTag: 0bc293a1-41fb-4f43-90cb-af13b6226997
+		summarizeBy: none
+		sourceColumn: Data Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ops_tracking_metadata = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    dbo_ops_tracking_metadata = Source{[Schema="dbo",Item="ops_tracking_metadata"]}[Data]
+				in
+				    dbo_ops_tracking_metadata
+

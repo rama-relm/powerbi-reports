@@ -1,0 +1,92 @@
+relationship a2f45807-0fd9-4ff3-92f3-77026e105853
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ops_tracking_data.'Start Time'
+	toColumn: LocalDateTable_c3a7c872-9f8e-4e69-b755-6ac741b002c0.Date
+
+relationship 9e56d6c5-1b63-431c-b903-c8c7d7a74d6f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ops_tracking_data.'End Time'
+	toColumn: LocalDateTable_92fa1b0e-a924-41a6-884e-d6b613e0894f.Date
+
+relationship 5f1b24a3-1c20-44ce-b08b-d11d1ed2712b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_date'.date
+	toColumn: LocalDateTable_3089e70b-af0d-490f-bc5d-7de9b7a7a558.Date
+
+relationship 1392b328-98e9-4dfc-b90d-20bbf403a772
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_date'.Created_on
+	toColumn: LocalDateTable_acfa8c37-c500-4db7-85a5-e2521e7b4293.Date
+
+relationship ddb2c222-9549-4206-a308-ee8a1ba6132d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_date'.last_updated_on
+	toColumn: LocalDateTable_79742014-13ce-4d1b-8f31-baf780bf8966.Date
+
+relationship 49ed8106-fa1c-1e4a-de67-33cb82aab19a
+	fromColumn: ops_tracking_data.Date
+	toColumn: 'gold dim_date'.date
+
+relationship 142e4352-5dec-40d2-884c-ad76a1da1c12
+	joinOnDateBehavior: datePartOnly
+	fromColumn: ops_tracking_metadata.'Last Data Refresh'
+	toColumn: LocalDateTable_6099d560-0a1e-4542-9abb-56a3443d22e8.Date
+
+relationship f7be8428-2da9-2e3d-bd8e-0ec3328e9f11
+	fromColumn: ops_tracking_data.Date
+	toColumn: 'Date Table'.Date
+
+relationship 6cf95aeb-e77c-4eac-8108-dbd530b9e323
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit_master_consolidation.'Inception Date'
+	toColumn: LocalDateTable_83a9b4f1-6f0c-48bb-90e8-e47226e97b82.Date
+
+relationship ae928d54-369d-4b68-bb86-52f94b5c6be1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit_master_consolidation.'Ops Date Initial reviewed _bind order received _'
+	toColumn: LocalDateTable_4cedf03d-25c7-472a-8f2a-33ab75abc860.Date
+
+relationship e7d54784-48b1-e50e-9bb5-8991fe28ea42
+	fromColumn: audit_master_consolidation.'Bound Date'
+	toColumn: 'Date Table'.Date
+
+relationship 3c1b8d65-c335-3f34-2447-9f9b75441f5b
+	isActive: false
+	fromColumn: audit_master_consolidation.'5 business days post bind review'
+	toColumn: 'Date Table'.Date
+
+relationship ce5485e6-0104-4f0c-a5ee-26dc94cabfff
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'logs pipeline_last_run'.LastRunTime
+	toColumn: LocalDateTable_03bb8b22-1b71-46bc-a1c3-d6382d66dfd0.Date
+
+relationship 4bf39647-6db4-4391-b7e8-8581431a1c31
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'logs pipeline_last_run'.StartRunTime
+	toColumn: LocalDateTable_b778b379-d3fe-4825-ab00-aae09a6715e7.Date
+
+relationship 0c30feee-a41c-4a86-8c5a-8f8ffe6aebb3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: audit_master_metadata.'Last Data Refresh'
+	toColumn: LocalDateTable_4f7a9fca-38fa-437a-927b-7cebbb0f3c0c.Date
+
+relationship 1a6340a4-4c0f-498d-a4e0-d2f420d0e77d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold pipeline_run'.StartRunTime
+	toColumn: LocalDateTable_3be27a41-58fa-45e8-b7b3-c7bc940da5d1.Date
+
+relationship b261ad4d-6092-41f4-b3bf-33212cd01e83
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold pipeline_run'.LastRunTime
+	toColumn: LocalDateTable_fe9a4068-02f2-4b53-b112-1a0f26581ea4.Date
+
+relationship 6295de5c-998c-4160-b0ff-3e47b2d39781
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold pipeline_run'.StartTimeConverted
+	toColumn: LocalDateTable_5da5e3fd-fcce-4e34-8803-f5a67ad52ffe.Date
+
+relationship 03f56946-a5bc-454d-b89c-3966d31b8e5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold pipeline_run'.EndTimeConverted
+	toColumn: LocalDateTable_07a1f76f-f367-42cf-adce-41657cece729.Date
+
