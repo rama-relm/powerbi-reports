@@ -397,7 +397,7 @@ table ops_tracking_data
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "relm_gold_warehouse"),
 				    dbo_ops_tracking_data = Source{[Schema="dbo",Item="ops_tracking_data"]}[Data]
 				in
 				    dbo_ops_tracking_data

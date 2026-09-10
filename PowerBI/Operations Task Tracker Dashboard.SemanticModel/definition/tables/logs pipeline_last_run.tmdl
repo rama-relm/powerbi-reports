@@ -41,7 +41,7 @@ table 'logs pipeline_last_run'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "relm_gold_warehouse"),
 				    logs_pipeline_last_run = Source{[Schema="logs",Item="pipeline_last_run"]}[Data]
 				in
 				    logs_pipeline_last_run

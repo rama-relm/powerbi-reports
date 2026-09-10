@@ -320,7 +320,7 @@ table audit_master_consolidation
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "relm_gold_warehouse"),
 				    dbo_audit_master_consolidation = Source{[Schema="dbo",Item="audit_master_consolidation"]}[Data],
 				    #"Removed Columns" = Table.RemoveColumns(dbo_audit_master_consolidation,{"Bind order received by UW"})
 				in

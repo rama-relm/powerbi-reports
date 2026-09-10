@@ -69,7 +69,7 @@ table 'gold pipeline_run'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "relm_gold_warehouse"),
 				    gold_pipeline_run = Source{[Schema="gold",Item="pipeline_run"]}[Data]
 				in
 				    gold_pipeline_run

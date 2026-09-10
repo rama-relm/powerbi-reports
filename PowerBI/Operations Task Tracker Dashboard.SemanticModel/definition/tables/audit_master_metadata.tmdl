@@ -60,7 +60,7 @@ table audit_master_metadata
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "relm_gold_warehouse"),
 				    dbo_audit_master_metadata = Source{[Schema="dbo",Item="audit_master_metadata"]}[Data]
 				in
 				    dbo_audit_master_metadata
