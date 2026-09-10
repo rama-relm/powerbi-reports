@@ -47,7 +47,7 @@ table 'gold dim relm_entity'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
 				    gold_coverage_view = Source{[Schema="gold",Item="dim_relm_entity"]}[Data]
 				in
 				    gold_coverage_view

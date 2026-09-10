@@ -37,7 +37,7 @@ table 'gold broking_house_parent'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
 				    gold_broking_house_parent = Source{[Schema="gold",Item="broking_house_parent"]}[Data]
 				in
 				    gold_broking_house_parent

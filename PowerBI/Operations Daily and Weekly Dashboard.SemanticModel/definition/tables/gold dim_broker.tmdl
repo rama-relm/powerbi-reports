@@ -663,7 +663,7 @@ table 'gold dim_broker'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
 				    gold_coverage_view = Source{[Schema="gold",Item="dim_broker"]}[Data],
 				    #"Extracted Date" = Table.TransformColumns(gold_coverage_view,{{"sfdc_created_on", DateTime.Date, type date}}),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Extracted Date",{{"sfdc_created_on", type date}}),
