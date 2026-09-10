@@ -293,7 +293,7 @@ table 'gold dim_broking_house_scd'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
 				    gold_dim_broking_house_scd = Source{[Schema="gold",Item="dim_broking_house_scd"]}[Data]
 				in
 				    gold_dim_broking_house_scd

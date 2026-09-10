@@ -205,7 +205,7 @@ table 'Last Run Time'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse", [Query="SELECT * from Relm_Gold_Warehouse.gold.pipeline_run"])
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse", [Query="SELECT * from Relm_Gold_Warehouse.gold.pipeline_run"])
 				in
 				    Source
 
