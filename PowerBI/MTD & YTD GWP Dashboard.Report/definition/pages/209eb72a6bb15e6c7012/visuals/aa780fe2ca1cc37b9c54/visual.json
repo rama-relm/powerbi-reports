@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "aa780fe2ca1cc37b9c54",
+  "position": {
+    "x": 256.66666666666669,
+    "y": 381.66666666666669,
+    "z": 4000,
+    "height": 302.5,
+    "width": 985,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Additional Information:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontStyle": "italic",
+                      "fontSize": "16pt",
+                      "textDecoration": "underline"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "❖ New and Renewal Business premium is taken from Salesforce. Endorsements and Cancellations premium is taken from policy splits.",
+                    "textStyle": {
+                      "fontFamily": "inherit",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "❖ GWP for New and Renewal Business is calculated based on the Policy Inception Date  ",
+                    "textStyle": {
+                      "fontFamily": "inherit",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

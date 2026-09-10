@@ -1,0 +1,68 @@
+table 'gold dim_relm_sector'
+	lineageTag: ed7d73ce-4063-400b-a173-3ec7afc1314f
+
+	column sector_id
+		dataType: string
+		lineageTag: 1930279f-33e6-49e8-9199-4b1a2aa30968
+		summarizeBy: none
+		sourceColumn: sector_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector_name
+		dataType: string
+		lineageTag: 302a3e6a-b5fc-4efc-874b-c523b922fdc1
+		summarizeBy: none
+		sourceColumn: sector_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sector_description
+		dataType: string
+		lineageTag: 4044ff1d-3ea3-402b-8dc5-cb96ebcfbe20
+		summarizeBy: none
+		sourceColumn: sector_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0932fe15-4ce2-4376-a663-220aaa5795e6
+		summarizeBy: none
+		sourceColumn: created_on
+
+		variation Variation
+			isDefault
+			relationship: be081274-255f-40e9-bfd1-36596eab6eda
+			defaultHierarchy: LocalDateTable_0eaf1f7f-09d3-4f28-b766-5383578f680b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e2927816-a36c-496a-81d1-5d64ec6a12f7
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		variation Variation
+			isDefault
+			relationship: 387307e8-b418-4866-ab63-1d2b3acc79b1
+			defaultHierarchy: LocalDateTable_326f6b81-f81e-4a4e-ba1f-a5f504ebc971.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_relm_sector' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_endorsements_bronze_view = Source{[Schema="gold",Item="dim_relm_sector"]}[Data]
+				in
+				    gold_endorsements_bronze_view
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

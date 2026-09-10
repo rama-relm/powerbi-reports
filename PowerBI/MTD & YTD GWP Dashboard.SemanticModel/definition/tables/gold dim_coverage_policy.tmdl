@@ -1,0 +1,42 @@
+table 'gold dim_coverage_policy'
+	lineageTag: ce9bb698-4b42-44f4-9160-e4a59ff7a7f8
+
+	column 'Coverage Policy'
+		dataType: string
+		lineageTag: 78f0231d-899d-4d0d-b548-e381297adb76
+		summarizeBy: none
+		sourceColumn: Coverage Policy
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ae72f56-65e3-495b-bc5b-6f464971850d
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_coverage_policy' = m
+		mode: import
+		source =
+				let
+				    Source = Table.Combine({#"gold coverage_view", #"gold endorsements_cancellations"}),
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Coverage", "Policy Type"}),
+				    #"Capitalized Each Word" = Table.TransformColumns(#"Removed Other Columns",{{"Coverage", Text.Proper, type text}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Capitalized Each Word",{{"Policy Type", Text.Trim, type text}}),
+				    #"Added Custom" = Table.AddColumn(#"Trimmed Text", "Coverage Policy", each [Coverage] & " - " & [Policy Type]),
+				    #"Sorted Rows1" = Table.Sort(#"Added Custom",{{"Coverage Policy", Order.Ascending}}),
+				    #"Removed Duplicates" = Table.Distinct(#"Sorted Rows1", {"Coverage Policy"}),
+				    #"Filtered Rows" = Table.SelectRows(#"Removed Duplicates", each ([Coverage Policy] <> null)),
+				    #"Sorted Rows" = Table.Sort(#"Filtered Rows",{{"Coverage Policy", Order.Ascending}}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Sorted Rows",{"Coverage Policy"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Other Columns1", "Index", 1, 1, Int64.Type)
+				in
+				    #"Added Index"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

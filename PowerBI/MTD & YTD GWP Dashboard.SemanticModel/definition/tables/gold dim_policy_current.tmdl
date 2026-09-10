@@ -1,0 +1,255 @@
+table 'gold dim_policy_current'
+	lineageTag: 2c1209c1-2d59-4f52-9006-9d31bfbcbbc6
+
+	column insurance_policy_id
+		dataType: string
+		lineageTag: 3ab396e2-dba8-49f1-a314-da1ad2c2771f
+		summarizeBy: none
+		sourceColumn: insurance_policy_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_number
+		dataType: string
+		lineageTag: f23505ea-043e-481d-85e4-741897170fc6
+		summarizeBy: none
+		sourceColumn: policy_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_status
+		dataType: string
+		lineageTag: 96a75cf0-ca03-4813-8d92-a4e0e28c845b
+		summarizeBy: none
+		sourceColumn: policy_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_type
+		dataType: string
+		lineageTag: f8e0d824-2765-4859-bf14-4896946dc734
+		summarizeBy: none
+		sourceColumn: policy_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column new_or_renewal
+		dataType: string
+		lineageTag: 247feb60-28fd-4baf-b742-e6c0c6e2c765
+		summarizeBy: none
+		sourceColumn: new_or_renewal
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 1bcacd11-05ba-4d9e-818a-b29f4bbcc7ad
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column expiring_policy_number
+		dataType: string
+		lineageTag: bb6077a3-f93b-4fd5-ad61-6605596ee904
+		summarizeBy: none
+		sourceColumn: expiring_policy_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 45a9ea0e-d7f4-4f5b-ac8b-22756d137cac
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_currency_different
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2263f249-9925-4cde-bad0-39c8f790e010
+		summarizeBy: none
+		sourceColumn: is_currency_different
+
+		annotation SummarizationSetBy = Automatic
+
+	column cyber_waiting_period
+		dataType: double
+		lineageTag: e4a13a68-a679-4670-b4f5-f070f2012bc5
+		summarizeBy: sum
+		sourceColumn: cyber_waiting_period
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cancellation_reason
+		dataType: string
+		lineageTag: 6c513191-1996-4775-a9f2-926826f75b1a
+		summarizeBy: none
+		sourceColumn: cancellation_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column cancellation_reason_type
+		dataType: string
+		lineageTag: 01e0e43d-725b-41b9-ab1e-1f8296a2405d
+		summarizeBy: none
+		sourceColumn: cancellation_reason_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_issued
+		dataType: string
+		lineageTag: 6654264d-d82d-4e8e-a9a5-7d12c44d7495
+		summarizeBy: none
+		sourceColumn: policy_issued
+
+		annotation SummarizationSetBy = Automatic
+
+	column renewed_policy
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ac2dc7ef-e2b6-4569-ac98-3289d283b01c
+		summarizeBy: none
+		sourceColumn: renewed_policy
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_received
+		dataType: string
+		lineageTag: 50d9ed08-ffca-48e2-adce-804325846dc4
+		summarizeBy: none
+		sourceColumn: premium_received
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_number
+		dataType: string
+		lineageTag: 7d21f9d6-b2cf-472b-a537-569d4a5f2a62
+		summarizeBy: none
+		sourceColumn: invoice_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_fully_earned_at_inception
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5358e977-7c8b-4c8d-a009-2a77f53d7201
+		summarizeBy: none
+		sourceColumn: premium_fully_earned_at_inception
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d06ea347-bf24-4e2b-b9b5-64c528dde42c
+		summarizeBy: none
+		sourceColumn: sfdc_created_date
+
+		variation Variation
+			isDefault
+			relationship: 36d6b23d-d643-4501-a7aa-4a68d802a26d
+			defaultHierarchy: LocalDateTable_444ca029-7d94-45eb-bde2-4ac984fc19c4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 707cf7bd-1e9f-428f-8f9a-98bc33430d9b
+		summarizeBy: none
+		sourceColumn: sfdc_last_modified_date
+
+		variation Variation
+			isDefault
+			relationship: efe2d996-a27f-4cb8-a7bb-be746aad754a
+			defaultHierarchy: LocalDateTable_f340b60a-17e1-4f95-98e9-d3ad7fbda107.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7d383049-7470-4de6-936b-a0f3c92912f7
+		summarizeBy: none
+		sourceColumn: created_on
+
+		variation Variation
+			isDefault
+			relationship: 9c63646a-51bb-4e12-9414-14cb6ade549f
+			defaultHierarchy: LocalDateTable_aeecd45a-3def-4429-afc3-e6f0f451e437.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cba09424-2092-4c64-9d47-7ee511e56b50
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		variation Variation
+			isDefault
+			relationship: 6178c247-b303-41a7-bc4d-e73325b7a3df
+			defaultHierarchy: LocalDateTable_2d5f2974-42a2-42ae-83c9-a21bbdfa176c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_hash
+		dataType: string
+		lineageTag: 914edf8a-2ed9-4417-91b2-141e69382490
+		summarizeBy: none
+		sourceColumn: row_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_deleted_in_salesforce
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 86b501e6-8b81-4014-ab46-255ff210608d
+		summarizeBy: none
+		sourceColumn: is_deleted_in_salesforce
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_reporting_structure
+		dataType: string
+		lineageTag: 437afc80-1da5-4c73-9bb3-3e04ed80990d
+		summarizeBy: none
+		sourceColumn: policy_reporting_structure
+
+		annotation SummarizationSetBy = Automatic
+
+	column binder_sent_to_broker_ops
+		dataType: string
+		lineageTag: f7bddc0f-5b76-414a-830c-5a9d9e27a3a6
+		summarizeBy: none
+		sourceColumn: binder_sent_to_broker_ops
+
+		annotation SummarizationSetBy = Automatic
+
+	column documents_reviewed_ua
+		dataType: string
+		lineageTag: f5fb1997-48a9-419d-b5e3-5d3b6806681a
+		summarizeBy: none
+		sourceColumn: documents_reviewed_ua
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_policy_current' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_dim_policy_current = Source{[Schema="gold",Item="dim_policy_current"]}[Data]
+				in
+				    gold_dim_policy_current
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,1052 @@
+table bi_coverage_level_view
+	lineageTag: 483164a5-60ff-4bde-8b95-be0c64455fed
+
+	column insurance_policy_id
+		dataType: string
+		lineageTag: 7dce1d2e-3b7f-4dee-b1df-959e78885cc9
+		summarizeBy: none
+		sourceColumn: insurance_policy_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_number
+		dataType: string
+		lineageTag: 69c93c8b-9eb7-4338-99cd-50d7db22c1ae
+		summarizeBy: none
+		sourceColumn: policy_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column insured_id
+		dataType: string
+		lineageTag: 11adac23-716d-4c6d-8c04-e1cf86a9b3be
+		summarizeBy: none
+		sourceColumn: insured_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column insured_name
+		dataType: string
+		lineageTag: a7ddade5-80b2-466e-ae87-f8dc63a32136
+		summarizeBy: none
+		sourceColumn: insured_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_record_type
+		dataType: string
+		lineageTag: 06acec9e-eb75-468e-ba01-19ef139bc1b2
+		summarizeBy: none
+		sourceColumn: opportunity_record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column entry_type
+		dataType: string
+		lineageTag: 8ab44ced-3d7b-4f77-a47c-89e09481785a
+		summarizeBy: none
+		sourceColumn: entry_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column working_underwriter
+		dataType: string
+		lineageTag: 3e0fa277-e9ef-4735-9bad-43b4e1deba5a
+		summarizeBy: none
+		sourceColumn: working_underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_type_id
+		dataType: string
+		lineageTag: f9073cd7-2747-4e72-93b7-6cbd63e99aad
+		summarizeBy: none
+		sourceColumn: policy_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_type
+		dataType: string
+		lineageTag: e706ebeb-b998-4bcf-b065-2eaac7e75b0b
+		summarizeBy: none
+		sourceColumn: policy_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_reporting_structure
+		dataType: string
+		lineageTag: fca477a7-00ad-43bb-bfa9-b1bb8cd385ba
+		summarizeBy: none
+		sourceColumn: policy_reporting_structure
+
+		annotation SummarizationSetBy = Automatic
+
+	column new_renewal
+		dataType: string
+		lineageTag: 4a9c3ad6-82d6-4c96-a64e-802b0c79a32e
+		summarizeBy: none
+		sourceColumn: new_renewal
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_id
+		dataType: string
+		lineageTag: 85f51b90-c773-4a6f-93ce-b4a3159ccabb
+		summarizeBy: none
+		sourceColumn: broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker
+		dataType: string
+		lineageTag: 4afaac14-d759-49d2-af81-dfbb65f5229b
+		summarizeBy: none
+		sourceColumn: broker
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 6e079a07-404b-4765-8d64-1f84be2194c4
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_broker_id
+		dataType: string
+		lineageTag: f336b600-125b-4aa9-9016-c2fe2d786482
+		summarizeBy: none
+		sourceColumn: parent_broker_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_broker
+		dataType: string
+		lineageTag: c8d51755-704b-47db-aa6f-3183ba44b84a
+		summarizeBy: none
+		sourceColumn: parent_broker
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_region
+		dataType: string
+		lineageTag: 7c76d24c-5dc4-494d-839a-0f54878ba29b
+		summarizeBy: none
+		sourceColumn: broker_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column individual_broker_id
+		dataType: string
+		lineageTag: 65a35530-54f4-4cb5-bfae-07988a9cb9de
+		summarizeBy: none
+		sourceColumn: individual_broker_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column individual_broker
+		dataType: string
+		lineageTag: b810aba4-8b52-4ab5-a45e-9457f6346fcf
+		summarizeBy: none
+		sourceColumn: individual_broker
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_coverage
+		dataType: string
+		lineageTag: bde907db-a677-4378-8138-de45aca7c6e0
+		summarizeBy: none
+		sourceColumn: sub_coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_id
+		dataType: string
+		lineageTag: ef66db12-45c1-47a1-8486-73e222833252
+		summarizeBy: none
+		sourceColumn: coverage_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage
+		dataType: string
+		lineageTag: bb6682a0-1585-4e74-a462-eb84b5a8c428
+		summarizeBy: none
+		sourceColumn: coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_business_unit
+		dataType: string
+		lineageTag: 979d433f-0d43-4050-86e4-bd981cfc82a5
+		summarizeBy: none
+		sourceColumn: sub_business_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_unit
+		dataType: string
+		lineageTag: b3eaf1c5-5163-4d97-99e8-1bb4f766c259
+		summarizeBy: none
+		sourceColumn: business_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_of_business
+		dataType: string
+		lineageTag: bae5e38b-46f3-438d-a5e2-b070951331bb
+		summarizeBy: none
+		sourceColumn: line_of_business
+
+		annotation SummarizationSetBy = Automatic
+
+	column bma_lob_description
+		dataType: string
+		lineageTag: 2a1fbe26-dcc8-42f4-bb27-d0b97a8bee9c
+		summarizeBy: none
+		sourceColumn: bma_lob_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column bma_lob_number
+		dataType: string
+		lineageTag: cf104294-5f59-4d8d-8f03-9df71a1cee36
+		summarizeBy: none
+		sourceColumn: bma_lob_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column endt_no_if_applicable
+		dataType: string
+		lineageTag: 354e7a6a-e376-484b-a824-9dd3e5341218
+		summarizeBy: none
+		sourceColumn: endt_no_if_applicable
+
+		annotation SummarizationSetBy = Automatic
+
+	column retroactive_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6dba0afc-eca5-40b1-bbe0-eb8104c845bd
+		summarizeBy: none
+		sourceColumn: retroactive_date
+
+		variation Variation
+			isDefault
+			relationship: a8840808-8c1a-497d-a08b-fd4d1f19faf6
+			defaultHierarchy: LocalDateTable_857c7d45-65d0-4e5f-8838-66dd4e2b8bea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_bound
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dd8f7d35-08df-4b79-a150-bce8bc336c19
+		summarizeBy: none
+		sourceColumn: date_bound
+
+		variation Variation
+			isDefault
+			relationship: b9a4274a-31c0-4616-b0cc-072b7d420a02
+			defaultHierarchy: LocalDateTable_b03bac34-e451-4e04-9afc-5b31c601297e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column inception_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8eefc1c6-0c8d-474a-bb41-0ac09d074f75
+		summarizeBy: none
+		sourceColumn: inception_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column expiration_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8fa21948-d27b-43a5-960c-cf272c1a8b36
+		summarizeBy: none
+		sourceColumn: expiration_date
+
+		variation Variation
+			isDefault
+			relationship: 924639c8-7d62-4e2f-97ba-21aee97662d6
+			defaultHierarchy: LocalDateTable_fc8aa7a5-18e4-4456-8369-68087c90863d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_duration
+		dataType: double
+		lineageTag: f769bb34-fa20-49fc-9565-373946880e20
+		summarizeBy: sum
+		sourceColumn: policy_duration
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column inception_month
+		dataType: string
+		lineageTag: 0bb85cec-87b5-4a1b-996f-5c385f66afc4
+		summarizeBy: none
+		sourceColumn: inception_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column inception_year
+		dataType: string
+		lineageTag: 514afe56-d15a-49e4-bf3b-32ecbff3057a
+		summarizeBy: none
+		sourceColumn: inception_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column cancellation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c8b2600c-2f1a-4c4e-a1f4-f3a74d37c5c6
+		summarizeBy: none
+		sourceColumn: cancellation_date
+
+		variation Variation
+			isDefault
+			relationship: c2a7df1f-38cd-4ba3-b3be-e6d8fb4d0e6a
+			defaultHierarchy: LocalDateTable_add5849a-8993-4bc7-97fd-5075c4221f17.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_number_renewal_of
+		dataType: string
+		lineageTag: 218f90c1-bb74-4803-9423-d01f4ab589c4
+		summarizeBy: none
+		sourceColumn: policy_number_renewal_of
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency_id
+		dataType: string
+		lineageTag: f6d28c33-3550-4ce1-842e-bed3b44a6585
+		summarizeBy: none
+		sourceColumn: currency_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_currency
+		dataType: string
+		lineageTag: 0e98b959-9440-40e5-bfbb-4a6efd7ea3a9
+		summarizeBy: none
+		sourceColumn: policy_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column relm_occurence_limit
+		dataType: double
+		lineageTag: 6b6d582b-5c36-419c-8a9d-241d8b04285b
+		summarizeBy: sum
+		sourceColumn: relm_occurence_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_aggregate_limit
+		dataType: double
+		lineageTag: 32baa665-40b1-4ef8-a32f-af1a6871b977
+		summarizeBy: sum
+		sourceColumn: relm_aggregate_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_coverage_limit
+		dataType: double
+		lineageTag: d406dcb2-1fad-4b2b-87b3-3bee51bb0276
+		summarizeBy: sum
+		sourceColumn: relm_coverage_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quota_share_layer
+		dataType: double
+		lineageTag: c04aaec6-b6cb-473a-9528-6bf2495a3c8e
+		summarizeBy: sum
+		sourceColumn: quota_share_layer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_layer_percentage
+		dataType: double
+		lineageTag: b3d073f0-e14f-4115-aa11-7a4b326b577d
+		summarizeBy: sum
+		sourceColumn: relm_layer_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_retention
+		dataType: double
+		lineageTag: 3002e683-a78e-428a-a6a2-b83def49ae75
+		summarizeBy: sum
+		sourceColumn: relm_retention
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_attachment_point
+		dataType: double
+		lineageTag: 64104148-e1ba-478a-95d2-a2075cd2fd7e
+		summarizeBy: sum
+		sourceColumn: relm_attachment_point
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_policy_premium
+		dataType: double
+		lineageTag: 54d986f2-e19c-4a57-bef3-4d9868111aeb
+		summarizeBy: sum
+		sourceColumn: relm_policy_premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_coverage_premium
+		dataType: double
+		lineageTag: 2b618be7-788a-4f3f-b74f-6a6b624d5578
+		summarizeBy: sum
+		sourceColumn: relm_coverage_premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column policy_admin_fee
+		dataType: double
+		lineageTag: 95f5d15a-0a34-42af-94ad-168f7d18a945
+		summarizeBy: sum
+		sourceColumn: policy_admin_fee
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column brokerage_percent
+		dataType: double
+		lineageTag: 77d28ccf-5f44-4113-b89d-8abc759f2ad3
+		summarizeBy: sum
+		sourceColumn: brokerage_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fronting_commission_percent
+		dataType: double
+		lineageTag: 946696ed-e1db-43a5-91f9-bde5100e3c53
+		summarizeBy: sum
+		sourceColumn: fronting_commission_percent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_premium
+		dataType: double
+		lineageTag: 9c6a1400-032d-401a-908d-dab0dcca8bb1
+		summarizeBy: sum
+		sourceColumn: net_premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_ultimate_premium
+		dataType: double
+		lineageTag: a25aa24b-4d6f-4e71-814b-8219d91aa5c0
+		summarizeBy: sum
+		sourceColumn: net_ultimate_premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column bma_zone_categorisation
+		dataType: string
+		lineageTag: ea9d096a-e024-4373-a75d-6f516ea09a0c
+		summarizeBy: none
+		sourceColumn: bma_zone_categorisation
+
+		annotation SummarizationSetBy = Automatic
+
+	column street_address
+		dataType: string
+		lineageTag: 103ffe73-2e82-4861-b685-b4df245be274
+		summarizeBy: none
+		sourceColumn: street_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 019741da-d48c-4d46-b0b9-0822b19798cc
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 125226a1-a268-4e2e-b5b7-7e3eafdafca6
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: b63b20d5-ee21-4256-b3bc-fdf69ca9cbcf
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column zipcode
+		dataType: string
+		lineageTag: e0c3f926-60d6-419a-943d-2eacfde24549
+		summarizeBy: none
+		sourceColumn: zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column tax
+		dataType: double
+		lineageTag: 8f9ebefb-f536-4848-a251-9614d224c810
+		summarizeBy: sum
+		sourceColumn: tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column invoice_id
+		dataType: string
+		lineageTag: 66116869-a748-4a7c-b2a1-a02b424b4eda
+		summarizeBy: none
+		sourceColumn: invoice_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_number
+		dataType: string
+		lineageTag: ce1632a7-a007-40c8-aa7c-bd22b31eb6af
+		summarizeBy: none
+		sourceColumn: invoice_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_due_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ed95cd36-b6cd-477b-851d-1d4d7a3df8d3
+		summarizeBy: none
+		sourceColumn: payment_due_date
+
+		variation Variation
+			isDefault
+			relationship: 87e2a4f3-0e3f-4c2e-a2b0-d646f2f15d2d
+			defaultHierarchy: LocalDateTable_7dd1998f-da5d-44c7-891b-3306b2d70b5c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_due
+		dataType: double
+		lineageTag: d2ef7a06-663e-4d38-b674-b0813dc24dc9
+		summarizeBy: sum
+		sourceColumn: amount_due
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column invoice_comments
+		dataType: string
+		lineageTag: d83d008c-1366-42b9-bdd9-02828db868aa
+		summarizeBy: none
+		sourceColumn: invoice_comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_payment_type
+		dataType: string
+		lineageTag: 631e51f4-073d-46e9-9b3a-4438d6d9a9ec
+		summarizeBy: none
+		sourceColumn: premium_payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column relm_entity
+		dataType: string
+		lineageTag: d093be11-6081-40c6-9631-98bb20a9b7f4
+		summarizeBy: none
+		sourceColumn: relm_entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriting_entity
+		dataType: string
+		lineageTag: 02fdf414-7e8b-4618-be5c-8ba3f60ea159
+		summarizeBy: none
+		sourceColumn: underwriting_entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column fronting_carrier_id
+		dataType: string
+		lineageTag: f10e4a7f-e66f-499f-bf84-99c3937b1c91
+		summarizeBy: none
+		sourceColumn: fronting_carrier_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column fronting_carrier
+		dataType: string
+		lineageTag: 2e5b952c-07a9-4310-b121-933338a47c9d
+		summarizeBy: none
+		sourceColumn: fronting_carrier
+
+		annotation SummarizationSetBy = Automatic
+
+	column sic_code
+		dataType: string
+		lineageTag: c1b1ff11-f9c0-4ce4-8e4f-956d92c2d7ec
+		summarizeBy: none
+		sourceColumn: sic_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column industry
+		dataType: string
+		lineageTag: f96a9c85-bd7b-415d-9ecf-5727cdd013a1
+		summarizeBy: none
+		sourceColumn: industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column relm_sector_id
+		dataType: string
+		lineageTag: cd261f83-cc31-4208-bd7a-813f87363e20
+		summarizeBy: none
+		sourceColumn: relm_sector_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bma_sector_id
+		dataType: string
+		lineageTag: 5e037465-2c03-4442-9dc5-23bac873ae1e
+		summarizeBy: none
+		sourceColumn: bma_sector_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column bma_sector
+		dataType: string
+		lineageTag: 32cd0489-b7d2-4f8d-b16f-6b6f491f8c98
+		summarizeBy: none
+		sourceColumn: bma_sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriting_rationale
+		dataType: string
+		lineageTag: 02514b38-8082-40d7-98b9-3d17a2aef560
+		summarizeBy: none
+		sourceColumn: underwriting_rationale
+
+		annotation SummarizationSetBy = Automatic
+
+	column ledger_cov_code
+		dataType: string
+		lineageTag: 877d8807-1cee-4927-92ed-40f6d08cd68c
+		summarizeBy: none
+		sourceColumn: ledger_cov_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_split_id
+		dataType: string
+		lineageTag: 0d6d555c-0310-48e0-81a9-dce075c01cba
+		summarizeBy: none
+		sourceColumn: policy_split_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column exposure_id
+		dataType: string
+		lineageTag: ec2d7bea-956a-4952-b83f-7afc764450af
+		summarizeBy: none
+		sourceColumn: exposure_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_local_currency
+		dataType: double
+		lineageTag: 0ef90c7c-1e43-4c17-813e-1482ec7c1722
+		summarizeBy: sum
+		sourceColumn: revenue_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revenue_usd
+		dataType: double
+		lineageTag: 4d539c34-51b4-489f-95d4-43284cce355c
+		summarizeBy: sum
+		sourceColumn: revenue_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_assets_local_currency
+		dataType: double
+		lineageTag: 720322b5-02a9-4abc-95d8-55655f04fdd9
+		summarizeBy: sum
+		sourceColumn: total_assets_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_assets_usd
+		dataType: double
+		lineageTag: d01d1ac7-2077-4e81-a010-643e35666107
+		summarizeBy: sum
+		sourceColumn: total_assets_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column forecasted_revenue_usd
+		dataType: double
+		lineageTag: c16d657a-4c12-4798-aa90-62493097392e
+		summarizeBy: sum
+		sourceColumn: forecasted_revenue_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cannabis
+		dataType: string
+		lineageTag: 61d7ca06-b86b-4ca1-b89a-f7bd4fe028fa
+		summarizeBy: none
+		sourceColumn: cannabis
+
+		annotation SummarizationSetBy = Automatic
+
+	column alt_therapeutics
+		dataType: string
+		lineageTag: cbfd7510-64a7-40a7-a0e9-33124b5638f3
+		summarizeBy: none
+		sourceColumn: alt_therapeutics
+
+		annotation SummarizationSetBy = Automatic
+
+	column digital_assets
+		dataType: string
+		lineageTag: 853e0827-390f-4696-b2af-af665b91b93d
+		summarizeBy: none
+		sourceColumn: digital_assets
+
+		annotation SummarizationSetBy = Automatic
+
+	column schedule_1_drugs
+		dataType: string
+		lineageTag: 5b22992f-8443-4736-b6e2-d682797a99ce
+		summarizeBy: none
+		sourceColumn: schedule_1_drugs
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_headcount
+		dataType: double
+		lineageTag: 0def004e-9b40-4c91-9bb0-ae756cadb6b0
+		summarizeBy: sum
+		sourceColumn: employee_headcount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_quote_id
+		dataType: string
+		lineageTag: 4eb41227-c8de-41bb-b791-e2d301feaeba
+		summarizeBy: none
+		sourceColumn: relm_quote_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_quoted
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 032acdf7-27da-426a-8dcf-76e38f5b92bd
+		summarizeBy: none
+		sourceColumn: date_quoted
+
+		variation Variation
+			isDefault
+			relationship: 4520ae5f-55bb-4a16-bbdb-a0e4e1459786
+			defaultHierarchy: LocalDateTable_352b3cc8-8360-48b2-9e81-998869decc0c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_coverage_description
+		dataType: string
+		lineageTag: d472ffe5-03f4-4663-9462-55fceb93018e
+		summarizeBy: none
+		sourceColumn: sub_coverage_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_change_id
+		dataType: string
+		lineageTag: 43789b96-56c3-45e8-a9b3-e9a6e658f854
+		summarizeBy: none
+		sourceColumn: policy_change_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_change_name
+		dataType: string
+		lineageTag: e5ce875a-72a7-4d3f-bfdd-b84e634e0b0a
+		summarizeBy: none
+		sourceColumn: policy_change_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_change_type
+		dataType: string
+		lineageTag: 8cb5c34b-246c-439f-b38a-2aaf49290d3a
+		summarizeBy: none
+		sourceColumn: policy_change_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column bound_month
+		dataType: string
+		lineageTag: a82995c7-3ea4-48b5-9265-fe14af657c15
+		summarizeBy: none
+		sourceColumn: bound_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column incept_month
+		dataType: string
+		lineageTag: 09a3f69a-ce9c-470a-a1ab-d0023c49ace9
+		summarizeBy: none
+		sourceColumn: incept_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column rate_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 235eb6e4-735b-4dfa-82db-fd4b3d40a42b
+		summarizeBy: none
+		sourceColumn: rate_month
+
+		variation Variation
+			isDefault
+			relationship: cdf2beac-be5c-47a7-aa7a-85f2f60cbbf8
+			defaultHierarchy: LocalDateTable_6d871435-c4e0-4b16-a6e8-71aa421f7fea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column exchange_rate
+		dataType: double
+		lineageTag: d96310ca-5cf3-43da-b3e1-e573257ca370
+		summarizeBy: sum
+		sourceColumn: exchange_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_occurrence_limit_converted
+		dataType: double
+		lineageTag: e461a371-89eb-42ed-becc-616a2b235fdd
+		summarizeBy: sum
+		sourceColumn: relm_occurrence_limit_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_aggregate_limit_converted
+		dataType: double
+		lineageTag: 5256961b-167d-40f6-b498-3967716fbe16
+		summarizeBy: sum
+		sourceColumn: relm_aggregate_limit_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_coverage_limit_converted
+		dataType: double
+		lineageTag: b5425415-ea64-4c94-9d67-900a758bb670
+		summarizeBy: sum
+		sourceColumn: relm_coverage_limit_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column quota_share_layer_converted
+		dataType: double
+		lineageTag: f99dc7a8-d180-4339-bbef-102bcde1b0f8
+		summarizeBy: sum
+		sourceColumn: quota_share_layer_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_retention_converted
+		dataType: double
+		lineageTag: 3e8cc49a-4b95-4c82-8af1-ba9792da4762
+		summarizeBy: sum
+		sourceColumn: relm_retention_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_attachment_point_converted
+		dataType: double
+		lineageTag: 3ec36084-ae25-4b1f-8174-774b1e0787d4
+		summarizeBy: sum
+		sourceColumn: relm_attachment_point_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_policy_premium_converted
+		dataType: double
+		lineageTag: 3efa49db-a07a-49e1-b053-1b311b0bd3e1
+		summarizeBy: sum
+		sourceColumn: relm_policy_premium_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_coverage_premium_converted
+		dataType: double
+		lineageTag: 7d716f14-3096-43bd-a5de-9aee8bb31fe0
+		summarizeBy: sum
+		sourceColumn: relm_coverage_premium_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column policy_admin_fee_converted
+		dataType: double
+		lineageTag: ff14c1a4-b33b-4a13-a68b-5bc0185b996e
+		summarizeBy: sum
+		sourceColumn: policy_admin_fee_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column policy_quota_share_layer_converted
+		dataType: double
+		lineageTag: 33c6682c-fde8-4614-90c4-5f434e07bdff
+		summarizeBy: sum
+		sourceColumn: policy_quota_share_layer_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_percentage
+		dataType: double
+		lineageTag: 50ba88eb-bfa8-4fa3-959f-d6949ae5f218
+		summarizeBy: sum
+		sourceColumn: relm_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column underwriter
+		dataType: string
+		lineageTag: ae2a4337-95f1-4e83-8913-e83e36f7a075
+		summarizeBy: none
+		sourceColumn: underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Coverage Policy'
+		dataType: string
+		lineageTag: b4a075c7-d699-4c94-986b-191455c6020a
+		summarizeBy: none
+		sourceColumn: Coverage Policy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record Bucket'
+		dataType: string
+		lineageTag: 52c4b3f9-c8be-4439-a453-a8c921ae12f6
+		summarizeBy: none
+		sourceColumn: Record Bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Sector'
+		dataType: string
+		lineageTag: badbd478-a8ef-4779-b8ad-b1e0a937e6b4
+		summarizeBy: none
+		sourceColumn: Relm Sector
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bi_coverage_level_view = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    dbo_bi_coverage_level_view = Source{[Schema="dbo",Item="bi_coverage_level_view"]}[Data],
+				    #"Added Custom" = Table.AddColumn(dbo_bi_coverage_level_view, "Coverage Policy", each Text.Proper(Text.From([coverage])) & " - " & Text.Trim(Text.From([policy_type]))),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Record Bucket", each
+				    if [entry_type] = "Endorsement Entry" then "Endorsements"
+				    else if [entry_type] = "Cancellation Entry" then "Cancellations"
+				    else if [entry_type] = "Policy Entry" and [opportunity_record_type] = "New" then "New"
+				    else if [entry_type] = "Policy Entry" and [opportunity_record_type] = "Renewal" then "Renewal"
+				    else "Others",
+				    type text),
+				    #"Filtered Rows" = Table.SelectRows(#"Added Custom1", each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

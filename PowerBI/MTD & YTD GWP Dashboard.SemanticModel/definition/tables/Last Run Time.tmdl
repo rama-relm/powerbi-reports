@@ -1,0 +1,79 @@
+table 'Last Run Time'
+	lineageTag: fa276eea-26ae-4f5f-82d8-910e43eee620
+
+	column StartRunTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1829ac45-ba1a-4ff0-95e5-1f35f42e74e8
+		summarizeBy: none
+		sourceColumn: StartRunTime
+
+		variation Variation
+			isDefault
+			relationship: 3801c410-d34a-48f8-939a-61a6021d4c46
+			defaultHierarchy: LocalDateTable_056960ae-8187-4207-924a-0c3158f7e128.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastRunTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: baf13bf9-09b2-41c3-9f01-8e442245f768
+		summarizeBy: none
+		sourceColumn: LastRunTime
+
+		variation Variation
+			isDefault
+			relationship: cf53f68a-9e3c-4562-ac2f-0a4e61d3bf15
+			defaultHierarchy: LocalDateTable_871255f3-a3d2-4b81-80c8-32d1d7972222.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeZone
+		dataType: string
+		lineageTag: f2a12554-07b8-4012-9287-86b26a5908ce
+		summarizeBy: none
+		sourceColumn: TimeZone
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTimeConverted
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 993980c7-c24d-4a98-bc2d-c87f4fc9d136
+		summarizeBy: none
+		sourceColumn: StartTimeConverted
+
+		variation Variation
+			isDefault
+			relationship: 095d0a70-c269-49e8-b732-fbd1dff75837
+			defaultHierarchy: LocalDateTable_789431ec-9398-4c94-85ab-55df22d37bdc.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTimeConverted
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ebaaef9d-7a2b-4675-90ca-def079615bca
+		summarizeBy: none
+		sourceColumn: EndTimeConverted
+
+		variation Variation
+			isDefault
+			relationship: 159098d8-3644-4277-a2c8-790a01c7049b
+			defaultHierarchy: LocalDateTable_b27dc15b-7435-40a8-90f7-6ebc585e02cf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Last Run Time' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse", [Query="SELECT * from Relm_Gold_Warehouse.gold.pipeline_run"])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

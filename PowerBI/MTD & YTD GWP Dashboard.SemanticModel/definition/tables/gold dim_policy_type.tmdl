@@ -1,0 +1,68 @@
+table 'gold dim_policy_type'
+	lineageTag: 000071a2-5fe0-4c48-bcf9-ea5faa09d5b6
+
+	column type_id
+		dataType: string
+		lineageTag: 61d1859b-9ce5-43fe-9d10-1ceff2ddc7cc
+		summarizeBy: none
+		sourceColumn: type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column type_name
+		dataType: string
+		lineageTag: 23211955-e85f-4dfd-a721-fbd7d3a38738
+		summarizeBy: none
+		sourceColumn: type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column type_description
+		dataType: string
+		lineageTag: 441d36ba-e9b8-4c6d-983f-e7302d644f5a
+		summarizeBy: none
+		sourceColumn: type_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c8967fa8-846a-435f-9341-7fe4bdc1e364
+		summarizeBy: none
+		sourceColumn: created_on
+
+		variation Variation
+			isDefault
+			relationship: 8213c187-531e-4cfa-9dcb-3657c9b89a04
+			defaultHierarchy: LocalDateTable_a5fc5b92-0e0f-4ba1-9809-c8166583b686.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7220f9f8-6127-4b25-b9c8-6f9255856486
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		variation Variation
+			isDefault
+			relationship: 0a3a9e44-83b0-449a-8b6c-6b4d9b7a7ba8
+			defaultHierarchy: LocalDateTable_7bcec83a-92e2-495a-b69d-e4a15d7a2a8a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_policy_type' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_policy_type"]}[Data]
+				in
+				    gold_coverage_view
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

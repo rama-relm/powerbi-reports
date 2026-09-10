@@ -1,0 +1,345 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "fb8fb9a20a4a23c6d56a",
+  "position": {
+    "x": 0,
+    "y": 416.28571929763012,
+    "z": 13000,
+    "height": 383.95284789587242,
+    "width": 1800.5367761853806,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "Record Bucket"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.Record Bucket",
+              "nativeQueryRef": "Record Bucket"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "insured_name"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.insured_name",
+              "nativeQueryRef": "Account Name",
+              "displayName": "Account Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "policy_number"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.policy_number",
+              "nativeQueryRef": "Policy Number",
+              "displayName": "Policy Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "Relm Sector"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.Relm Sector",
+              "nativeQueryRef": "Relm Sector"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "working_underwriter"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.working_underwriter",
+              "nativeQueryRef": "Underwriter",
+              "displayName": "Underwriter"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "broker"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.broker",
+              "nativeQueryRef": "Broking House",
+              "displayName": "Broking House"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "individual_broker"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.individual_broker",
+              "nativeQueryRef": "Broker",
+              "displayName": "Broker"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "policy_type"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.policy_type",
+              "nativeQueryRef": "Policy Type",
+              "displayName": "Policy Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "opportunity_record_type"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.opportunity_record_type",
+              "nativeQueryRef": "New/Renewal",
+              "displayName": "New/Renewal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "line_of_business"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.line_of_business",
+              "nativeQueryRef": "Line of Business",
+              "displayName": "Line of Business"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "coverage"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.coverage",
+              "nativeQueryRef": "Coverage",
+              "displayName": "Coverage"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_entity"
+                    }
+                  },
+                  "Property": "entity_title"
+                }
+              },
+              "queryRef": "gold dim_entity.entity_title",
+              "nativeQueryRef": "Entity",
+              "displayName": "Entity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "inception_date"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.inception_date",
+              "nativeQueryRef": "Inception Date",
+              "displayName": "Inception Date",
+              "format": "M/d/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "date_bound"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.date_bound",
+              "nativeQueryRef": "Bound Date",
+              "displayName": "Bound Date",
+              "format": "M/d/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "expiration_date"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.expiration_date",
+              "nativeQueryRef": "Expiration Date",
+              "displayName": "Expiration Date",
+              "format": "M/d/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "cancellation_date"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.cancellation_date",
+              "nativeQueryRef": "Cancellation Date",
+              "displayName": "Cancellation Date",
+              "format": "M/d/yyyy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "net_premium"
+                }
+              },
+              "queryRef": "Sum(bi_coverage_level_view.net_premium)",
+              "nativeQueryRef": "GWP $",
+              "displayName": "GWP $",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "bi_coverage_level_view"
+                    }
+                  },
+                  "Property": "invoice_comments"
+                }
+              },
+              "queryRef": "bi_coverage_level_view.invoice_comments",
+              "nativeQueryRef": "Comments",
+              "displayName": "Comments"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "bi_coverage_level_view"
+                  }
+                },
+                "Property": "inception_date"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "59.95807821946688D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(bi_coverage_level_view.net_premium)"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,31 @@
+table 'Opportunity Table'
+	lineageTag: 9ccd3e09-317a-4f36-bb70-9ab9c62ddc80
+
+	column opportunity_id
+		lineageTag: c115270f-41a6-4684-b305-3b28f3160962
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [opportunity_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_name
+		lineageTag: 6d4bd68d-ef5d-4f05-81d2-bace77e1c4a0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: gold dim_opportunity_current[opportunity_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Opportunity Table' = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE (
+				    'gold dim_opportunity_current',
+				    'gold dim_opportunity_current'[opportunity_name],
+				    "opportunity_id", MIN ( 'gold dim_opportunity_current'[opportunity_id] )
+				)
+
+	annotation PBI_Id = 1d9be562a40b4f338210291818d9015a
+
