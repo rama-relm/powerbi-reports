@@ -1,0 +1,122 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "9e8d26d63a8eead6253e",
+  "position": {
+    "x": 0,
+    "y": 323.07692307692304,
+    "z": 5000,
+    "height": 119.23076923076923,
+    "width": 422.30769230769232,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "StructureTableWeeklyBrokers"
+                    }
+                  },
+                  "Property": "MetricName"
+                }
+              },
+              "queryRef": "StructureTableWeeklyBrokers.MetricName",
+              "nativeQueryRef": " ",
+              "displayName": " "
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_broker"
+                    }
+                  },
+                  "Property": "SelectedMeasureValueBrokers"
+                }
+              },
+              "queryRef": "gold dim_broker.SelectedMeasureValueBrokers",
+              "nativeQueryRef": " 1",
+              "displayName": " "
+            }
+          ],
+          "showAll": true
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold dim_broker"
+                  }
+                },
+                "Property": "SelectedMeasureValueBrokers"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold dim_broker.SelectedMeasureValueBrokers"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "248D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "StructureTableWeeklyBrokers.MetricName"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

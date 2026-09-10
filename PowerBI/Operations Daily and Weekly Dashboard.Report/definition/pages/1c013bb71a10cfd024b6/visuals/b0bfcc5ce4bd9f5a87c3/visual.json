@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "b0bfcc5ce4bd9f5a87c3",
+  "position": {
+    "x": 255.32808398950129,
+    "y": 0,
+    "z": 1000,
+    "height": 70.551181102362207,
+    "width": 1024.6719160104988,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "\t\t\t\t\t\t\t\t"
+                  },
+                  {
+                    "value": "Renewal Submissions Report",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "inherit",
+                      "fontSize": "28pt",
+                      "color": "#0068ff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

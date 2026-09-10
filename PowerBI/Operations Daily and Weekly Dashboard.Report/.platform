@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Operations Daily and Weekly Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "34ce4aef-c5c5-bc10-4141-b91d7ea83598"
+  }
+}
