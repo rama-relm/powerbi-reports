@@ -1,0 +1,80 @@
+table 'Date Table'
+	lineageTag: 91a18f6e-6fb8-4f63-b457-4fa23240429d
+
+	measure 'Submission Count' = calculate( count('gold coverage_view'[opportunity_id]))
+		formatString: 0
+		lineageTag: ab9860f9-b90e-4219-bed4-f9b1c4ed7238
+
+	column Date
+		formatString: Short Date
+		lineageTag: 3ce4120b-3394-4978-ac38-92b00065a398
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		formatString: 0
+		lineageTag: ee59cb83-5e08-433b-9b95-8bc1781fd473
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 92fd10b9-ed1d-429a-898b-fed677e9d2fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Name'
+		lineageTag: 2972e4bc-55f7-4fe0-8b20-16b24be1b609
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: fe63d5ec-c66a-411f-a20b-e0f72f33c999
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsValidDate =
+			
+			IF(
+			    'Date Table'[Date] <= TODAY(),
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 566730dc-ca44-43c9-8c8c-6a90af12e712
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Table' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    CALENDAR(
+				        DATE(2026, 1, 1),
+				        DATE(YEAR(TODAY()) + 2, 12, 31)
+				    ),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month Name", FORMAT([Date], "MMM"),
+				    "YearMonth", FORMAT([Date], "MMM YYYY")
+				)
+
+	annotation PBI_Id = 12746f09be0e448f9bc705bc3def3f41
+

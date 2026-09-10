@@ -1,0 +1,2617 @@
+table 'gold coverage_view'
+	lineageTag: 1821f90e-4f7a-43e2-89bc-f21b00547492
+
+	measure 'BDA Total Opportunities Submitted' = ```
+			FORMAT( COALESCE(
+			
+			CALCULATE(
+			    COUNT('gold coverage_view'[opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    'gold coverage_view'[relm_entity] = "Relm Insurance Ltd." && 
+			        ('gold coverage_view'[broker_mailing_country] = "Bermuda" || 
+			          NOT('gold coverage_view'[broker_mailing_country] IN {"United States", "United Kingdom", "United Arab Emirates"}))
+			
+			), 0),  "#,#0")
+			```
+		displayFolder: Old Measures
+		lineageTag: b821347d-11c8-4cfb-a26f-af8203b4c978
+
+	measure 'UK Total Opportunities Submitted' = ```
+			FORMAT(COALESCE(
+			
+			CALCULATE(
+			    COUNT([opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    ('gold coverage_view'[relm_entity] = "Relm Insurance Ltd." 
+			        && 'gold coverage_view'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold coverage_view'[client_billing_country] <> "United Kingdom") 
+			        
+			        || 
+			    
+			    ('gold coverage_view'[relm_entity] = "Relm Ins UK Ltd" 
+			        && 'gold coverage_view'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold coverage_view'[client_billing_country] = "United Kingdom")
+			
+			),0), "#,#0")
+			```
+		displayFolder: Old Measures
+		lineageTag: e2cd3cca-c7b9-4282-adde-70049c4cc22e
+
+	measure 'US MGA RIAI' = ```
+			
+			
+			CALCULATE(
+			    COUNT([opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    ('gold coverage_view'[broker_mailing_country] = "United States" 
+			        && 'gold coverage_view'[client_billing_country] = "United States" 
+			        && 'gold coverage_view'[relm_entity] = "Relm Insurance Agency Inc." 
+			        && 'gold coverage_view'[assigned_us_home_state] = "CA")
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: c6332a28-ca2f-46a4-900c-662ff91af516
+
+	measure 'US MGA RUIA' = ```
+			
+			
+			CALCULATE(
+			    COUNT([opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    ('gold coverage_view'[broker_mailing_country] = "United States" 
+			        && 'gold coverage_view'[client_billing_country] = "United States" 
+			        && 'gold coverage_view'[relm_entity] = "Relm US Insurance Agency" 
+			        && 'gold coverage_view'[assigned_us_home_state] = "NY")
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 346fee75-1c2d-4663-9736-c31774ccf079
+
+	measure 'US MGA RUISI' = ```
+			
+			
+			CALCULATE(
+			    COUNT([opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    ('gold coverage_view'[broker_mailing_country] = "United States" 
+			        && 'gold coverage_view'[client_billing_country] = "United States" 
+			        && 'gold coverage_view'[relm_entity] = "Relm US Insurance Solutions Inc." 
+			        && NOT('gold coverage_view'[assigned_us_home_state] IN {"CA", "NY"})
+			        && NOT(ISBLANK('gold coverage_view'[assigned_us_home_state])))
+			        
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: cac79398-50c9-457f-91e3-851fb6f4b25e
+
+	measure 'US MGA Total Opportunities Submitted' = FORMAT(COALESCE([US MGA RIAI] + [US MGA RUIA] + [US MGA RUISI],0), "#,#0")
+		displayFolder: Old Measures
+		lineageTag: b43406a3-8efe-4fd3-b183-e8f9ac088093
+
+	measure 'MENA Total Opportunities Submitted' = ```
+			FORMAT( COALESCE(
+			
+			CALCULATE(
+			    COUNT([opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    ('gold coverage_view'[relm_entity] = "Relm Insurance MENA Ltd." 
+			        && 'gold coverage_view'[client_billing_country] = "United Arab Emirates") 
+			
+			), 0), "#,#0")
+			```
+		displayFolder: Old Measures
+		lineageTag: b6d5d3a0-d836-4588-abae-c62932196441
+
+	measure SelectedMeasureValue = ```
+			
+			SWITCH(
+			    SELECTEDVALUE(StructureTableWeekly[MetricName]),
+			    "BDA Total Opportunities Submitted", COALESCE([BDA_Opportunities],0), 
+			    "MENA Total Opportunities Submitted", COALESCE([MENA_Opportunities],0), 
+			    "UK Total Opportunities Submitted", COALESCE([UK_Opportunities],0),
+			    "Renewal Total Opportunities Submitted", COALESCE([Renewal_Opportunities],0),
+			    "US MGA Total Opportunities Submitted", COALESCE([US MGA_Opportunities],0),
+			     "Canada Total Opportunities Submitted", COALESCE([CANADA_Opportunities],0),
+			    0
+			)
+			```
+		lineageTag: 45cf2368-ee8a-474d-aee7-579c7fda8e4e
+
+		formatStringDefinition = ```
+				SELECTEDVALUE(StructureTableWeekly[Format], "#,0")
+				
+				```
+
+	measure TEST = CALCULATE(COUNT('gold coverage_view'[broker_id]))
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: e0dc70bb-ca77-4618-ba61-ea3c8157a345
+
+	measure BDA = ```
+			
+			
+			CALCULATE(
+			    COUNT('gold coverage_view'[opportunity_id]),'gold coverage_view'[record_type_name]="New",
+			    'gold coverage_view'[relm_entity] = "Relm Insurance Ltd." && 
+			        ('gold coverage_view'[broker_mailing_country] = "Bermuda" && 
+			          NOT('gold coverage_view'[broker_mailing_country] IN {"United States", "United Kingdom", "United Arab Emirates"}))
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 87150a9d-1f7e-4171-a9e8-3b1cc479d4e7
+
+	measure BDA_Opportunities =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "BDA"
+			)
+		formatString: 0
+		lineageTag: 5ebb140d-fea9-4901-9fac-4535739d3600
+
+	measure MENA_Opportunities =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "MENA"
+			)
+		formatString: 0
+		lineageTag: 41c5f0a8-cb5d-4c5d-953f-84826f79b462
+
+	measure UK_Opportunities =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "UK"
+			)
+		formatString: 0
+		lineageTag: b27561cf-2659-4628-abe0-97894b6dd346
+
+	measure '1US MGA RIAI' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold coverage_view'[opportunity_id]),
+			    'gold coverage_view'[record_type_name] = "New",
+			    'gold coverage_view'[broker_mailing_country] = "United States",
+			    'gold coverage_view'[client_billing_country] = "United States",
+			    'gold coverage_view'[relm_entity] = "Relm Insurance Agency Inc.",
+			    'gold coverage_view'[assigned_us_home_state] = "CA"
+			)
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 383e1036-3408-4add-a351-865021bc50ab
+
+	measure '1US MGA RUIA' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold coverage_view'[opportunity_id]),
+			    'gold coverage_view'[record_type_name] = "New",
+			    'gold coverage_view'[broker_mailing_country] = "United States",
+			    'gold coverage_view'[client_billing_country] = "United States",
+			    'gold coverage_view'[relm_entity] = "Relm US Insurance Agency",
+			    'gold coverage_view'[assigned_us_home_state] = "NY"
+			)
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 4524e178-3299-45ef-9e18-e59667af6e5a
+
+	measure '1US MGA RUISI' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold coverage_view'[opportunity_id]),
+			    'gold coverage_view'[record_type_name] = "New",
+			    'gold coverage_view'[broker_mailing_country] = "United States",
+			    'gold coverage_view'[client_billing_country] = "United States",
+			    'gold coverage_view'[relm_entity] = "Relm US Insurance Solutions Inc.",
+			    NOT('gold coverage_view'[assigned_us_home_state] IN {"CA", "NY"}),
+			    NOT(ISBLANK('gold coverage_view'[assigned_us_home_state]))
+			)
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: e101f50b-ee46-4f1f-8d8b-9fff1b20c962
+
+	measure '1US MGA Total Opportunities Submitted' = FORMAT(COALESCE([1US MGA RIAI] + [1US MGA RUIA] + [1US MGA RUISI],0), "#,#0")
+		displayFolder: Old Measures
+		lineageTag: 49346e5a-118a-4ade-97fc-41419f49220f
+
+	measure Matched_Records =
+			FORMAT(
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[classification_match] = "Matched"
+			), "#,#0")
+		displayFolder: Old Measures
+		lineageTag: cd273e7d-9502-401f-8e7e-5bf70aa97fc8
+
+	measure Mismatched_Records =
+			FORMAT(
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[classification_match] = "Mismatched"
+			), "#,#0")
+		displayFolder: Old Measures
+		lineageTag: fd3219de-8a0d-48bc-842f-09e43fc25677
+
+	measure Total_Matched_Mismatched_Records =
+			FORMAT(
+			[Matched_Records] + [Mismatched_Records], "#,#0")
+		displayFolder: Old Measures
+		lineageTag: 793d36eb-afe8-4a8f-ae76-df42e8db9d8e
+
+	measure 'US MGA_Opportunities' =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "US MGA"
+			)
+		formatString: 0
+		lineageTag: 8db9a048-92df-452d-904a-aa8db7270b68
+
+	measure Renewal_Opportunities =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "Renewal"
+			)
+		formatString: 0
+		lineageTag: a4ed84e4-7872-4455-9132-cd85d4323796
+
+	measure Other_Opportunities =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "Other"
+			)
+		formatString: 0
+		lineageTag: 1d724b69-e8f6-4671-a615-e5b615615aba
+
+	measure Remarks = ```
+			
+			VAR CoverageList =
+			    DISTINCT('gold coverage_view'[coverage_code__c])
+			
+			VAR CoverageCount =
+			    COUNTROWS(CoverageList)
+			
+			VAR HasIMI =
+			    CALCULATE(
+			        COUNTROWS('gold coverage_view'),
+			        CONTAINSSTRING('gold coverage_view'[package_name], "IMI")
+			    ) > 0
+			
+			VAR HasPackage =
+			    CALCULATE(
+			        COUNTROWS('gold coverage_view'),
+			        CONTAINSSTRING('gold coverage_view'[package_name], "Package")
+			    ) > 0
+			
+			VAR ConcatList =
+			    CONCATENATEX(
+			        CoverageList,
+			        'gold coverage_view'[coverage_code__c],
+			        ", "
+			    )
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    CoverageCount > 1 && HasIMI,
+			        "IMI (" & ConcatList & ")",
+			
+			    CoverageCount > 1 && HasPackage,
+			        "Package (" & ConcatList & ")",
+			
+			    ConcatList
+			)
+			
+			```
+		lineageTag: 8eb3c003-e599-4158-87f4-cc9c90841583
+
+	measure CANADA_Opportunities =
+			
+			CALCULATE(
+			    COUNTROWS('gold coverage_view'),
+			    'gold coverage_view'[Opportunity Category] = "Canada"
+			)
+		formatString: 0
+		lineageTag: 8332a2ca-d411-4a6b-9e66-82c63ef5edb0
+
+	column sfdc_created_date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 196ea905-ed58-43a7-945f-09f7a57f28b3
+		summarizeBy: none
+		sourceColumn: sfdc_created_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column assigned_us_home_state
+		dataType: string
+		lineageTag: 4690f45d-4a1d-4b9c-96d4-c6b2bd0d548c
+		summarizeBy: none
+		sourceColumn: assigned_us_home_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column record_type_name
+		dataType: string
+		lineageTag: a1e365e1-1448-4cf0-9975-80062e6f3db8
+		summarizeBy: none
+		sourceColumn: record_type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 7d39327d-74eb-4a23-9fd1-bd003ccb4aac
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_account_name
+		dataType: string
+		lineageTag: 1a5224fd-1f99-4137-9261-a906e6454424
+		summarizeBy: none
+		sourceColumn: client_account_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_name
+		dataType: string
+		lineageTag: ba9a511d-a8fc-429d-b6b7-7dda668c1cd5
+		summarizeBy: none
+		sourceColumn: opportunity_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_policy
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b9ba9e79-175d-472c-9116-2966d7023398
+		summarizeBy: none
+		sourceColumn: package_policy
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_billing_city
+		dataType: string
+		lineageTag: d8a8c51e-c7d5-4323-a867-2c59187056f5
+		summarizeBy: none
+		sourceColumn: client_billing_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_billing_street
+		dataType: string
+		lineageTag: 0ce58e3f-541f-4b9e-8742-06ca15026402
+		summarizeBy: none
+		sourceColumn: client_billing_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_billing_country
+		dataType: string
+		lineageTag: 3a47cb54-555d-4ec9-8a31-7566cb52f33e
+		summarizeBy: none
+		sourceColumn: client_billing_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_billing_state
+		dataType: string
+		lineageTag: 29da1f5b-cdd9-4f07-a5ad-afd8b2962c15
+		summarizeBy: none
+		sourceColumn: client_billing_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_submitted
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 154873b6-e4f1-4650-a578-2140890acec6
+		summarizeBy: none
+		sourceColumn: date_submitted
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_type_name
+		dataType: string
+		lineageTag: 65a9580a-0e6b-4c92-8103-6e947400fad3
+		summarizeBy: none
+		sourceColumn: policy_type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_business_unit__c
+		dataType: string
+		lineageTag: 2725e3db-f6b7-48ad-8bfe-b7f3dc26e14a
+		summarizeBy: none
+		sourceColumn: sub_business_unit__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_of_business
+		dataType: string
+		lineageTag: da05eadd-c585-4390-9106-e327462c3a28
+		summarizeBy: none
+		sourceColumn: line_of_business
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriter_name
+		dataType: string
+		lineageTag: 6a95698b-fa49-4908-b7d1-15b6cb4fc66e
+		summarizeBy: none
+		sourceColumn: underwriter_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ops Analyst Name'
+		dataType: string
+		lineageTag: 1e4c6c73-7a14-4b2b-986e-f419498aa7cb
+		summarizeBy: none
+		sourceColumn: Ops Analyst Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_underwriter
+		dataType: string
+		lineageTag: ae3d85a1-eb94-4d94-85d5-e07281e80445
+		summarizeBy: none
+		sourceColumn: reporting_underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column reportuwsort
+		dataType: int64
+		formatString: 0
+		lineageTag: e0976625-48fd-40b5-a7a1-e35c0e57fb68
+		summarizeBy: sum
+		sourceColumn: reportuwsort
+
+		annotation SummarizationSetBy = Automatic
+
+	column UK_underwriters
+		dataType: string
+		lineageTag: 0c6f582c-875d-4de0-ac80-1d2d61ad60bc
+		summarizeBy: none
+		sourceColumn: UK_underwriters
+
+		annotation SummarizationSetBy = Automatic
+
+	column UK_underwriters_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: d57d7202-3972-4d93-961f-44c0e4751884
+		summarizeBy: sum
+		sourceColumn: UK_underwriters_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage__c
+		dataType: string
+		lineageTag: 992eb10c-667b-4e49-8032-d3824d64a57a
+		summarizeBy: none
+		sourceColumn: coverage__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_coverage
+		dataType: string
+		lineageTag: 63395618-3caf-4967-9bfd-e72208748d59
+		summarizeBy: none
+		sourceColumn: sub_coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column stage_name
+		dataType: string
+		lineageTag: 4534e4dd-14a4-4e4a-a9c1-aa1768a4cc00
+		summarizeBy: none
+		sourceColumn: stage_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_name
+		dataType: string
+		lineageTag: 56345434-b50d-44f5-a4d2-6ca71908edc0
+		summarizeBy: none
+		sourceColumn: broking_house_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_broking_house
+		dataType: string
+		lineageTag: ec1153b5-02f8-4837-ba18-de09b8b69761
+		summarizeBy: none
+		sourceColumn: parent_broking_house
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_street
+		dataType: string
+		lineageTag: b79b677b-55bd-45ac-a5de-7c6de149c942
+		summarizeBy: none
+		sourceColumn: broking_house_billing_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_city
+		dataType: string
+		lineageTag: 7c6f0dca-2310-4559-b6f2-eaf3364d153c
+		summarizeBy: none
+		sourceColumn: broking_house_billing_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_state
+		dataType: string
+		lineageTag: 1b1b9915-6af0-443a-9b31-60e60be783a8
+		summarizeBy: none
+		sourceColumn: broking_house_billing_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_postal_code
+		dataType: string
+		lineageTag: 1976f1a4-3efb-41c4-b9c8-1e1e9e653f40
+		summarizeBy: none
+		sourceColumn: broking_house_billing_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_country
+		dataType: string
+		lineageTag: cce576ec-f231-4626-a100-d0cf49e0d7a2
+		summarizeBy: none
+		sourceColumn: broking_house_billing_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_state_code
+		dataType: string
+		lineageTag: 90c144d3-ab6b-4e28-ac38-2deb65d99ff5
+		summarizeBy: none
+		sourceColumn: broking_house_billing_state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_billing_country_code
+		dataType: string
+		lineageTag: cc1dd663-33b6-4d9b-a353-9658ce95ac56
+		summarizeBy: none
+		sourceColumn: broking_house_billing_country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_street
+		dataType: string
+		lineageTag: 4f2cb450-4afc-49a2-bca3-c9356a3a2109
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_city
+		dataType: string
+		lineageTag: 194230b1-8493-4a34-85bb-769729329a4e
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_state
+		dataType: string
+		lineageTag: 159dfd4b-0298-421d-b562-efd67ab92a79
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_postal_code
+		dataType: string
+		lineageTag: 5b3f1faa-36a0-4234-b346-f039c429ad33
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_country
+		dataType: string
+		lineageTag: 86d42a86-030d-477e-843a-e9750186b1eb
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_state_code
+		dataType: string
+		lineageTag: d98a39fa-2e5b-49e7-8a9e-2189489e6478
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_shipping_country_code
+		dataType: string
+		lineageTag: 244dce57-7e92-47b4-81a5-7bd0ccf9de9a
+		summarizeBy: none
+		sourceColumn: broking_house_shipping_country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_name
+		dataType: string
+		lineageTag: 8348831d-c348-43d8-b841-9cbd113d7313
+		summarizeBy: none
+		sourceColumn: broker_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_id
+		dataType: string
+		lineageTag: 86cffb6d-35e0-4ffd-8c9f-0360ab7a1b74
+		summarizeBy: none
+		sourceColumn: broker_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_phone
+		dataType: string
+		lineageTag: dc2bde87-0176-4065-8f05-f15dbe5e8899
+		summarizeBy: none
+		sourceColumn: broker_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mobile_phone
+		dataType: string
+		lineageTag: 86f80a2e-f023-48d2-819c-f9c7c1186fd9
+		summarizeBy: none
+		sourceColumn: broker_mobile_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_other_phone
+		dataType: string
+		lineageTag: a2d3bc8a-355a-494b-b3be-4ef584914fd5
+		summarizeBy: none
+		sourceColumn: broker_other_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_phone
+		dataType: string
+		lineageTag: 455498e4-4a0c-4e38-933c-b30a47780fe0
+		summarizeBy: none
+		sourceColumn: client_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_email
+		dataType: string
+		lineageTag: 9a056d4e-0aa6-4867-8cc2-13a241d40503
+		summarizeBy: none
+		sourceColumn: broker_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_country
+		dataType: string
+		lineageTag: 7c8e421f-9050-488e-a304-2ac50f194c2c
+		summarizeBy: none
+		sourceColumn: broker_mailing_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_street
+		dataType: string
+		lineageTag: aeb9d473-9d51-4e1e-8540-1ea44543e8c5
+		summarizeBy: none
+		sourceColumn: broker_mailing_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_city
+		dataType: string
+		lineageTag: 1597e417-a9e5-44c2-a397-90842a9dd09b
+		summarizeBy: none
+		sourceColumn: broker_mailing_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_state
+		dataType: string
+		lineageTag: b7f0bd22-89da-4c9b-9013-e38bbeb5c8da
+		summarizeBy: none
+		sourceColumn: broker_mailing_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_state_code
+		dataType: string
+		lineageTag: b34b3d9f-90a0-43d8-a1af-87508dd2e84b
+		summarizeBy: none
+		sourceColumn: broker_mailing_state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_postal_code
+		dataType: string
+		lineageTag: d72996b9-40b1-41fe-a7a2-498e7d72d358
+		summarizeBy: none
+		sourceColumn: broker_mailing_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_mailing_country_code
+		dataType: string
+		lineageTag: 6bccc4cd-529c-4b4a-a317-7500f712635b
+		summarizeBy: none
+		sourceColumn: broker_mailing_country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column quoted_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6ba44885-b2fa-44d6-b654-b322196e9a61
+		summarizeBy: none
+		sourceColumn: quoted_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status_change_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 50baef3d-348f-45a1-97ec-9dd4dead3e89
+		summarizeBy: none
+		sourceColumn: status_change_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sfdc_last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89e2bfdd-d0bf-4889-8ade-833c810b6eee
+		summarizeBy: none
+		sourceColumn: sfdc_last_modified_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column close_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 87b0172f-47eb-42e5-97c0-2cff10325aba
+		summarizeBy: none
+		sourceColumn: close_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column industry
+		dataType: string
+		lineageTag: 2a9ecdc7-b6c7-477b-8753-de9da847c195
+		summarizeBy: none
+		sourceColumn: industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_industry
+		dataType: string
+		lineageTag: 30f2aa22-4880-44a6-a2f6-b7434c3a657b
+		summarizeBy: none
+		sourceColumn: sub_industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column blockchain_crypto
+		dataType: string
+		lineageTag: ee1c0407-28c2-4e19-80c9-86e97ac464f7
+		summarizeBy: none
+		sourceColumn: blockchain_crypto
+
+		annotation SummarizationSetBy = Automatic
+
+	column cannabis
+		dataType: string
+		lineageTag: 01e3be44-0ec3-4b27-8286-6b7d3f8d49f3
+		summarizeBy: none
+		sourceColumn: cannabis
+
+		annotation SummarizationSetBy = Automatic
+
+	column artificial_intelligence
+		dataType: string
+		lineageTag: 5c46a180-1d83-4dfd-a839-a446f9eaa9a4
+		summarizeBy: none
+		sourceColumn: artificial_intelligence
+
+		annotation SummarizationSetBy = Automatic
+
+	column alt_therapeutics
+		dataType: string
+		lineageTag: 640bfa8c-8903-4f26-9cab-3b9ec33bbe8b
+		summarizeBy: none
+		sourceColumn: alt_therapeutics
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_unit__c
+		dataType: string
+		lineageTag: c224211b-46c8-4fd6-bebe-07fcfb529e17
+		summarizeBy: none
+		sourceColumn: business_unit__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column sic_code
+		dataType: string
+		lineageTag: 2275f5d9-3ba5-4ad8-8a63-2e5ee38227e1
+		summarizeBy: none
+		sourceColumn: sic_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_number
+		dataType: double
+		lineageTag: e8e8e26c-9f3d-4893-b19c-b011f2103e08
+		summarizeBy: sum
+		sourceColumn: company_number
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column sic_description
+		dataType: string
+		lineageTag: 977feb83-3a43-48af-8502-c87841a4573c
+		summarizeBy: none
+		sourceColumn: sic_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_country
+		dataType: string
+		lineageTag: ab06c768-832e-4713-bbe9-a1aa0f45f4bf
+		summarizeBy: none
+		sourceColumn: billing_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_type_description
+		dataType: string
+		lineageTag: c39f91d4-0e8b-466c-b5e2-aca79f593487
+		summarizeBy: none
+		sourceColumn: company_type_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 653a87b2-012e-4e17-8152-ed24704e147b
+		summarizeBy: none
+		sourceColumn: client_created_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_screen_review
+		dataType: string
+		lineageTag: 195c4ee1-a039-420a-b241-12fd79bf4498
+		summarizeBy: none
+		sourceColumn: risk_screen_review
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_screen_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 257e8853-f0b0-42cf-a9a7-a40dad950dc2
+		summarizeBy: none
+		sourceColumn: risk_screen_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_currency_name
+		dataType: string
+		lineageTag: a928e33c-03a6-4db7-9728-9980d45ef93a
+		summarizeBy: none
+		sourceColumn: opportunity_currency_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_account_currency_name
+		dataType: string
+		lineageTag: 6c4680b0-5669-4f26-bfbc-a6af07928407
+		summarizeBy: none
+		sourceColumn: client_account_currency_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column expiration_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 24cd6f45-01ca-41f9-90a9-dbf72377ba7d
+		summarizeBy: none
+		sourceColumn: expiration_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Renewal_Inception_Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 70ec1bdb-db4d-4570-826b-1bc1016f6d30
+		summarizeBy: sum
+		sourceColumn: Renewal_Inception_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_description
+		dataType: string
+		lineageTag: 8fc3eb7e-9841-4292-860e-efa65cc70400
+		summarizeBy: none
+		sourceColumn: opportunity_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Exposure_Revenue_Currency
+		dataType: string
+		lineageTag: 022574dc-ccb7-4b7b-adb0-6dcb91d0d36d
+		summarizeBy: none
+		sourceColumn: Exposure_Revenue_Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column exposure_id
+		dataType: string
+		lineageTag: ce2f3548-508f-4a29-9eb8-bc0714a1b534
+		summarizeBy: none
+		sourceColumn: exposure_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_usd
+		dataType: double
+		lineageTag: 08ed2952-f73e-48c3-8b1e-896ebe2f66cf
+		summarizeBy: sum
+		sourceColumn: revenue_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Exposure_Revenue_Converted_Currency
+		dataType: string
+		lineageTag: b44797d6-0205-4570-bf00-957f7c8e6eb5
+		summarizeBy: none
+		sourceColumn: Exposure_Revenue_Converted_Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column revenue_local_currency
+		dataType: double
+		lineageTag: c0d63893-2127-48c2-8523-bf13301d8c2b
+		summarizeBy: sum
+		sourceColumn: revenue_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Assets_under_management_currency
+		dataType: string
+		lineageTag: 1f81e6e6-18b7-4a0c-aecf-161855398005
+		summarizeBy: none
+		sourceColumn: Assets_under_management_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column aum_usd
+		dataType: double
+		lineageTag: 8006cd64-0527-41a7-a3b1-a0b38b7660da
+		summarizeBy: sum
+		sourceColumn: aum_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Assets_under_management_converted_currency
+		dataType: string
+		lineageTag: 239e86d9-63c8-4dcd-a6c3-e7aefc52b73d
+		summarizeBy: none
+		sourceColumn: Assets_under_management_converted_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column aum_local_currency
+		dataType: double
+		lineageTag: 70d4c66e-9763-44d5-b261-30e25c371912
+		summarizeBy: sum
+		sourceColumn: aum_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Market_cap_currency
+		dataType: string
+		lineageTag: ee8c5fe0-5b01-41b2-9ba1-109379137c75
+		summarizeBy: none
+		sourceColumn: Market_cap_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_cap_usd
+		dataType: double
+		lineageTag: f3e523ca-6611-494b-b90d-cbf686eba0f8
+		summarizeBy: sum
+		sourceColumn: market_cap_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Market_cap_converted_currency
+		dataType: string
+		lineageTag: b8ba9129-d1e1-4f4c-9ce7-6fec48197a64
+		summarizeBy: none
+		sourceColumn: Market_cap_converted_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column market_cap_local_currency
+		dataType: double
+		lineageTag: 5e60dea7-7a20-45b3-bb30-f1ecaa500620
+		summarizeBy: sum
+		sourceColumn: market_cap_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Assets_Currency
+		dataType: string
+		lineageTag: dcac4c49-5843-4225-bcfa-2073a4207834
+		summarizeBy: none
+		sourceColumn: Total_Assets_Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_assets_usd
+		dataType: double
+		lineageTag: 6d8d9e9a-2e7d-4220-9b69-87b5259ddba9
+		summarizeBy: sum
+		sourceColumn: total_assets_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_assets_local_currency
+		dataType: double
+		lineageTag: ad34cd2e-b7c8-40db-9155-e87655c1af68
+		summarizeBy: sum
+		sourceColumn: total_assets_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Assets_Converted_Currency
+		dataType: string
+		lineageTag: 9f886bff-a7a5-4383-ae88-5e5fdd66b7f4
+		summarizeBy: none
+		sourceColumn: Total_Assets_Converted_Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_headcount
+		dataType: double
+		lineageTag: 58835b6f-76a2-4c30-b9bf-c6683e015394
+		summarizeBy: sum
+		sourceColumn: employee_headcount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column number_of_professionals
+		dataType: double
+		lineageTag: 68c0d62e-24b4-464c-8e5a-69bd1b2deeca
+		summarizeBy: sum
+		sourceColumn: number_of_professionals
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column additional_exposure_1_value
+		dataType: double
+		lineageTag: 65e26f14-2383-45a3-a536-d1caf01cb8be
+		summarizeBy: sum
+		sourceColumn: additional_exposure_1_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column additional_exposure_2_value
+		dataType: double
+		lineageTag: f6081c47-4980-4bc8-a772-2da31c278490
+		summarizeBy: sum
+		sourceColumn: additional_exposure_2_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dominant_exposure_alt_therapeutic
+		dataType: string
+		lineageTag: 7dca5473-a7c9-453e-b0f5-dc34bab37ff3
+		summarizeBy: none
+		sourceColumn: dominant_exposure_alt_therapeutic
+
+		annotation SummarizationSetBy = Automatic
+
+	column dominant_exposure_act_cannabis
+		dataType: string
+		lineageTag: 68f70d85-157c-4106-9166-93d035d00040
+		summarizeBy: none
+		sourceColumn: dominant_exposure_act_cannabis
+
+		annotation SummarizationSetBy = Automatic
+
+	column dominant_exposure_act_blockchain
+		dataType: string
+		lineageTag: 70e0c62f-f2d6-4151-b8f6-d52eca336c74
+		summarizeBy: none
+		sourceColumn: dominant_exposure_act_blockchain
+
+		annotation SummarizationSetBy = Automatic
+
+	column dominant_exposure_act_AI
+		dataType: string
+		lineageTag: d0c455ca-1f2c-4524-88c4-fcab09c0d596
+		summarizeBy: none
+		sourceColumn: dominant_exposure_act_AI
+
+		annotation SummarizationSetBy = Automatic
+
+	column limit
+		dataType: double
+		lineageTag: 3768b634-b510-4654-8a64-a28931b5bb3a
+		summarizeBy: sum
+		sourceColumn: limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column limit_usd
+		dataType: double
+		lineageTag: e3c90f0e-b33e-48ab-977b-8e6480dba2c4
+		summarizeBy: sum
+		sourceColumn: limit_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_occurence_limit
+		dataType: double
+		lineageTag: f699f176-49a6-433f-a0c9-67d1826e24ca
+		summarizeBy: sum
+		sourceColumn: relm_occurence_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column premium_local_currency
+		dataType: double
+		lineageTag: 2f777c98-1567-4f7a-8399-cf1a61e3cf3b
+		summarizeBy: sum
+		sourceColumn: premium_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column premium_usd
+		dataType: double
+		lineageTag: bb4d0203-aa71-4cf5-96be-919327de7f8d
+		summarizeBy: sum
+		sourceColumn: premium_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retension_sir_usd
+		dataType: double
+		lineageTag: 060cd198-5ec1-429b-bfe9-1468c21e8f94
+		summarizeBy: sum
+		sourceColumn: retension_sir_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retension_sir_local_currency
+		dataType: double
+		lineageTag: e5a32bc1-d174-4862-89ee-142003301738
+		summarizeBy: sum
+		sourceColumn: retension_sir_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column attachment_point_local_currency
+		dataType: double
+		lineageTag: 613f57a6-dc76-4a3f-80e8-98eb5188b204
+		summarizeBy: sum
+		sourceColumn: attachment_point_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column attachment_point_usd
+		dataType: double
+		lineageTag: c907e6b9-a882-4d83-9e0d-0e733d797bf1
+		summarizeBy: sum
+		sourceColumn: attachment_point_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lost
+		dataType: double
+		lineageTag: 665a4134-101e-423d-8062-79373177c8c7
+		summarizeBy: sum
+		sourceColumn: lost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expiring_policy_premium_paid
+		dataType: double
+		lineageTag: 63d293bc-a62a-4039-ad47-7c06354e5984
+		summarizeBy: sum
+		sourceColumn: expiring_policy_premium_paid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expiring_policy_limit
+		dataType: double
+		lineageTag: f5fb99be-8b16-436e-98d3-ea8050551e66
+		summarizeBy: sum
+		sourceColumn: expiring_policy_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expiring_policy_retention
+		dataType: double
+		lineageTag: 4e7c6c03-fa9d-4799-bf1d-78e9c014f4c6
+		summarizeBy: sum
+		sourceColumn: expiring_policy_retention
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column won
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: da0d4651-8311-4353-bac9-c370fa576d21
+		summarizeBy: none
+		sourceColumn: won
+
+		annotation SummarizationSetBy = Automatic
+
+	column brokerage
+		dataType: double
+		lineageTag: 0dc9387c-87e8-45cb-8d59-89660abc3aaf
+		summarizeBy: sum
+		sourceColumn: brokerage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column policy_number_new
+		dataType: string
+		lineageTag: 9ef52af1-ba6f-4c47-9f5e-3ba291ca5c84
+		summarizeBy: none
+		sourceColumn: policy_number_new
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_id
+		dataType: string
+		lineageTag: 6a685202-e14c-4180-91f5-b45d8c33689d
+		summarizeBy: none
+		sourceColumn: broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column loss_reason
+		dataType: string
+		lineageTag: a54e44fd-9787-4ad0-ab52-d6d999f7b6ab
+		summarizeBy: none
+		sourceColumn: loss_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column loss_reason_detail
+		dataType: string
+		lineageTag: ed60c966-03db-4c9d-ab44-ba06393b7f40
+		summarizeBy: none
+		sourceColumn: loss_reason_detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_stage_change_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3f7f2987-822a-4b84-a5db-32206e120b35
+		summarizeBy: none
+		sourceColumn: last_stage_change_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_quoted_to_bound
+		dataType: double
+		lineageTag: 7a9b5083-b06e-4d08-b3d5-8f4b27f7e2be
+		summarizeBy: sum
+		sourceColumn: duration_quoted_to_bound
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column duration_submission_to_bound
+		dataType: double
+		lineageTag: 92e504b7-a56a-43db-b02e-91a04a265882
+		summarizeBy: sum
+		sourceColumn: duration_submission_to_bound
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column duration_submission_to_quoted
+		dataType: double
+		lineageTag: 89567b7b-3399-4829-a768-cc22ef7d43b2
+		summarizeBy: sum
+		sourceColumn: duration_submission_to_quoted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cyber_waiting_period
+		dataType: double
+		lineageTag: 1acd2593-2ada-4402-b91e-9e66fb71d631
+		summarizeBy: sum
+		sourceColumn: cyber_waiting_period
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column package
+		dataType: string
+		lineageTag: 1456d2ed-433c-40e9-9fe0-e7c9c1894bf6
+		summarizeBy: none
+		sourceColumn: package
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_number
+		dataType: string
+		lineageTag: a73385e3-5d72-44dc-8a6f-6532c065ea98
+		summarizeBy: none
+		sourceColumn: policy_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column expiring_policy_num
+		dataType: string
+		lineageTag: e8e11742-30aa-4828-bc60-16f6273ed4af
+		summarizeBy: none
+		sourceColumn: expiring_policy_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_status_old
+		dataType: string
+		lineageTag: 79f54c2a-ad2f-4c8e-b099-78ac0b95c03d
+		summarizeBy: none
+		sourceColumn: policy_status_old
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_status_new
+		dataType: string
+		lineageTag: ced32a9a-4688-4d8f-b0e5-1ce8b164c854
+		summarizeBy: none
+		sourceColumn: policy_status_new
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_bound
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fb46413b-1ecd-495f-a0ee-d4d35da84897
+		summarizeBy: none
+		sourceColumn: date_bound
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column relm_entity
+		dataType: string
+		lineageTag: ebbfa50f-a5b6-43bb-8ede-e2c7639908b6
+		summarizeBy: none
+		sourceColumn: relm_entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column appetite
+		dataType: string
+		lineageTag: 1116d428-5803-4839-bd4a-80fa5f804f32
+		summarizeBy: none
+		sourceColumn: appetite
+
+		annotation SummarizationSetBy = Automatic
+
+	column relm_sector
+		dataType: string
+		lineageTag: 3b769520-7252-44d9-84ef-40ad811b59c6
+		summarizeBy: none
+		sourceColumn: relm_sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_opportunity_name
+		dataType: string
+		lineageTag: dea5e537-2bb5-4f48-b8ab-0ff528b1b7a1
+		summarizeBy: none
+		sourceColumn: parent_opportunity_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_type_id
+		dataType: string
+		lineageTag: 2f998b79-565c-4be6-8915-498d5acb44fb
+		summarizeBy: none
+		sourceColumn: opportunity_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_type
+		dataType: string
+		lineageTag: 31c805b1-bbfb-4cab-96a3-a3e71aef39b8
+		summarizeBy: none
+		sourceColumn: policy_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_id
+		dataType: string
+		lineageTag: 55bf4f6b-54f8-4162-ae96-68d527ad0493
+		summarizeBy: none
+		sourceColumn: coverage_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriter
+		dataType: string
+		lineageTag: 08bf6385-2a61-43e8-ac28-7e70a53b4afb
+		summarizeBy: none
+		sourceColumn: underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_stage
+		dataType: string
+		lineageTag: b845c0e5-05bc-4013-96aa-cbe6cce87d78
+		summarizeBy: none
+		sourceColumn: opportunity_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_id
+		dataType: string
+		lineageTag: 0d5f460d-b6b5-46bb-85b8-5d6ee002fa97
+		summarizeBy: none
+		sourceColumn: policy_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column record_type
+		dataType: string
+		lineageTag: 1c637864-6c50-433d-bd07-a59d05475241
+		summarizeBy: none
+		sourceColumn: record_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column client_account_id
+		dataType: string
+		lineageTag: b116d335-db06-4307-9f88-cc78cb808933
+		summarizeBy: none
+		sourceColumn: client_account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_wording_reference_number
+		dataType: string
+		lineageTag: a413ba1a-ad90-4fa5-b25a-a6b3bb932c6f
+		summarizeBy: none
+		sourceColumn: policy_wording_reference_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_form_issued_code
+		dataType: string
+		lineageTag: ea778c4e-ab1b-4b63-bf8a-15870f234806
+		summarizeBy: none
+		sourceColumn: policy_form_issued_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column rates_confirmation_code
+		dataType: string
+		lineageTag: eb740cfc-bc3f-4ee4-b046-f93ebf47583d
+		summarizeBy: none
+		sourceColumn: rates_confirmation_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column expiring_policy_from_opportunity
+		dataType: string
+		lineageTag: 02389044-2e37-4e27-bf48-d82e0ca1127a
+		summarizeBy: none
+		sourceColumn: expiring_policy_from_opportunity
+
+		annotation SummarizationSetBy = Automatic
+
+	column relm_sector_id
+		dataType: string
+		lineageTag: 56c22164-c91a-461d-9329-fe7d5852e518
+		summarizeBy: none
+		sourceColumn: relm_sector_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_package_name
+		dataType: string
+		lineageTag: 1592e8ba-5ae1-42dc-a1ba-ad4add305d8d
+		summarizeBy: none
+		sourceColumn: opportunity_package_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_stage_name
+		dataType: string
+		lineageTag: 1925820e-ecde-45e9-9f2c-046ff78552ce
+		summarizeBy: none
+		sourceColumn: package_stage_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_review_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 31218e67-e382-4f32-a548-fdbac5aefd79
+		summarizeBy: sum
+		sourceColumn: policy_review_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_coverage_count
+		dataType: double
+		lineageTag: 0ccd84cd-d072-4850-ac3c-e77035c2b92b
+		summarizeBy: sum
+		sourceColumn: package_coverage_count
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column package_type
+		dataType: string
+		lineageTag: 036a6ee7-a646-4ae7-808a-da7717d85525
+		summarizeBy: none
+		sourceColumn: package_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_wording_reference_number_pkg
+		dataType: string
+		lineageTag: 5439a00e-e332-4bc8-a3af-9fbe2941e2be
+		summarizeBy: none
+		sourceColumn: policy_wording_reference_number_pkg
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_form_code_final
+		dataType: string
+		lineageTag: d1158265-9aa5-4521-a3e1-79cfb39bc09b
+		summarizeBy: none
+		sourceColumn: policy_form_code_final
+
+		annotation SummarizationSetBy = Automatic
+
+	column rates_confirmation_code_pkg
+		dataType: string
+		lineageTag: b5ce06bb-4eda-4fd7-a871-d68b5fb3c02d
+		summarizeBy: none
+		sourceColumn: rates_confirmation_code_pkg
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriter_rationale_pkg
+		dataType: string
+		lineageTag: c1b48036-734d-4ef9-ae9c-3cb0d209d689
+		summarizeBy: none
+		sourceColumn: underwriter_rationale_pkg
+
+		annotation SummarizationSetBy = Automatic
+
+	column relm_policy_aggregate_limit
+		dataType: double
+		lineageTag: 03c73bb1-3eeb-425d-ae3e-abcfd53b516f
+		summarizeBy: sum
+		sourceColumn: relm_policy_aggregate_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_policy_occurence_limit
+		dataType: double
+		lineageTag: a3cb099a-059f-49c6-93c7-19e96270fd4f
+		summarizeBy: sum
+		sourceColumn: relm_policy_occurence_limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_policy_gross_premium
+		dataType: double
+		lineageTag: fefde517-20f1-403e-ba8e-84e0e9403d90
+		summarizeBy: sum
+		sourceColumn: relm_policy_gross_premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pkg_record_type_name
+		dataType: string
+		lineageTag: 57a7c72a-461c-4ced-beb4-5fa627ad3ba4
+		summarizeBy: none
+		sourceColumn: pkg_record_type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_name
+		dataType: string
+		lineageTag: c9c39f9c-a52c-4e98-9f0c-c0d325c986e1
+		summarizeBy: none
+		sourceColumn: package_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column fronting_carrier_name
+		dataType: string
+		lineageTag: 5d20ad7a-71d6-406f-b6fb-3e065c5ba450
+		summarizeBy: none
+		sourceColumn: fronting_carrier_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriting_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd9a4721-c043-4c25-95d7-41e9f88c5443
+		summarizeBy: none
+		sourceColumn: underwriting_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column closed_lost_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 46ae18eb-3137-46e8-8bae-c15320ccca54
+		summarizeBy: none
+		sourceColumn: closed_lost_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column awaiting_info_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f02185f8-61f0-4ab2-98bc-a457deb1d7ea
+		summarizeBy: none
+		sourceColumn: awaiting_info_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriting_region
+		dataType: string
+		lineageTag: 4dad427e-a3bd-49a1-853a-472bf3826e83
+		summarizeBy: none
+		sourceColumn: underwriting_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_business_unit_adj
+		dataType: string
+		lineageTag: a191d778-4054-48c8-950b-ddeee35db8fb
+		summarizeBy: none
+		sourceColumn: sub_business_unit_adj
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rate
+		dataType: double
+		lineageTag: 82477df2-e7a7-4a93-b48f-5bcf01ed0367
+		summarizeBy: sum
+		sourceColumn: Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fx_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: da5fc604-d3ec-4d52-8e2a-d5a9e3ffe088
+		summarizeBy: none
+		sourceColumn: fx_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column premium_usd_converted
+		dataType: double
+		lineageTag: 0a7e95bf-826e-4cea-9d5c-8cfa59465f73
+		summarizeBy: sum
+		sourceColumn: premium_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column limit_usd_converted
+		dataType: double
+		lineageTag: eefed06f-b371-4181-b694-53a40c329bf5
+		summarizeBy: sum
+		sourceColumn: limit_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column retention_sir_usd_converted
+		dataType: double
+		lineageTag: 5089ca61-93e5-4114-ab7a-53db96a0e3e6
+		summarizeBy: sum
+		sourceColumn: retention_sir_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column attachment_point_usd_converted
+		dataType: double
+		lineageTag: 169d6939-2596-433a-9139-edbe546526e4
+		summarizeBy: sum
+		sourceColumn: attachment_point_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_occurence_limit_converted
+		dataType: double
+		lineageTag: e3c9614f-6155-4553-9dc4-c606b5be1523
+		summarizeBy: sum
+		sourceColumn: relm_occurence_limit_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_policy_aggregate_limit_usd_converted
+		dataType: double
+		lineageTag: 806a4f25-8dcc-4fe2-8ed6-b81b5b3ec9ca
+		summarizeBy: sum
+		sourceColumn: relm_policy_aggregate_limit_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_occurence_limit_usd_converted
+		dataType: double
+		lineageTag: d9964fa8-3860-40ab-a11f-1b26fdedbd62
+		summarizeBy: sum
+		sourceColumn: relm_occurence_limit_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column relm_policy_gross_premium_usd_converted
+		dataType: double
+		lineageTag: 33b9c3f3-6617-490c-82be-92591b97de71
+		summarizeBy: sum
+		sourceColumn: relm_policy_gross_premium_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expiring_policy_premium_paid_usd_converted
+		dataType: double
+		lineageTag: e4aa14a3-ae80-42ac-81dd-5c9da8c6e4d2
+		summarizeBy: sum
+		sourceColumn: expiring_policy_premium_paid_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column prior_bound_renewal_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e1374e37-9d20-4502-b2ee-f6168b6589b3
+		summarizeBy: none
+		sourceColumn: prior_bound_renewal_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column prior_bound_coverage_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b95ce03a-8715-489b-8706-bd4af7c2f45c
+		summarizeBy: none
+		sourceColumn: prior_bound_coverage_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column first_quoted_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 65b3188a-9310-49ca-a717-d8dce8eadccd
+		summarizeBy: none
+		sourceColumn: first_quoted_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_renewal_cross_sell_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: a037ceef-5c05-40a9-bbbe-de0933d7a69d
+		summarizeBy: sum
+		sourceColumn: package_renewal_cross_sell_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_renewal_cross_sell_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f75c50c-d77f-4781-aafa-ae1af740ecc9
+		summarizeBy: sum
+		sourceColumn: account_renewal_cross_sell_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column stage_name_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 980d1301-e636-4287-b070-8752d1fe4d06
+		summarizeBy: sum
+		sourceColumn: stage_name_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column lob_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 40ffdf87-7085-4871-8c9d-fe60900d00b4
+		summarizeBy: sum
+		sourceColumn: lob_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column renewal_cross_sell_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: c5e1bd7a-eaf5-4adc-8adf-a8e94f9c266b
+		summarizeBy: sum
+		sourceColumn: renewal_cross_sell_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_new_cross_sell_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 885bf89c-179a-48b4-bfd9-152522dd1b2f
+		summarizeBy: sum
+		sourceColumn: package_new_cross_sell_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column renewal_multiline_cross_sell_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 29fb529c-01a9-485a-b350-cbe93ead852d
+		summarizeBy: sum
+		sourceColumn: renewal_multiline_cross_sell_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column new_multiline_cross_sell_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: d255a994-631a-437e-9e29-bde697280cb4
+		summarizeBy: sum
+		sourceColumn: new_multiline_cross_sell_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column multiline_or_package_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 00dc5e59-1871-4d6d-a6c7-9c7268faa247
+		summarizeBy: sum
+		sourceColumn: multiline_or_package_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column structure_bonus_points
+		dataType: int64
+		formatString: 0
+		lineageTag: d5be3eaf-9ce0-46dd-bd89-0b8a5eb2d703
+		summarizeBy: sum
+		sourceColumn: structure_bonus_points
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BDA Filter' = ```
+			
+			
+			    IF(
+			    'gold coverage_view'[relm_entity] = "Relm Insurance Ltd." && 
+			        ('gold coverage_view'[broker_mailing_country] = "Bermuda" || 
+			          NOT('gold coverage_view'[broker_mailing_country] IN {"United States", "United Kingdom", "United Arab Emirates"})), 1, 0
+			    )
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 7d1c04a8-8b49-4703-8b17-16858338e669
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MENA Filter' = ```
+			
+			
+			IF(
+			    ('gold coverage_view'[relm_entity] = "Relm Insurance MENA Ltd." 
+			        && 'gold coverage_view'[client_billing_country] = "United Arab Emirates"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 0c9ed3ae-954f-4498-8ba0-4cd5f1f26a88
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UK Filter' = ```
+			
+			
+			IF(
+			    ('gold coverage_view'[relm_entity] = "Relm Insurance Ltd." 
+			        && 'gold coverage_view'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold coverage_view'[client_billing_country] <> "United Kingdom") 
+			        
+			        || 
+			    
+			    ('gold coverage_view'[relm_entity] = "Relm Ins UK Ltd" 
+			        && 'gold coverage_view'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold coverage_view'[client_billing_country] = "United Kingdom"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 7d0ff24f-90af-4b3c-8946-b74ce8ee7248
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US RIAI Filter' = ```
+			
+			
+			IF(
+			    ('gold coverage_view'[broker_mailing_country] = "United States" 
+			        && 'gold coverage_view'[client_billing_country] = "United States" 
+			        && 'gold coverage_view'[relm_entity] = "Relm Insurance Agency Inc." 
+			        && 'gold coverage_view'[assigned_us_home_state] = "CA"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 76aa9d60-e9df-4f73-9351-001bbaaea304
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US RUIA Filter' = ```
+			
+			
+			IF(
+			    ('gold coverage_view'[broker_mailing_country] = "United States" 
+			        && 'gold coverage_view'[client_billing_country] = "United States" 
+			        && 'gold coverage_view'[relm_entity] = "Relm US Insurance Agency" 
+			        && 'gold coverage_view'[assigned_us_home_state] = "NY"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: c0872e0a-f628-4067-93e0-c78a479c036f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US RUISI Filter' = ```
+			
+			
+			IF(
+			    ('gold coverage_view'[broker_mailing_country] = "United States" 
+			        && 'gold coverage_view'[client_billing_country] = "United States" 
+			        && 'gold coverage_view'[relm_entity] = "Relm US Insurance Solutions Inc." 
+			        && NOT('gold coverage_view'[assigned_us_home_state] IN {"CA", "NY"}) 
+			        && NOT(ISBLANK('gold coverage_view'[assigned_us_home_state]))),
+			
+			        1,0
+			        
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: aacf83bb-6507-4fba-b4ef-8ef386464892
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US MGA Filter' = IF( [US MGA RIAI] || [US MGA RUIA] || [US MGA RUISI], 1, 0)
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 55cc333e-8203-4aa8-91e2-d2a15bb6e7ae
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column renewal_loss_reason_bucket
+		dataType: string
+		lineageTag: b4f7b49b-57f4-49cf-b17c-9907d3fccbba
+		summarizeBy: none
+		sourceColumn: renewal_loss_reason_bucket
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_reporting_structure
+		dataType: string
+		lineageTag: ec9a0ac8-07a0-4451-843e-200a627e1663
+		summarizeBy: none
+		sourceColumn: policy_reporting_structure
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_policy_bound_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da6c8e8c-6120-42d6-854e-d9d5a5f7cb9b
+		summarizeBy: none
+		sourceColumn: max_policy_bound_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column prior_max_bound_policy_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1908104e-d703-45aa-a972-b219a12a9a74
+		summarizeBy: none
+		sourceColumn: prior_max_bound_policy_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column expiring_premium_usd_converted
+		dataType: double
+		lineageTag: 47f3bbfd-daf5-4efb-817c-ba1175104665
+		summarizeBy: sum
+		sourceColumn: expiring_premium_usd_converted
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column policy_coverage_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 315cd19d-fc07-45dd-bdf8-88356b7f152d
+		summarizeBy: sum
+		sourceColumn: policy_coverage_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column renewal_account_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 6bcaedab-2b44-4c08-91a8-6ea1b1483a9b
+		summarizeBy: sum
+		sourceColumn: renewal_account_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Segment Flag' =
+			
+			VAR recordType = 'gold coverage_view'[record_type_name]
+			VAR brokerCountry = 'gold coverage_view'[broker_mailing_country]
+			VAR clientCountry = 'gold coverage_view'[client_billing_country]
+			VAR entity = 'gold coverage_view'[relm_entity]
+			VAR state = 'gold coverage_view'[assigned_us_home_state]
+			
+			RETURN
+			IF(
+			    recordType = "New" &&
+			    (
+			        /* BDA */
+			        (
+			            entity = "Relm Insurance Ltd." &&
+			            NOT(brokerCountry IN {"United States","United Kingdom","United Arab Emirates"})
+			        )
+			
+			        ||
+			
+			        /* UK */
+			        (
+			            brokerCountry = "United Kingdom" &&
+			            (
+			                (entity = "Relm Insurance Ltd." && clientCountry <> "United Kingdom") ||
+			                (entity = "Relm Ins UK Ltd" && clientCountry = "United Kingdom")
+			            )
+			        )
+			
+			        ||
+			
+			        /* MENA */
+			        (
+			            entity = "Relm Insurance MENA Ltd." &&
+			            clientCountry = "United Arab Emirates"
+			        )
+			
+			        ||
+			
+			        /* US MGA */
+			        (
+			            brokerCountry = "United States" &&
+			            clientCountry = "United States" &&
+			            (
+			                (entity = "Relm Insurance Agency Inc." && state = "CA") ||
+			                (entity = "Relm US Insurance Agency" && state = "NY") ||
+			                (
+			                    entity = "Relm US Insurance Solutions Inc." &&
+			                    NOT(state IN {"CA","NY"}) &&
+			                    NOT(ISBLANK(state))
+			                )
+			            )
+			        )
+			    ),
+			    1,
+			    0
+			)
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 90ce00f9-e979-4565-85d1-868dce13118d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Renewal Opportunity Name' =
+			
+			IF(
+			    'gold coverage_view'[record_type_name] = "Renewal" &&
+			    'gold coverage_view'[Ops Analyst Name] IN {
+			        "Jenny Anden",
+			        "Clarisse De La Cruz",
+			        "Miguel Estoesta"
+			    },
+			    'gold coverage_view'[opportunity_name],
+			    BLANK()
+			)
+		lineageTag: c1f43a5a-83bb-4fba-a615-52b850646a48
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Show Renewal MJC' = ```
+			
+			IF(
+			    'gold coverage_view'[record_type_name] = "Renewal" &&
+			    'gold coverage_view'[Ops Analyst Name] IN {
+			        "Miguel Estoesta",
+			        "Jenny Anden",
+			        "Clarisse De La Cruz"        
+			    },
+			    1,
+			    0
+			)
+			```
+		formatString: 0
+		lineageTag: bbb350e4-4827-4b40-8d09-ec1efb4c6e98
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column schedule_1_drugs
+		dataType: string
+		lineageTag: 3af9ae96-44a5-4407-a3b3-9c8d9f26e778
+		summarizeBy: none
+		sourceColumn: schedule_1_drugs
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_bound_sub_coverage_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7e8ab7de-ea64-45ee-8de3-e159d8005256
+		summarizeBy: none
+		sourceColumn: prior_bound_sub_coverage_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column country_classification =
+			
+			SWITCH(
+			    TRUE(),
+			    'gold coverage_view'[broker_mailing_country] = "United Kingdom", "UK",
+			    'gold coverage_view'[client_billing_country] = "United Arab Emirates", "MENA",
+			    'gold coverage_view'[broker_mailing_country] = "United States"
+			        && 'gold coverage_view'[client_billing_country] = "US",
+			        "United States",
+			    'gold coverage_view'[broker_mailing_country] = "Bermuda"
+			        || NOT('gold coverage_view'[broker_mailing_country] IN {
+			            "United States",
+			            "United Kingdom",
+			            "United Arab Emirates"
+			        }),
+			        "BDA",
+			
+			    "Others"
+			)
+		displayFolder: Old Measures
+		lineageTag: b04c6df0-1002-4c06-ab85-2bd9abdcdfc1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column entity_classification =
+			
+			VAR entity = TRIM('gold coverage_view'[relm_entity])
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(entity), "Blank",
+			
+			    entity = "Relm Ins UK Ltd", "UK",
+			    entity = "Relm Insurance Ltd.", "BDA",
+			    entity = "Relm Insurance MENA Ltd.", "MENA",
+			
+			    entity IN {
+			        "Relm US Insurance Solutions Inc.",
+			        "Relm Insurance Agency Inc.",
+			        "Relm US Insurance Agency"
+			    }, "US",
+			
+			    "Other"
+			)
+		displayFolder: Old Measures
+		lineageTag: b04a25a9-986e-4a72-b785-8fd6ab42293c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column classification_match =
+			
+			IF(
+			    'gold coverage_view'[country_classification] = 'gold coverage_view'[entity_classification],
+			    "Matched",
+			    "Mismatched"
+			)
+		displayFolder: Old Measures
+		lineageTag: d069ba80-6e7d-4e2a-b1f3-7c01adb86d5b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_by
+		dataType: string
+		lineageTag: 24982a94-9695-4153-ace8-6dd1bc636b17
+		summarizeBy: none
+		sourceColumn: sfdc_created_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column additional_loss_information
+		dataType: string
+		lineageTag: 4c35858a-5b2d-4df3-97ab-70ef82cb931a
+		summarizeBy: none
+		sourceColumn: additional_loss_information
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Category' = ```
+			
+			SWITCH(
+			    TRUE(),
+			
+			    // Renewal
+			    'gold coverage_view'[record_type_name] = "Renewal" &&
+			    'gold coverage_view'[created_by_name] IN {
+			        "Jenny Anden", "Clarisse De La Cruz", "Miguel Estoesta"
+			    },
+			        "Renewal",
+			
+			    // MENA
+			    'gold coverage_view'[record_type_name] = "New" &&
+			    'gold coverage_view'[relm_entity] = "Relm Insurance MENA Ltd." &&
+			    'gold coverage_view'[client_billing_country] IN {"United Arab Emirates","Bahrain","Turkey","Saudi Arabia","Armenia","Uzbekistan"},
+			        "MENA",
+			    'gold coverage_view'[record_type_name] = "New" &&
+			    'gold coverage_view'[broker_region] = "United States" 
+			       , "US MGA",
+			    // UK
+			    'gold coverage_view'[record_type_name] = "New" &&
+			            'gold coverage_view'[broker_region] = "United Kingdom" ,
+			        "UK",
+			
+			    // BDA
+			    'gold coverage_view'[record_type_name] = "New" &&
+			    (
+			        'gold coverage_view'[broker_region] = "Bermuda" ||
+			        NOT(
+			            'gold coverage_view'[broker_region]
+			                IN {"United States", "United Kingdom", "United Arab Emirates", "Canada"}
+			        )
+			    ),
+			        "BDA",
+			
+			    // CANADA
+			    'gold coverage_view'[record_type_name] = "New" &&
+			    (
+			        'gold coverage_view'[broker_region] = "Canada" ||
+			        NOT(
+			            'gold coverage_view'[broker_region]
+			                IN {"United States", "United Kingdom", "United Arab Emirates", "Bermuda"}
+			        )
+			    ),
+			        "Canada",
+			
+			    // Default
+			    "Other"
+			)
+			```
+		lineageTag: facf077c-f673-4909-9376-fa4b04edd22a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_by_name
+		dataType: string
+		lineageTag: 5fe15bed-185f-4574-a935-1ad401712c7c
+		summarizeBy: none
+		sourceColumn: created_by_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_region
+		dataType: string
+		lineageTag: 5246c329-a00a-4b70-9c28-8af29073d9ad
+		summarizeBy: none
+		sourceColumn: broker_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_code__c
+		dataType: string
+		lineageTag: 906cf0e7-641a-4cab-900f-0ba485925fa4
+		summarizeBy: none
+		sourceColumn: coverage_code__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_reporting_structure_opp
+		dataType: string
+		lineageTag: 41d5561f-5db9-4737-b40f-46ee1b0614d6
+		summarizeBy: none
+		sourceColumn: policy_reporting_structure_opp
+
+		annotation SummarizationSetBy = Automatic
+
+	column bma_zone_categorization_description
+		dataType: string
+		lineageTag: 68dc9339-b852-4bb0-9575-660e2450031c
+		summarizeBy: none
+		sourceColumn: bma_zone_categorization_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column surplus_lines_number
+		dataType: string
+		lineageTag: 0be5e69a-c73d-482c-aeb9-d8355490b934
+		summarizeBy: none
+		sourceColumn: surplus_lines_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column surplus_line_number_producer
+		dataType: string
+		lineageTag: 89e15ef5-d177-4e29-80d5-696fa2fd3506
+		summarizeBy: none
+		sourceColumn: surplus_line_number_producer
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_insured_value_usd
+		dataType: double
+		lineageTag: 8cbd374f-600a-47a6-876a-b109e5e70ead
+		summarizeBy: sum
+		sourceColumn: total_insured_value_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column record_count
+		dataType: double
+		lineageTag: 54bd103d-0f48-444f-8c41-b1f623119963
+		summarizeBy: sum
+		sourceColumn: record_count
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column coverage_share
+		dataType: double
+		lineageTag: 228d14eb-8b2b-45e4-a723-adcab93f7bab
+		summarizeBy: sum
+		sourceColumn: coverage_share
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column exposure_local_currency
+		dataType: string
+		lineageTag: ae29dbff-580f-489c-9ec0-ce6af93a0f70
+		summarizeBy: none
+		sourceColumn: exposure_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_local_currency
+		dataType: string
+		lineageTag: 93e44eb0-c32a-4957-b6f8-a87c794ef2e8
+		summarizeBy: none
+		sourceColumn: opportunity_local_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_coverage__c
+		dataType: string
+		lineageTag: 8b7a3db0-46b8-4893-85e9-a77251939322
+		summarizeBy: none
+		sourceColumn: sub_coverage__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_type_id
+		dataType: string
+		lineageTag: b6b947b6-3efc-447a-91d1-08f281000480
+		summarizeBy: none
+		sourceColumn: product_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_type_name
+		dataType: string
+		lineageTag: 850ce755-61f2-4b65-b935-151fb1d13534
+		summarizeBy: none
+		sourceColumn: product_type_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_type_description
+		dataType: string
+		lineageTag: 78fd7cbf-4a65-4e1b-82c7-b7a956ba9d8e
+		summarizeBy: none
+		sourceColumn: broker_type_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_broking_house_id
+		dataType: string
+		lineageTag: 34b62362-e400-4482-b0f2-64c1f1f85d98
+		summarizeBy: none
+		sourceColumn: parent_broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold coverage_view' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="coverage_view"]}[Data],
+				    #"Extracted Date" = Table.TransformColumns(gold_coverage_view,{{"sfdc_created_date", DateTime.Date, type date}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Extracted Date",{{"ops_analyst_name", "Ops Analyst Name"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"inception_date"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,215 @@
+table 'Last Run Time'
+	lineageTag: 9c291c1a-5629-4c97-b34c-0f56deb9dd74
+
+	measure 'Total Opportunities Submitted' =
+			
+			COALESCE(
+			    DISTINCTCOUNT('gold coverage_view'[opportunity_id]),
+			    0
+			)
+		formatString: 0
+		lineageTag: e41a0871-b656-4d16-af22-3b5e89aa42d7
+
+	measure 'Total Brokers Added' = calculate(count('gold coverage_view'[broker_id]))
+		formatString: 0
+		lineageTag: b32b2664-d9ee-42fb-a345-bfafdb938abc
+
+	measure 'Renewal Total Opportunities Submitted' =
+			FORMAT( COALESCE(
+			CALCULATE(
+			count('gold coverage_view'[opportunity_id]),'gold coverage_view'[record_type_name]="Renewal"
+			),0),"#,#0")
+		displayFolder: Old Measures
+		lineageTag: d8889fec-67e9-4477-b47d-9e9062958f74
+
+	measure 'Total Opportunities Submitted(New)' = ```
+			FORMAT( COALESCE( 
+			CALCULATE(
+			DISTINCTCOUNT('gold coverage_view'[opportunity_id]),'gold coverage_view'[record_type_name]="New"
+			),0),"#,#0")
+			```
+		lineageTag: 9c3d575a-2b31-4921-b257-cdba2ab177df
+
+	measure 'Total Opportunities Submitted (Renewal)' =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT('gold coverage_view'[opportunity_id]),
+			        'gold coverage_view'[record_type_name] = "Renewal"
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 60275ea0-2321-45d8-8fa9-f50103a1d292
+
+	measure 'Total Opportunities' = COALESCE([BDA_Opportunities] + [MENA_Opportunities] + [UK_Opportunities] + [US MGA_Opportunities] + [Renewal_Opportunities] + [CANADA_Opportunities],0)
+		lineageTag: 5acf246a-fc2c-4f43-9006-bf8b1356a00d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_New_Opportunities = [BDA_Opportunities] + [MENA_Opportunities] + [UK_Opportunities] + [US MGA_Opportunities] + [CANADA_Opportunities]
+		formatString: 0
+		lineageTag: b4c14b6f-817f-4413-acde-114682b5865b
+
+	measure 'Renewal Opportunities by MJC' =
+			FORMAT( COALESCE(
+			CALCULATE(
+			count('gold coverage_view'[opportunity_id]),'gold coverage_view'[record_type_name]="Renewal",'gold coverage_view'[Ops Analyst Name] IN {"Jenny Anden", "Clarisse De La Cruz", "Miguel Estoesta"}
+			),0),"#,#0")
+		displayFolder: Old Measures
+		lineageTag: 030e120c-a94b-45cd-afed-09a5433fbbca
+
+	measure 'New submissions' = ```
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT('gold coverage_view'[opportunity_id]),
+			        
+			        -- Common condition
+			        'gold coverage_view'[record_type_name] = "New",
+			
+			        FILTER(
+			            'gold coverage_view',
+			
+			            /* ---------------- BDA ---------------- */
+			            (
+			                'gold coverage_view'[relm_entity] = "Relm Insurance Ltd." &&
+			                NOT(
+			                    'gold coverage_view'[broker_mailing_country] IN {
+			                        "United States", "United Kingdom", "United Arab Emirates"
+			                    }
+			                )
+			            )
+			
+			            ||
+			
+			            /* ---------------- UK ---------------- */
+			            (
+			                'gold coverage_view'[broker_mailing_country] = "United Kingdom" &&
+			                (
+			                    (
+			                        'gold coverage_view'[relm_entity] = "Relm Insurance Ltd." &&
+			                        'gold coverage_view'[client_billing_country] <> "United Kingdom"
+			                    )
+			                    ||
+			                    (
+			                        'gold coverage_view'[relm_entity] = "Relm Ins UK Ltd" &&
+			                        'gold coverage_view'[client_billing_country] = "United Kingdom"
+			                    )
+			                )
+			            )
+			
+			            ||
+			
+			            /* ---------------- MENA ---------------- */
+			            (
+			                'gold coverage_view'[relm_entity] = "Relm Insurance MENA Ltd." &&
+			                'gold coverage_view'[client_billing_country] = "United Arab Emirates"
+			            )
+			
+			            ||
+			
+			            /* ---------------- US MGA ---------------- */
+			            (
+			                'gold coverage_view'[broker_mailing_country] = "United States" &&
+			                'gold coverage_view'[client_billing_country] = "United States" &&
+			
+			                (
+			                    /* RIAI (CA) */
+			                    (
+			                        'gold coverage_view'[relm_entity] = "Relm Insurance Agency Inc." &&
+			                        'gold coverage_view'[assigned_us_home_state] = "CA"
+			                    )
+			
+			                    ||
+			
+			                    /* RUIA (NY) */
+			                    (
+			                        'gold coverage_view'[relm_entity] = "Relm US Insurance Agency" &&
+			                        'gold coverage_view'[assigned_us_home_state] = "NY"
+			                    )
+			
+			                    ||
+			
+			                    /* RUISI (Rest of US) */
+			                    (
+			                        'gold coverage_view'[relm_entity] = "Relm US Insurance Solutions Inc." &&
+			                        NOT('gold coverage_view'[assigned_us_home_state] IN {"CA", "NY"}) &&
+			                        NOT(ISBLANK('gold coverage_view'[assigned_us_home_state]))
+			                    )
+			                )
+			            )
+			        )
+			    ),
+			    0
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: d5616e46-6bb8-4dee-8683-fb1ed732524c
+
+	column StartRunTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b43eb6c-92c7-4a32-81af-ab9614baeda1
+		summarizeBy: none
+		sourceColumn: StartRunTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastRunTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 15abf52c-0e42-4440-b923-bb8ec1b17ce8
+		summarizeBy: none
+		sourceColumn: LastRunTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column TimeZone
+		dataType: string
+		lineageTag: e32acc16-868a-463e-98f0-8cf58e9b360e
+		summarizeBy: none
+		sourceColumn: TimeZone
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartTimeConverted
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 030e7200-7d8c-400f-b32f-8ade4eaab2fd
+		summarizeBy: none
+		sourceColumn: StartTimeConverted
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndTimeConverted
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 64a4727a-0622-47d9-9080-cb05777def6b
+		summarizeBy: none
+		sourceColumn: EndTimeConverted
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start (Mon)' =
+			
+			'gold dim_date'[date] - WEEKDAY('gold dim_date'[date], 2) + 1
+		displayFolder: Old Measures
+		lineageTag: a6faa934-6e6a-4ba4-a448-e44082877621
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Last Run Time' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse", [Query="SELECT * from Relm_Gold_Warehouse.gold.pipeline_run"])
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
