@@ -183,7 +183,7 @@ table 'gold dim_underwriter_adj'
 		mode: import
 		source =
 				let
-				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "relm_gold_warehouse"),
 				    gold_coverage_view = Source{[Schema="gold",Item="dim_underwriter_adj"]}[Data]
 				in
 				    gold_coverage_view
