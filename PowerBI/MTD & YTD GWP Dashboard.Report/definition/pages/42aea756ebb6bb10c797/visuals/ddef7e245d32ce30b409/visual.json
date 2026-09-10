@@ -1,0 +1,392 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "ddef7e245d32ce30b409",
+  "position": {
+    "x": 0,
+    "y": 396.44200764093443,
+    "z": 1000,
+    "height": 139.42663828049814,
+    "width": 1800.7874245384819,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_record_buckets"
+                    }
+                  },
+                  "Property": "Record Bucket"
+                }
+              },
+              "queryRef": "gold dim_record_buckets.Record Bucket",
+              "nativeQueryRef": "Record Bucket"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Account Name"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Account Name",
+              "nativeQueryRef": "Account Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Policy Number"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Policy Number",
+              "nativeQueryRef": "Policy Number"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_relm_sector"
+                    }
+                  },
+                  "Property": "sector_name"
+                }
+              },
+              "queryRef": "gold dim_relm_sector.sector_name",
+              "nativeQueryRef": "Relm Sector",
+              "displayName": "Relm Sector"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_underwriters"
+                    }
+                  },
+                  "Property": "reported_underwriter"
+                }
+              },
+              "queryRef": "gold dim_underwriters.reported_underwriter",
+              "nativeQueryRef": "Underwriter",
+              "displayName": "Underwriter"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Broking House"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Broking House",
+              "nativeQueryRef": "Broking House"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Broker"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Broker",
+              "nativeQueryRef": "Broker"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_policy_type"
+                    }
+                  },
+                  "Property": "type_name"
+                }
+              },
+              "queryRef": "gold dim_policy_type.type_name",
+              "nativeQueryRef": "Policy Type",
+              "displayName": "Policy Type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_record_type"
+                    }
+                  },
+                  "Property": "record_type"
+                }
+              },
+              "queryRef": "gold dim_record_type.record_type",
+              "nativeQueryRef": "New/Renewal",
+              "displayName": "New/Renewal"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_line_of_business"
+                    }
+                  },
+                  "Property": "LoB"
+                }
+              },
+              "queryRef": "gold dim_line_of_business.LoB",
+              "nativeQueryRef": "Line of Business",
+              "displayName": "Line of Business"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Coverage"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Coverage",
+              "nativeQueryRef": "Coverage"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold dim_entity"
+                    }
+                  },
+                  "Property": "entity_title"
+                }
+              },
+              "queryRef": "gold dim_entity.entity_title",
+              "nativeQueryRef": "Entity",
+              "displayName": "Entity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Date Table"
+                    }
+                  },
+                  "Property": "Date"
+                }
+              },
+              "queryRef": "Date Table.Date",
+              "nativeQueryRef": "Inception Date",
+              "displayName": "Inception Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Bound Date"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Bound Date",
+              "nativeQueryRef": "Bound Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Expiration Date"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Expiration Date",
+              "nativeQueryRef": "Expiration Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Endorsement Effective Date"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Endorsement Effective Date",
+              "nativeQueryRef": "Endorsement Effective Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Cancellation Effective Date"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Cancellation Effective Date",
+              "nativeQueryRef": "Cancellation Effective Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Premium"
+                }
+              },
+              "queryRef": "Sum(gold premiums_coverage.Premium)",
+              "nativeQueryRef": "Premium",
+              "displayName": "GWP $",
+              "format": "\\$#,0;(\\$#,0);\\$#,0"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold premiums_coverage"
+                    }
+                  },
+                  "Property": "Comments"
+                }
+              },
+              "queryRef": "gold premiums_coverage.Comments",
+              "nativeQueryRef": "Comments"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold dim_entity"
+                  }
+                },
+                "Property": "entity_title"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(gold premiums_coverage.Premium)"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.56380668790901D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold premiums_coverage.Endorsement Effective Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "109.01214695669813D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold premiums_coverage.Cancellation Effective Date"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "isHidden": true
+}

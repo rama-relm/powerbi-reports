@@ -1,0 +1,36 @@
+table 'gold dim_coverage'
+	lineageTag: 7dfce926-814c-4646-9719-271239c7dfb7
+
+	column Coverage
+		dataType: string
+		lineageTag: f59a1e14-d5d6-4829-b78c-1914fada4b27
+		summarizeBy: none
+		sourceColumn: Coverage
+		sortByColumn: Coverage_id
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coverage_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 09b4d25f-551a-4f55-a888-bc1832875bd7
+		summarizeBy: sum
+		sourceColumn: Coverage_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_coverage' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("fZJBTwIxEIX/SrNnDywoylVAJdGwERIPyKF0B5i4nZJpl2T/vbMtm7BGPXbem843r91ssqmzFtigrtSU0UJ2k+XZ9kaEy2mYTs0OWC3I16zJtPVRrM+QwQTH6rMeDIZjtdzv0QB7MdxGw9yeKtdYoKAK1iaIql5R77DC0IjrLrqesKyFgZueNr5oJCNbQBkfMNQBHXn16KgUz/1/njnzFZpF79uydD3ErmcgYOm5njmJyoLO4EOkftOkD7LR35flg9hTOLkCjdz3jv7Ld8416xIkWygx9ALMU84FO9k99CDyYSftIY75AZmPOv0EnCop7aImYTiDmmkr1JEuJbyqtD8iHfoIKeHVScur9IQU6xrMkVzlDk3a3v+6fgpT9iTfPrCjPmtK9ENwuu4XV3P7s1Juy3BMH2Yizu03", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Coverage = _t, Coverage_id = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Coverage", type text}, {"Coverage_id", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

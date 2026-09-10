@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "00b37e0a9c94d00980d1",
+  "position": {
+    "x": 256.66666666666669,
+    "y": 0,
+    "z": 1000,
+    "height": 66.666666666666671,
+    "width": 1243.3333333333335,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "GWP by Line of Business                                          ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "inherit",
+                      "fontSize": "28pt",
+                      "color": "#0068ff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

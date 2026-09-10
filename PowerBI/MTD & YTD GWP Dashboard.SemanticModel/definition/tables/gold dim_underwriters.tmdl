@@ -1,0 +1,198 @@
+table 'gold dim_underwriters'
+	lineageTag: 3c0ea710-72b5-4c58-a733-1e9cfa1a84ba
+
+	column peopleid
+		dataType: string
+		lineageTag: c9835f00-c1c4-4c96-9050-ec6d9cd4a5c0
+		summarizeBy: none
+		sourceColumn: peopleid
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 24cab792-e01c-4b76-a2fd-353feb338e5f
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: d1d864c2-289b-4710-8dd9-c5df7859a4ed
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: 4fa88b17-733a-4c17-a177-4d7a03df2910
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: d3c5dd24-f129-4c1c-8498-be8559e0ecf9
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 0902b64d-b893-4084-911b-0a18d0c2cfe6
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: d3c6d238-efae-4137-85de-3aa82cb4d64b
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: eeda59ab-8218-4d7e-a1c2-7b6b0fabdfb4
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobile_phone
+		dataType: string
+		lineageTag: e9562c44-8a28-4890-8001-1402a48c7537
+		summarizeBy: none
+		sourceColumn: mobile_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 97cece51-7b84-46f5-9450-2396cb47dfd3
+		summarizeBy: none
+		sourceColumn: created_date
+
+		variation Variation
+			isDefault
+			relationship: 4fdf29e8-5f28-42fc-8dc5-a808e750606a
+			defaultHierarchy: LocalDateTable_f2f5884f-b411-4c64-b22f-5d1850a97fc9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e1226e44-e3e0-4454-97eb-74ab922cdba0
+		summarizeBy: none
+		sourceColumn: last_modified_date
+
+		variation Variation
+			isDefault
+			relationship: 05a5f784-79f3-4b17-9195-3b518f1624cf
+			defaultHierarchy: LocalDateTable_70428131-efdb-4806-b798-75eb62b23b77.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column about_me
+		dataType: string
+		lineageTag: 61dac79d-dac3-4853-a79d-1412cac554a6
+		summarizeBy: none
+		sourceColumn: about_me
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dfd9a382-2759-46e3-be1e-816c46e7b3db
+		summarizeBy: none
+		sourceColumn: audit_created_on
+
+		variation Variation
+			isDefault
+			relationship: 15b5aae9-3487-41e2-a994-51e4c5c28833
+			defaultHierarchy: LocalDateTable_b255d934-42f5-4135-8ed4-44cbe4513859.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 65d731ee-480b-4ac5-9574-6a075f6488f4
+		summarizeBy: none
+		sourceColumn: audit_last_updated_on
+
+		variation Variation
+			isDefault
+			relationship: 1d88f056-7419-4b0b-9cde-1379afeddeaf
+			defaultHierarchy: LocalDateTable_368f7bb7-a355-4f3c-a552-94f11df996c1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_underwriter
+		dataType: string
+		lineageTag: 1a9919a9-4766-48fb-964b-3584cc83997d
+		summarizeBy: none
+		sourceColumn: reported_underwriter
+		sortByColumn: reported_underwriter_sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_underwriter_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: ffd0502b-5800-49c5-b40b-26458b19657d
+		summarizeBy: sum
+		sourceColumn: reported_underwriter_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriter_region
+		dataType: string
+		lineageTag: dd32e0b8-524c-4a65-8160-445906674db5
+		summarizeBy: none
+		sourceColumn: underwriter_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column UK_underwriters
+		dataType: string
+		lineageTag: 4f656a7c-a311-425c-aa99-133a8e1db5a4
+		summarizeBy: none
+		sourceColumn: UK_underwriters
+
+		annotation SummarizationSetBy = Automatic
+
+	column UK_underwriters_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 11d7e956-09f2-4b77-8988-ed14513e18e7
+		summarizeBy: sum
+		sourceColumn: UK_underwriters_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_underwriters' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_underwriter_adj"]}[Data],
+				    #"Replaced Value" = Table.ReplaceValue(gold_coverage_view,"Other","Others",Replacer.ReplaceText,{"reported_underwriter"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,36 @@
+table 'gold dim_record_buckets'
+	lineageTag: 6dce4865-b7af-4f80-9c70-4bdec0a369a0
+
+	column 'Record Bucket'
+		dataType: string
+		lineageTag: db89c107-13bd-4915-a5b3-64cb9c8b2fc9
+		summarizeBy: none
+		sourceColumn: Record Bucket
+		sortByColumn: 'Record Bucket ID'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record Bucket ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: eb4701f6-d7b5-429f-bc5e-d99ba7eb5ed5
+		summarizeBy: count
+		sourceColumn: Record Bucket ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_record_buckets' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45W8kstV9JRMlSK1YlWCkrNSy1PzAHyjcB817yU/KLi1NzUvJJioKAxWNA5MS85NScnsSQzPw8kaqIUGwsA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Record Bucket" = _t, #"Record Bucket ID" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Record Bucket", type text}, {"Record Bucket ID", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,232 @@
+table 'gold endorsements_cancellations'
+	lineageTag: b74afdcb-bf2f-44c1-96a9-98b94d114884
+
+	column 'Policy Type'
+		dataType: string
+		lineageTag: dfada1f3-018d-4cbc-ab30-8abd4e107613
+		summarizeBy: none
+		sourceColumn: Policy Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coverage
+		dataType: string
+		lineageTag: 700a91ee-d7e5-43e1-a094-66964c051669
+		summarizeBy: none
+		sourceColumn: Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column Premium
+		dataType: double
+		lineageTag: 4fa03c7c-2ea1-461a-9cde-d721adb130e1
+		summarizeBy: sum
+		sourceColumn: Premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Record Type' = "Others"
+		lineageTag: 7b07649c-e445-475e-ba6b-aee09e1fc867
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record Types'
+		dataType: string
+		lineageTag: 0e1a8e3b-0fae-434c-b02f-88f21a73fc2a
+		summarizeBy: none
+		sourceColumn: Record Types
+
+		annotation SummarizationSetBy = Automatic
+
+	column Underwriter
+		dataType: string
+		lineageTag: f99eb903-9b0f-4669-bb17-570a959fcaff
+		summarizeBy: none
+		sourceColumn: Underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Entity'
+		dataType: string
+		lineageTag: 21a0d46f-0f75-41bd-99e0-c7a8ed64ba54
+		summarizeBy: none
+		sourceColumn: Relm Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Sector'
+		dataType: string
+		lineageTag: eace5aca-8fee-46c1-be41-951071ba6444
+		summarizeBy: none
+		sourceColumn: Relm Sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line of Business'
+		dataType: string
+		lineageTag: 3fa4d578-7c6c-44d2-9f4f-ddb28d3fcb74
+		summarizeBy: none
+		sourceColumn: Line of Business
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Type'
+		dataType: string
+		lineageTag: 6cd6ad51-4161-4f90-9955-c52e98cf35f5
+		summarizeBy: none
+		sourceColumn: Entry Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inception Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 60bbe728-ea44-4b0d-86c5-945bbf2f94f6
+		summarizeBy: none
+		sourceColumn: Inception Date
+
+		variation Variation
+			isDefault
+			relationship: 3efcec9c-c6d1-4461-b33f-4b1f52371020
+			defaultHierarchy: LocalDateTable_ad84dd0d-78b4-4e4a-8a75-5fa2b3d44a88.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: 0f6f9c5f-02a2-4114-ad3d-a5f2fc1ad8a7
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Broker
+		dataType: string
+		lineageTag: fe4096eb-f4c8-4b93-b20a-da30f156d7c2
+		summarizeBy: none
+		sourceColumn: Broker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expiration Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9dcd9b3-0c94-4b73-92e4-0a08f5cebb43
+		summarizeBy: none
+		sourceColumn: Expiration Date
+
+		variation Variation
+			isDefault
+			relationship: 7bbcca51-d0f6-4d79-b5fb-9a5949516c7c
+			defaultHierarchy: LocalDateTable_6297a0cd-bc9a-4d87-a347-12fa770f7abe.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Policy Number'
+		dataType: string
+		lineageTag: d61e14ad-e55b-4033-a891-6b7725b4aab1
+		summarizeBy: none
+		sourceColumn: Policy Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Coverage'
+		dataType: string
+		lineageTag: 08f84ccb-afe3-4fb6-b388-557255d12148
+		summarizeBy: none
+		sourceColumn: Sub Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Business Unit'
+		dataType: string
+		lineageTag: d09bca3b-05ed-466d-883b-e4dd05aaaef8
+		summarizeBy: none
+		sourceColumn: Sub Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comments
+		dataType: string
+		lineageTag: 4d5b770c-6eb7-4a07-80d8-28afe8b0a639
+		summarizeBy: none
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Effective Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7b51ac96-026a-4b2e-93c3-54de0a46c181
+		summarizeBy: none
+		sourceColumn: Endorsement Effective Date
+
+		variation Variation
+			isDefault
+			relationship: 8f3692f5-a9b1-4702-9e5b-6e9204a620e5
+			defaultHierarchy: LocalDateTable_a8a8e144-c836-442b-9d83-48cfb8a1df9f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cancellation Effective Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 65190bf2-4ca0-498d-8069-e7525fab21ee
+		summarizeBy: none
+		sourceColumn: Cancellation Effective Date
+
+		variation Variation
+			isDefault
+			relationship: a9559004-b3f4-4e76-b93a-a90965fd0e9d
+			defaultHierarchy: LocalDateTable_a6866dff-d7f2-45c9-b576-34d2571c1e0b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Bound Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 98350ba4-6a2b-4028-9964-e4d28cb00378
+		summarizeBy: none
+		sourceColumn: Bound Date
+
+		variation Variation
+			isDefault
+			relationship: 9ff13a59-a005-4e52-87d4-85b7f1b9aa7b
+			defaultHierarchy: LocalDateTable_878e6721-3592-46af-9655-7d7c8dc9e25d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'gold endorsements_cancellations' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_endorsements_bronze_view = Source{[Schema="gold",Item="endorsements_and_cancellations"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(gold_endorsements_bronze_view,{{"cancellation_effective_date_adjusted", type date}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Record Type", each "Others"),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Inception Date.1", each if [Entry Type] = "Endorsement Entry" then [Inception Date] else [cancellation_effective_date_adjusted]),
+				    #"Removed Other Columns" = Table.SelectColumns(#"Added Custom1",{"Entry Type", "Insured Name", "Working Underwriter", "Policy Type", "Broker", "Sub Coverage", "Coverage", "Sub Business Unit", "Date Bound", "Inception Date", "Expiration Date", "Policy Number", "RELM USD    *Premium _100%_", "Underwriting Legal Entity", "Comments", "line_of_business", "cancellation_effective_date_adjusted", "relm_sector", "Record Type", "Inception Date.1"}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Removed Other Columns",{{"Inception Date", "Endorsements Inception Date"}, {"cancellation_effective_date_adjusted", "Cancellation Effective Date"}, {"Date Bound", "Bound Date"}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Renamed Columns1",{{"RELM USD    *Premium _100%_", "Premium"}, {"Record Type", "Record Types"}, {"Underwriting Legal Entity", "Relm Entity"}, {"Working Underwriter", "Underwriter"}, {"relm_sector", "Relm Sector"}, {"line_of_business", "Line of Business"}, {"Inception Date.1", "Inception Date"}, {"Insured Name", "Account Name"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Inception Date", type date}}),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Changed Type1",{{"Endorsements Inception Date", "Endorsement Effective Date"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

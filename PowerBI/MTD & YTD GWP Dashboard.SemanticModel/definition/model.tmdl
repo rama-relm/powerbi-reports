@@ -1,0 +1,89 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		fastCombine
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["gold coverage_view","gold endorsements_cancellations","gold premiums_coverage","gold dim coverage c","gold dim_policy_type","gold dim_underwriters","gold dim_entity","gold dim_record_type","gold dim_line_of_business","gold dim_record_buckets","gold dim_coverage","gold dim_relm_sector","Last Run Time","gold dim_coverage_policy","bi_coverage_level_view","gold dim_opportunity_current","gold dim_policy_current","gold dim_client_account_current","p_SQL_Server"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["TMDLView_Desktop"]
+
+ref table 'gold coverage_view'
+ref table DateTableTemplate_97324da4-863c-4f44-aebd-59b57314f693
+ref table 'Date Table'
+ref table 'gold dim coverage c'
+ref table 'gold dim_policy_type'
+ref table LocalDateTable_a5fc5b92-0e0f-4ba1-9809-c8166583b686
+ref table LocalDateTable_7bcec83a-92e2-495a-b69d-e4a15d7a2a8a
+ref table LocalDateTable_d4862884-4601-4361-9547-14b0ef8d75db
+ref table LocalDateTable_f89b4d4d-9a61-437a-b6d0-50d001d87735
+ref table 'gold dim_underwriters'
+ref table LocalDateTable_f2f5884f-b411-4c64-b22f-5d1850a97fc9
+ref table LocalDateTable_70428131-efdb-4806-b798-75eb62b23b77
+ref table LocalDateTable_b255d934-42f5-4135-8ed4-44cbe4513859
+ref table LocalDateTable_368f7bb7-a355-4f3c-a552-94f11df996c1
+ref table 'gold dim_entity'
+ref table LocalDateTable_c076b519-ec05-4f79-8a14-453740563d53
+ref table LocalDateTable_2a0e3b6d-a975-420a-a826-b0891ff30274
+ref table 'gold dim_record_type'
+ref table 'gold endorsements_cancellations'
+ref table 'gold dim_line_of_business'
+ref table 'gold dim_record_buckets'
+ref table 'gold premiums_coverage'
+ref table 'gold dim_coverage'
+ref table 'gold dim_relm_sector'
+ref table LocalDateTable_0eaf1f7f-09d3-4f28-b766-5383578f680b
+ref table LocalDateTable_326f6b81-f81e-4a4e-ba1f-a5f504ebc971
+ref table 'Last Run Time'
+ref table LocalDateTable_056960ae-8187-4207-924a-0c3158f7e128
+ref table LocalDateTable_871255f3-a3d2-4b81-80c8-32d1d7972222
+ref table LocalDateTable_789431ec-9398-4c94-85ab-55df22d37bdc
+ref table LocalDateTable_b27dc15b-7435-40a8-90f7-6ebc585e02cf
+ref table LocalDateTable_ad84dd0d-78b4-4e4a-8a75-5fa2b3d44a88
+ref table LocalDateTable_ade663b2-9466-4068-bbba-faca525c49e7
+ref table LocalDateTable_6297a0cd-bc9a-4d87-a347-12fa770f7abe
+ref table LocalDateTable_7b13157b-f3e9-4b8f-9de5-20aa4d9bd83b
+ref table LocalDateTable_a8a8e144-c836-442b-9d83-48cfb8a1df9f
+ref table LocalDateTable_a6866dff-d7f2-45c9-b576-34d2571c1e0b
+ref table LocalDateTable_3a7dfdc2-b7ea-43de-a19a-92d85066f7c5
+ref table LocalDateTable_0bd6d663-799b-4318-86f8-8184fc55a09f
+ref table 'gold dim_coverage_policy'
+ref table LocalDateTable_f13860a3-d8e3-4670-972e-b2c3e37b8647
+ref table LocalDateTable_878e6721-3592-46af-9655-7d7c8dc9e25d
+ref table LocalDateTable_440ccd03-2b6d-45bb-8d6c-0392cfb58b07
+ref table bi_coverage_level_view
+ref table LocalDateTable_857c7d45-65d0-4e5f-8838-66dd4e2b8bea
+ref table LocalDateTable_b03bac34-e451-4e04-9afc-5b31c601297e
+ref table LocalDateTable_fc8aa7a5-18e4-4456-8369-68087c90863d
+ref table LocalDateTable_add5849a-8993-4bc7-97fd-5075c4221f17
+ref table LocalDateTable_7dd1998f-da5d-44c7-891b-3306b2d70b5c
+ref table LocalDateTable_352b3cc8-8360-48b2-9e81-998869decc0c
+ref table LocalDateTable_6d871435-c4e0-4b16-a6e8-71aa421f7fea
+ref table 'gold dim_opportunity_current'
+ref table LocalDateTable_4f297635-9e5c-47dc-bd02-360a007e8cde
+ref table LocalDateTable_cfe3a656-de22-4f5c-9cdc-4709049fa87f
+ref table LocalDateTable_01279801-0d07-45ac-944c-b61a259cdd5d
+ref table LocalDateTable_8bb34891-706f-46ff-8160-713944e09932
+ref table 'gold dim_policy_current'
+ref table LocalDateTable_444ca029-7d94-45eb-bde2-4ac984fc19c4
+ref table LocalDateTable_f340b60a-17e1-4f95-98e9-d3ad7fbda107
+ref table LocalDateTable_aeecd45a-3def-4429-afc3-e6f0f451e437
+ref table LocalDateTable_2d5f2974-42a2-42ae-83c9-a21bbdfa176c
+ref table 'gold dim_client_account_current'
+ref table LocalDateTable_88643b37-e86b-42d7-ae8d-5c0c39924522
+ref table LocalDateTable_b93502b2-ea83-4729-9f6f-91182707e799
+ref table LocalDateTable_443d8687-0164-43de-8c6e-23a0bd4e6408
+ref table LocalDateTable_46c73f4b-91f0-4418-8f21-062f3ddab74f
+ref table LocalDateTable_538c426f-1b71-4cd1-9f63-dc1cfd64b00c
+ref table LocalDateTable_a6e2f0af-39b0-4fbc-ac17-a2a0c7b87e2a
+ref table LocalDateTable_4c35cfd3-a14a-423c-8baf-ad220cb8ab98
+ref table 'Account Table'
+ref table 'Opportunity Table'
+
+ref cultureInfo en-US
+

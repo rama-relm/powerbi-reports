@@ -1,0 +1,271 @@
+table 'gold coverage_view'
+	lineageTag: 24f4185f-bed2-4da1-977d-dcb175a72515
+
+	measure '2026 MTD OLD' = ```
+			CALCULATE( 
+				SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    USERELATIONSHIP('Date Table'[Date], bi_coverage_level_view[inception_date] 
+				), 
+			    bi_coverage_level_view[entry_type] = "Policy Entry", 
+			    DATESMTD('Date Table'[Date]), bi_coverage_level_view[inception_year] = 2026 
+				)
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: b06b1c56-0821-48c0-8b10-9795a27797bf
+
+	measure '2025 MTD OLD' = ```
+			CALCULATE( 
+				SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    USERELATIONSHIP('Date Table'[Date], bi_coverage_level_view[inception_date] 
+				), 
+			    bi_coverage_level_view[entry_type] = "Policy Entry", 
+			    DATESMTD('Date Table'[Date]), bi_coverage_level_view[inception_year] = 2025 
+				)
+			```
+		formatString: 0
+		lineageTag: 48c5e2a9-b0a8-4948-910e-2aabc60ea86c
+
+	measure '2026 YTD  OLD' = ```
+			CALCULATE( 
+				SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    USERELATIONSHIP('Date Table'[Date], bi_coverage_level_view[inception_date] 
+				), 
+			    bi_coverage_level_view[entry_type] = "Policy Entry", 
+			    DATESYTD('Date Table'[Date]), bi_coverage_level_view[inception_year] = 2026 
+				)    
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 4388929c-0a21-4785-a9b0-ff14f2901138
+
+	measure '2025 YTD  OLD' = ```
+			CALCULATE(
+			                    SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    				USERELATIONSHIP('Date Table'[Date],bi_coverage_level_view[inception_date]
+								),
+			    				bi_coverage_level_view[entry_type] = "Policy Entry",
+			    				DATESYTD('Date Table'[Date]),bi_coverage_level_view[inception_year] = 2025
+								)   
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: a1e82eb0-6512-4af7-9739-c073c95ac31f
+
+	measure TEST =
+			CALCULATE(
+			    SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+				USERELATIONSHIP( 'Date Table'[Date], bi_coverage_level_view[inception_date]
+				),
+				bi_coverage_level_view[entry_type] = "Policy Entry",
+				DATESYTD('Date Table'[Date])
+				)
+		lineageTag: 544cf331-8aa4-48a9-922b-36ee621a3713
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure TEST2 =
+			CALCULATE(
+			    SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+				USERELATIONSHIP( 'Date Table'[Date], bi_coverage_level_view[inception_date]
+				),
+				bi_coverage_level_view[entry_type] = "Policy Entry",
+				DATEADD( DATESYTD('Date Table'[Date]),
+				-1,
+				YEAR
+				)
+			)
+		lineageTag: c67c6954-b3b9-44f6-9300-75fd735940d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Record Types'
+		dataType: string
+		lineageTag: 392fc418-b7ae-429b-958b-82606c35facf
+		summarizeBy: none
+		sourceColumn: Record Types
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Policy Type'
+		dataType: string
+		lineageTag: 3b771ee2-95cd-461c-a703-1ba69f7df76a
+		summarizeBy: none
+		sourceColumn: Policy Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coverage
+		dataType: string
+		lineageTag: 9caddeed-d7f8-486a-ae46-43111ec3108f
+		summarizeBy: none
+		sourceColumn: Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inception Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c4005aa1-8a72-4514-ab04-098885dd67f9
+		summarizeBy: none
+		sourceColumn: Inception Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Premium
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f5239045-3d93-4064-9689-bb4991435a3c
+		summarizeBy: sum
+		sourceColumn: Premium
+
+		annotation SummarizationSetBy = Automatic
+
+	column Coverage_Policy = [Coverage] & "-" & [Policy Type]
+		lineageTag: 10379318-14a8-4246-97c8-3b815e0b53da
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Entity'
+		dataType: string
+		lineageTag: 6299916f-27dc-4d89-a010-34dec3a3706f
+		summarizeBy: none
+		sourceColumn: Relm Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Underwriter
+		dataType: string
+		lineageTag: 02ec3ce3-c252-486e-89a3-a8f55006ed25
+		summarizeBy: none
+		sourceColumn: Underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Sector'
+		dataType: string
+		lineageTag: af5942ba-1b8a-4c1d-b792-53a0c9bbf3d4
+		summarizeBy: none
+		sourceColumn: Relm Sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line of Business'
+		dataType: string
+		lineageTag: d711b63e-e3a8-4a50-9f11-ee7e8a810475
+		summarizeBy: none
+		sourceColumn: Line of Business
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: 91c8caea-ea19-46fb-8ce7-bea4af7c1a36
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Broker
+		dataType: string
+		lineageTag: b9fc09f0-151a-4426-b939-d79f80c4572c
+		summarizeBy: none
+		sourceColumn: Broker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expiration Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 63241c8c-a89d-4dc5-9e97-359637b2e898
+		summarizeBy: none
+		sourceColumn: Expiration Date
+
+		variation Variation
+			isDefault
+			relationship: 05b47e70-64bf-450f-b1ef-0351d1a66bd1
+			defaultHierarchy: LocalDateTable_ade663b2-9466-4068-bbba-faca525c49e7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Policy Number'
+		dataType: string
+		lineageTag: 94b65c88-e736-496f-b741-8e2eba082c33
+		summarizeBy: none
+		sourceColumn: Policy Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Business Unit'
+		dataType: string
+		lineageTag: eea6b622-91c9-46b4-a58e-af6b9a87d0c5
+		summarizeBy: none
+		sourceColumn: Sub Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Coverage'
+		dataType: string
+		lineageTag: e41be35f-8a33-4643-aa55-cf7754aaa0cb
+		summarizeBy: none
+		sourceColumn: Sub Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Broking House'
+		dataType: string
+		lineageTag: 392e5ad1-79f2-44f7-8056-ffde8e396d23
+		summarizeBy: none
+		sourceColumn: Broking House
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Name'
+		dataType: string
+		lineageTag: 1364d13e-a6f7-4fe8-aca8-f6a788429034
+		summarizeBy: none
+		sourceColumn: Opportunity Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stage Name'
+		dataType: string
+		lineageTag: bb377d04-3032-42d4-9ac5-eeaae91a9f61
+		summarizeBy: none
+		sourceColumn: Stage Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bound Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d40881f1-5bbe-4054-a6c5-392454fb866f
+		summarizeBy: none
+		sourceColumn: Bound Date
+
+		variation Variation
+			isDefault
+			relationship: fbdaa77f-f316-4cab-90cb-d91edb78ebf2
+			defaultHierarchy: LocalDateTable_f13860a3-d8e3-4670-972e-b2c3e37b8647.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'gold coverage_view' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="coverage_view"]}[Data],
+				    #"Removed Other Columns" = Table.SelectColumns(gold_coverage_view,{"record_type_name", "client_account_name", "opportunity_name", "policy_type_name", "sub_business_unit__c", "line_of_business", "underwriter_name", "coverage__c", "sub_coverage", "stage_name", "broking_house_name", "broker_name", "inception_date", "expiration_date", "policy_number", "date_bound", "relm_entity", "relm_sector", "premium_usd_converted"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"coverage__c", "Coverage"}, {"inception_date", "Inception Date"}, {"record_type_name", "Record Types"}, {"policy_type_name", "Policy Type"}, {"premium_usd_converted", "Premium"}, {"relm_entity", "Relm Entity"}, {"underwriter_name", "Underwriter"}, {"relm_sector", "Relm Sector"}, {"line_of_business", "Line of Business"}, {"client_account_name", "Account Name"}, {"broker_name", "Broker"}, {"expiration_date", "Expiration Date"}, {"policy_number", "Policy Number"}, {"sub_business_unit__c", "Sub Business Unit"}, {"sub_coverage", "Sub Coverage"}, {"broking_house_name", "Broking House"}, {"opportunity_name", "Opportunity Name"}, {"stage_name", "Stage Name"}, {"date_bound", "Bound Date"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

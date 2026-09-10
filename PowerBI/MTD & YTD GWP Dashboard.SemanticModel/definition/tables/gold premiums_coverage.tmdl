@@ -1,0 +1,436 @@
+table 'gold premiums_coverage'
+	lineageTag: f375c64f-3f6d-4caf-b9b3-9bdc3d333561
+
+	measure '2026 MTD' =
+			VAR CurrentDate =
+			    CALCULATE ( MAX ( 'Date Table'[Date] ), 'Date Table'[Year] = 2026 )
+			RETURN
+			CALCULATE (
+			    [Premiums],
+			    FILTER (
+			        ALL ( 'Date Table' ),
+			        'Date Table'[Year] = 2026
+			            && 'Date Table'[Date] <= CurrentDate
+			            && 'Date Table'[MonthNum] = MONTH ( CurrentDate )
+			    )
+			)
+		lineageTag: 4a115ea2-314f-49ee-88ea-3f2422b9afe0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '2025 MTD' = ```
+			
+			VAR CurrentDate =
+			    CALCULATE ( MAX ( 'Date Table'[Date] ), 'Date Table'[Year] = 2025 )
+			RETURN
+			CALCULATE (
+			    [Premiums],
+			    FILTER (
+			        ALL ( 'Date Table' ),
+			        'Date Table'[Year] = 2025
+			            && 'Date Table'[Date] <= CurrentDate
+			            && 'Date Table'[MonthNum] = MONTH ( CurrentDate )
+			    )
+			)
+			
+			```
+		lineageTag: a8e14ff1-d74d-4a25-82e1-bba8d6f65556
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '2026 YTD' =
+			VAR CurrentDate =
+			    CALCULATE ( MAX ( 'Date Table'[Date] ), 'Date Table'[Year] = 2026 )
+			RETURN
+			CALCULATE (
+			    [Premiums],
+			    FILTER (
+			        ALL ( 'Date Table' ),
+			        'Date Table'[Year] = 2026
+			            && 'Date Table'[Date] <= CurrentDate
+			    )
+			)
+		lineageTag: ed90d28c-6f90-498a-8ebf-7bae64f9df50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '2025 YTD' = ```
+			
+			 VAR CurrentDate =
+			    CALCULATE ( MAX ( 'Date Table'[Date] ), 'Date Table'[Year] = 2025 )
+			RETURN
+			CALCULATE (
+			    [Premiums],
+			    FILTER (
+			        ALL ( 'Date Table' ),
+			        'Date Table'[Year] = 2025
+			            && 'Date Table'[Date] <= CurrentDate
+			    )
+			)
+			
+			```
+		lineageTag: 0c7110eb-58eb-4bc0-9185-8661f44819e3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Width = REPT("0", 15)
+		lineageTag: de15caf7-d70e-4e99-81ef-1622451c1152
+
+	measure Premiums = ```
+			
+			CALCULATE(
+			    SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    USERELATIONSHIP(
+			        'Date Table'[Date],
+			        bi_coverage_level_view[inception_date]
+			    )
+			    --,bi_coverage_level_view[entry_type] = "Policy Entry"
+			)
+			
+			```
+		lineageTag: 1f485af6-215f-41a0-b2af-6b7f3acd5383
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inception Year Check' = ```
+			
+			CONCATENATEX(
+			    VALUES(bi_coverage_level_view[inception_year]),
+			    bi_coverage_level_view[inception_year],
+			    ", "
+			)
+			
+			
+			```
+		lineageTag: 9459d65e-40f2-4ebd-8e59-038dbda92281
+
+	measure '2025 Premium Test' = ```
+			
+			CALCULATE(
+			    SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    bi_coverage_level_view[inception_year] = "2025"
+			)
+			
+			```
+		lineageTag: 9ee964b6-990b-4faf-83cb-922f2d59ec4b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '2025 MTD Test' = ```
+			CALCULATE( 
+			                        SUM(bi_coverage_level_view[relm_coverage_premium_converted]), 
+			                        bi_coverage_level_view[entry_type] = "Policy Entry", bi_coverage_level_view[inception_year] = "2025", 
+			                        FILTER(
+			                             ALL(
+			                                'Date Table'
+			                                ), 
+			                                'Date Table'[Year] = 2025 ) )
+			```
+		lineageTag: 49876f40-c861-4173-a18f-3348e34f79b7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Premium Per Million' = DIVIDE([Premiums],1000000,0)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1d38d978-6e88-49a6-a7aa-1817b5be2413
+
+	measure Test1 =
+			
+			CALCULATE(
+			    SUM(bi_coverage_level_view[relm_coverage_premium_converted]),
+			    bi_coverage_level_view[entry_type] = "Policy Entry",
+			    bi_coverage_level_view[inception_year] = "2025")
+		lineageTag: db7e834d-16ee-4cc2-be9d-569c0b595859
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Coverage
+		dataType: string
+		lineageTag: 435454f8-6440-416c-85a0-df6573a54a71
+		summarizeBy: none
+		sourceColumn: Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inception Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d51cb3b4-5676-4d4a-945c-6f78c0889e62
+		summarizeBy: none
+		sourceColumn: Inception Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Record Types'
+		dataType: string
+		lineageTag: f7797a37-63ff-452e-8ba6-610c14ba374a
+		summarizeBy: none
+		sourceColumn: Record Types
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Policy Type'
+		dataType: string
+		lineageTag: 5a969a94-7cad-4bf3-be84-ee6023ea97ac
+		summarizeBy: none
+		sourceColumn: Policy Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Premium
+		dataType: double
+		lineageTag: 74b3abd1-40ef-45c1-a431-74a0ccb05d5d
+		summarizeBy: sum
+		sourceColumn: Premium
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Coverage Policy' = [Coverage] & " - " & [Policy Type]
+		lineageTag: adf3bc03-1752-4b0f-a82d-547f253ebe48
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'gold dim coverage c.coverage__c'
+		dataType: string
+		lineageTag: d3eef042-ecce-48d2-8b6d-476d0005e62a
+		summarizeBy: none
+		sourceColumn: gold dim coverage c.coverage__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column Underwriter
+		dataType: string
+		lineageTag: 5828c1e0-a60f-49cf-9115-51f6154d78e0
+		summarizeBy: none
+		sourceColumn: Underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Entity'
+		dataType: string
+		lineageTag: 82096012-b04f-43b8-bfa2-ec123857aa67
+		summarizeBy: none
+		sourceColumn: Relm Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Relm Sector'
+		dataType: string
+		lineageTag: 76d8e5f7-4a4c-4cca-b356-ccd741a2c612
+		summarizeBy: none
+		sourceColumn: Relm Sector
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Line of Business'
+		dataType: string
+		lineageTag: 15a2af96-425a-408b-80b4-bf4a63a38782
+		summarizeBy: none
+		sourceColumn: Line of Business
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'gold dim_line_of_business.LoB'
+		dataType: string
+		lineageTag: 033d7438-d07b-498b-9305-5cf0d2bff487
+		summarizeBy: none
+		sourceColumn: gold dim_line_of_business.LoB
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Entry Type'
+		dataType: string
+		lineageTag: 19f82830-f0ca-406b-ada8-5049490d52c9
+		summarizeBy: none
+		sourceColumn: Entry Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Record Buckets'
+		dataType: string
+		lineageTag: 6ac6c600-239b-49b0-b8bc-d570588fd769
+		summarizeBy: none
+		sourceColumn: Record Buckets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Account Name'
+		dataType: string
+		lineageTag: fdc76ed2-44b4-4348-8948-08625def4e6d
+		summarizeBy: none
+		sourceColumn: Account Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Broker
+		dataType: string
+		lineageTag: f4cd0d97-6ee8-48cc-886f-0d41ac7642c1
+		summarizeBy: none
+		sourceColumn: Broker
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Expiration Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 83480cdb-cd06-4a73-a43f-b64a472eceb0
+		summarizeBy: none
+		sourceColumn: Expiration Date
+
+		variation Variation
+			isDefault
+			relationship: 0b7e2a17-2b33-468e-9ae5-e1117509a877
+			defaultHierarchy: LocalDateTable_7b13157b-f3e9-4b8f-9de5-20aa4d9bd83b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Policy Number'
+		dataType: string
+		lineageTag: 5e09566c-e4cc-44e8-9783-f2aebe9d8c33
+		summarizeBy: none
+		sourceColumn: Policy Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Business Unit'
+		dataType: string
+		lineageTag: d750c231-a6a7-4e11-a055-829d9ad8e261
+		summarizeBy: none
+		sourceColumn: Sub Business Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sub Coverage'
+		dataType: string
+		lineageTag: 2166bcb9-4d3e-4100-9c9a-f29162be01c3
+		summarizeBy: none
+		sourceColumn: Sub Coverage
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Broking House'
+		dataType: string
+		lineageTag: 75804db1-5ff5-4618-a3cd-d4ea3c700564
+		summarizeBy: none
+		sourceColumn: Broking House
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity Name'
+		dataType: string
+		lineageTag: 3e14ac47-22f8-42c3-b8a4-f2b860c39ae2
+		summarizeBy: none
+		sourceColumn: Opportunity Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comments
+		dataType: string
+		lineageTag: cae2fa0e-9d9b-42a3-a58c-9470a622adbc
+		summarizeBy: none
+		sourceColumn: Comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Endorsement Effective Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 27f2e1ce-2ed5-4af9-ba0d-2b0d70eee0c8
+		summarizeBy: none
+		sourceColumn: Endorsement Effective Date
+
+		variation Variation
+			isDefault
+			relationship: 4e7d7b78-49f3-42f2-a348-f48017fefccd
+			defaultHierarchy: LocalDateTable_3a7dfdc2-b7ea-43de-a19a-92d85066f7c5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cancellation Effective Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 915f8941-6699-4812-83cd-e8c9941265ee
+		summarizeBy: none
+		sourceColumn: Cancellation Effective Date
+
+		variation Variation
+			isDefault
+			relationship: 04cc2272-3285-4b37-8e63-7014d4eb7f6e
+			defaultHierarchy: LocalDateTable_0bd6d663-799b-4318-86f8-8184fc55a09f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Waterfall Buckets'
+		dataType: string
+		lineageTag: 29571ebc-d9ae-4dc7-98a1-ad95546a7fb3
+		summarizeBy: none
+		sourceColumn: Waterfall Buckets
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Stage Name'
+		dataType: string
+		lineageTag: bfab37a8-0969-4a2e-b100-95f141c2f078
+		summarizeBy: none
+		sourceColumn: Stage Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Bound Date'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: daf77123-185e-4945-a1f0-c87e118e5bc4
+		summarizeBy: none
+		sourceColumn: Bound Date
+
+		variation Variation
+			isDefault
+			relationship: a961cf8a-3af7-48bc-936e-de979c347180
+			defaultHierarchy: LocalDateTable_440ccd03-2b6d-45bb-8d6c-0392cfb58b07.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Month = MONTH(('gold premiums_coverage'[Inception Date]))
+		formatString: 0
+		lineageTag: fbd6ed4d-d825-46ea-a7e4-6a64e5ecdb5d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold premiums_coverage' = m
+		mode: import
+		source =
+				let
+				    Source = Table.Combine({#"gold coverage_view", #"gold endorsements_cancellations"}),
+				    #"Merged Queries" = Table.NestedJoin(Source, {"Coverage"}, #"gold dim coverage c", {"coverage__c"}, "gold dim coverage c", JoinKind.LeftOuter),
+				    #"Expanded gold dim coverage c" = Table.ExpandTableColumn(#"Merged Queries", "gold dim coverage c", {"coverage__c"}, {"gold dim coverage c.coverage__c"}),
+				    #"Merged Queries1" = Table.NestedJoin(#"Expanded gold dim coverage c", {"Line of Business"}, #"gold dim_line_of_business", {"LoB"}, "gold dim_line_of_business", JoinKind.LeftOuter),
+				    #"Expanded gold dim_line_of_business" = Table.ExpandTableColumn(#"Merged Queries1", "gold dim_line_of_business", {"LoB"}, {"gold dim_line_of_business.LoB"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Expanded gold dim_line_of_business",null,"Others",Replacer.ReplaceValue,{"gold dim coverage c.coverage__c"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value","General Package Policy","Others",Replacer.ReplaceText,{"gold dim coverage c.coverage__c"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","Cyber","Others",Replacer.ReplaceValue,{"gold dim coverage c.coverage__c"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","Specialty Cyber","Others",Replacer.ReplaceText,{"gold dim coverage c.coverage__c"}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Replaced Value4","Specialty Errors & Omissions","Others",Replacer.ReplaceText,{"gold dim coverage c.coverage__c"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value5",null,"Others",Replacer.ReplaceValue,{"gold dim_line_of_business.LoB"}),
+				    #"Added Custom" = Table.AddColumn(#"Replaced Value1", "Record Buckets", each if [Entry Type] = "Endorsement Entry" then "Endorsements" else if [Entry Type] = "Cancellation Entry" then "Cancellations" else if [Record Types] = "New " then "New" else if [Record Types] = "Renewal" then "Renewal" else "Others"),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Waterfall Buckets", each if Date.Year([Inception Date]) = Date.Year(DateTime.LocalNow()) - 1 then Number.ToText(Date.Year(DateTime.LocalNow()) - 1) else if Date.Year([Inception Date]) = Date.Year(DateTime.LocalNow()) and Date.QuarterOfYear([Inception Date]) = Date.QuarterOfYear(DateTime.LocalNow()) and [Record Buckets] = "New" then Number.ToText(Date.Year(DateTime.LocalNow())) & " Q1 N" else "null")
+				in
+				    #"Added Custom1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

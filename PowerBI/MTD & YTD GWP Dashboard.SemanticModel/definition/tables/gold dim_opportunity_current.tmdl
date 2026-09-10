@@ -1,0 +1,162 @@
+table 'gold dim_opportunity_current'
+	lineageTag: 74373065-8b3f-4ba1-afc7-47b793c124c7
+
+	column opportunity_id
+		dataType: string
+		lineageTag: 59a63993-1461-41d7-bd38-28d85e3c6315
+		summarizeBy: none
+		sourceColumn: opportunity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_name
+		dataType: string
+		lineageTag: 21a77659-2fd0-49f7-8c47-a49d5296aa63
+		summarizeBy: none
+		sourceColumn: opportunity_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column next_step
+		dataType: string
+		lineageTag: 13a22901-57d4-4d16-bb98-4daab4934ba5
+		summarizeBy: none
+		sourceColumn: next_step
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 06e6efbc-f6a9-4251-afb3-62f3ad4ba7d6
+		summarizeBy: none
+		sourceColumn: sfdc_created_date
+
+		variation Variation
+			isDefault
+			relationship: d4a06d77-b8dd-4d50-a1d5-868b68fe93f5
+			defaultHierarchy: LocalDateTable_4f297635-9e5c-47dc-bd02-360a007e8cde.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 994c666f-a89a-458e-a5f4-bf6b7c8821cd
+		summarizeBy: none
+		sourceColumn: sfdc_last_modified_date
+
+		variation Variation
+			isDefault
+			relationship: abd356ad-8f18-4f19-97fe-186aac8b7ac0
+			defaultHierarchy: LocalDateTable_cfe3a656-de22-4f5c-9cdc-4709049fa87f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column opportunity_description
+		dataType: string
+		lineageTag: 049e8747-c209-409e-bb64-cf7a2f378e61
+		summarizeBy: none
+		sourceColumn: opportunity_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_comments
+		dataType: string
+		lineageTag: 482b5eed-589c-4cf1-bba1-ab48a29fdb7c
+		summarizeBy: none
+		sourceColumn: coverage_comments
+
+		annotation SummarizationSetBy = Automatic
+
+	column loss_reason
+		dataType: string
+		lineageTag: 57646f99-d8fa-49f6-8acf-d4d5c095bf49
+		summarizeBy: none
+		sourceColumn: loss_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column loss_reason_detail
+		dataType: string
+		lineageTag: 7165c212-0e61-480b-a25c-df26fb795f28
+		summarizeBy: none
+		sourceColumn: loss_reason_detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_hash
+		dataType: string
+		lineageTag: 9d7e1947-df10-4189-b7dc-3d270cb9d0e1
+		summarizeBy: none
+		sourceColumn: row_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e7d24e8b-f514-4157-87ac-eae3d74db02b
+		summarizeBy: none
+		sourceColumn: created_on
+
+		variation Variation
+			isDefault
+			relationship: e9fe025c-271d-4bc0-b939-06b6ea691bdf
+			defaultHierarchy: LocalDateTable_01279801-0d07-45ac-944c-b61a259cdd5d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 24f65a56-fc77-4b6f-9ded-0d4b5c1d2792
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		variation Variation
+			isDefault
+			relationship: 44c71f55-0a57-426a-ada4-bc82ffa7b4f3
+			defaultHierarchy: LocalDateTable_8bb34891-706f-46ff-8160-713944e09932.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_by
+		dataType: string
+		lineageTag: ea61428e-7c62-4d39-8e35-188f4fe56b5b
+		summarizeBy: none
+		sourceColumn: sfdc_created_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column policy_reporting_structure
+		dataType: string
+		lineageTag: eb9f5e66-f714-4b99-ad9b-c8104b2a2f13
+		summarizeBy: none
+		sourceColumn: policy_reporting_structure
+
+		annotation SummarizationSetBy = Automatic
+
+	column probability
+		dataType: double
+		lineageTag: 93f124dc-0e58-4752-b8e9-c1a7b0202f8f
+		summarizeBy: sum
+		sourceColumn: probability
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'gold dim_opportunity_current' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_dim_opportunity_current = Source{[Schema="gold",Item="dim_opportunity_current"]}[Data]
+				in
+				    gold_dim_opportunity_current
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

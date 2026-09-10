@@ -1,0 +1,103 @@
+table 'Date Table'
+	lineageTag: 74afca6c-c655-4411-9e92-2b4f3ac13603
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Short Date
+		lineageTag: a50a2ee1-8aa0-441d-99f2-30539fa69d96
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		formatString: 0
+		lineageTag: 2609e975-d6cb-4991-a6ab-405dae381cd7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		lineageTag: 3053af7c-cded-4833-9d56-3e12f324632a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: MonthNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: bd310b3a-659e-4344-98e6-b1dfd5864224
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: 86163fc1-cf5f-4299-b4c3-2039b77ce2ab
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+		sortByColumn: YearMonthSort
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum
+		formatString: 0
+		lineageTag: 3761d03d-116d-43ac-8eba-a67c212c77c6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MonthNum]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthSort
+		lineageTag: 27663ca1-9c1d-491e-b282-9dd34cc68c32
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonthSort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Date Table' = calculated
+		mode: import
+		source = ```
+				
+				
+				VAR StartDate = DATE(2020, 1, 1)
+				
+				VAR EndDate   = DATE(YEAR(TODAY())+5, 12, 31)
+				
+				RETURN
+				
+				ADDCOLUMNS (
+				
+				    CALENDAR ( StartDate, EndDate ),
+				
+				    "Year", YEAR ( [Date] ),
+				
+				    "Month", FORMAT ( [Date], "mmmm" ),
+				
+				    "MonthNum", MONTH ( [Date] ),
+				
+				    "Quarter", Quarter ( [Date] ),
+				
+				    "YearMonth", FORMAT ( [Date], "mmm-yy" ),
+				
+				    "YearMonthSort", FORMAT ( [Date], "YYYYMM")
+				
+				)
+				
+				 
+				```
+
+	annotation PBI_Id = 8d2e8e0884ea403cbfe0f03217c7e5da
+

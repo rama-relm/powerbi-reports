@@ -1,0 +1,24 @@
+table 'Account Table'
+	lineageTag: 6a499b5b-b0fc-4c2f-b612-4194a89532da
+
+	column account_name
+		lineageTag: 617498d0-779f-4f5b-bda0-687942da4e42
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [account_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Account Table' = calculated
+		mode: import
+		source =
+				
+				DISTINCT (
+				    SELECTCOLUMNS (
+				        'gold dim_client_account_current',
+				        "account_name", 'gold dim_client_account_current'[client_account_name]
+				    )
+				)
+
+	annotation PBI_Id = 3b74d8659568445fb12fedbeecf203f4
+

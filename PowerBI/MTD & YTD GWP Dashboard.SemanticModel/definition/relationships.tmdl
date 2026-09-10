@@ -1,0 +1,388 @@
+relationship 8213c187-531e-4cfa-9dcb-3657c9b89a04
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_policy_type'.created_on
+	toColumn: LocalDateTable_a5fc5b92-0e0f-4ba1-9809-c8166583b686.Date
+
+relationship 0a3a9e44-83b0-449a-8b6c-6b4d9b7a7ba8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_policy_type'.last_updated_on
+	toColumn: LocalDateTable_7bcec83a-92e2-495a-b69d-e4a15d7a2a8a.Date
+
+relationship 9df361f7-f948-4057-b1fe-48b2318bbe0a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim coverage c'.created_on
+	toColumn: LocalDateTable_d4862884-4601-4361-9547-14b0ef8d75db.Date
+
+relationship bc832e6a-02ae-4ba6-af05-f71e4e7714fc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim coverage c'.last_updated_on
+	toColumn: LocalDateTable_f89b4d4d-9a61-437a-b6d0-50d001d87735.Date
+
+relationship 4fdf29e8-5f28-42fc-8dc5-a808e750606a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_underwriters'.created_date
+	toColumn: LocalDateTable_f2f5884f-b411-4c64-b22f-5d1850a97fc9.Date
+
+relationship 05a5f784-79f3-4b17-9195-3b518f1624cf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_underwriters'.last_modified_date
+	toColumn: LocalDateTable_70428131-efdb-4806-b798-75eb62b23b77.Date
+
+relationship 15b5aae9-3487-41e2-a994-51e4c5c28833
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_underwriters'.audit_created_on
+	toColumn: LocalDateTable_b255d934-42f5-4135-8ed4-44cbe4513859.Date
+
+relationship 1d88f056-7419-4b0b-9cde-1379afeddeaf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_underwriters'.audit_last_updated_on
+	toColumn: LocalDateTable_368f7bb7-a355-4f3c-a552-94f11df996c1.Date
+
+relationship 4e589d4e-c0ec-438e-bc08-f54d6e34e5ac
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_entity'.created_on
+	toColumn: LocalDateTable_c076b519-ec05-4f79-8a14-453740563d53.Date
+
+relationship 00839173-2ea4-4896-bc66-5e1172f3f588
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_entity'.last_updated_on
+	toColumn: LocalDateTable_2a0e3b6d-a975-420a-a826-b0891ff30274.Date
+
+relationship e1cf3486-cbd5-b8b6-d7ca-110683dd9dde
+	fromColumn: 'gold endorsements_cancellations'.Coverage
+	toColumn: 'gold dim coverage c'.coverage__c
+
+relationship 3fed361f-7ae1-6d63-4c6f-870d3312f8a0
+	fromColumn: 'gold endorsements_cancellations'.'Record Type'
+	toColumn: 'gold dim_record_type'.record_type
+
+relationship 49dd639c-3d87-e02f-85b9-47fd213841b9
+	fromColumn: 'gold coverage_view'.'Record Types'
+	toColumn: 'gold dim_record_type'.record_type
+
+relationship ec11297d-9c70-e63b-3a34-07c994cfc816
+	fromColumn: 'gold premiums_coverage'.Coverage
+	toColumn: 'gold dim coverage c'.coverage__c
+
+relationship dc50f9a7-21ab-e8e8-0268-d957c42b2f7b
+	fromColumn: 'gold premiums_coverage'.'Record Types'
+	toColumn: 'gold dim_record_type'.record_type
+
+relationship AutoDetected_621bf60f-2f4e-4b08-88fb-18ed2ef546cd
+	fromColumn: 'gold coverage_view'.Coverage
+	toColumn: 'gold dim_coverage'.Coverage
+
+relationship AutoDetected_67fbcdc2-5c0b-4251-a0e5-3b3e5bfd0f38
+	fromColumn: 'gold endorsements_cancellations'.Coverage
+	toColumn: 'gold dim_coverage'.Coverage
+
+relationship fbd7ceaa-9115-4767-f775-f8828c05238c
+	fromColumn: 'gold premiums_coverage'.'gold dim coverage c.coverage__c'
+	toColumn: 'gold dim_coverage'.Coverage
+
+relationship 84141495-c306-d093-c2f4-57faefc875b4
+	fromColumn: 'gold premiums_coverage'.'Relm Entity'
+	toColumn: 'gold dim_entity'.entity_description
+
+relationship dc08dfdd-ca81-7666-f9fd-1188e9fb12ce
+	fromColumn: 'gold premiums_coverage'.Underwriter
+	toColumn: 'gold dim_underwriters'.name
+
+relationship 0cceaf8a-15c5-5a86-0d42-1e8260092c0a
+	fromColumn: 'gold premiums_coverage'.'Policy Type'
+	toColumn: 'gold dim_policy_type'.type_description
+
+relationship be081274-255f-40e9-bfd1-36596eab6eda
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_relm_sector'.created_on
+	toColumn: LocalDateTable_0eaf1f7f-09d3-4f28-b766-5383578f680b.Date
+
+relationship 387307e8-b418-4866-ab63-1d2b3acc79b1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_relm_sector'.last_updated_on
+	toColumn: LocalDateTable_326f6b81-f81e-4a4e-ba1f-a5f504ebc971.Date
+
+relationship 3801c410-d34a-48f8-939a-61a6021d4c46
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Last Run Time'.StartRunTime
+	toColumn: LocalDateTable_056960ae-8187-4207-924a-0c3158f7e128.Date
+
+relationship cf53f68a-9e3c-4562-ac2f-0a4e61d3bf15
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Last Run Time'.LastRunTime
+	toColumn: LocalDateTable_871255f3-a3d2-4b81-80c8-32d1d7972222.Date
+
+relationship 095d0a70-c269-49e8-b732-fbd1dff75837
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Last Run Time'.StartTimeConverted
+	toColumn: LocalDateTable_789431ec-9398-4c94-85ab-55df22d37bdc.Date
+
+relationship 159098d8-3644-4277-a2c8-790a01c7049b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Last Run Time'.EndTimeConverted
+	toColumn: LocalDateTable_b27dc15b-7435-40a8-90f7-6ebc585e02cf.Date
+
+relationship 10585bb6-1acd-3580-6122-f721b03298f5
+	fromColumn: 'gold premiums_coverage'.'Relm Sector'
+	toColumn: 'gold dim_relm_sector'.sector_name
+
+relationship AutoDetected_f8610ccd-da4b-42c4-9a6d-6a1c32b25722
+	fromColumn: 'gold premiums_coverage'.'gold dim_line_of_business.LoB'
+	toColumn: 'gold dim_line_of_business'.LoB
+
+relationship 7d5b9dc2-6bba-8ce4-76d2-cc02b53618f6
+	fromColumn: 'gold premiums_coverage'.'Record Buckets'
+	toColumn: 'gold dim_record_buckets'.'Record Bucket'
+
+relationship 3efcec9c-c6d1-4461-b33f-4b1f52371020
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold endorsements_cancellations'.'Inception Date'
+	toColumn: LocalDateTable_ad84dd0d-78b4-4e4a-8a75-5fa2b3d44a88.Date
+
+relationship 05b47e70-64bf-450f-b1ef-0351d1a66bd1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold coverage_view'.'Expiration Date'
+	toColumn: LocalDateTable_ade663b2-9466-4068-bbba-faca525c49e7.Date
+
+relationship 7bbcca51-d0f6-4d79-b5fb-9a5949516c7c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold endorsements_cancellations'.'Expiration Date'
+	toColumn: LocalDateTable_6297a0cd-bc9a-4d87-a347-12fa770f7abe.Date
+
+relationship 0b7e2a17-2b33-468e-9ae5-e1117509a877
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold premiums_coverage'.'Expiration Date'
+	toColumn: LocalDateTable_7b13157b-f3e9-4b8f-9de5-20aa4d9bd83b.Date
+
+relationship 8f3692f5-a9b1-4702-9e5b-6e9204a620e5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold endorsements_cancellations'.'Endorsement Effective Date'
+	toColumn: LocalDateTable_a8a8e144-c836-442b-9d83-48cfb8a1df9f.Date
+
+relationship a9559004-b3f4-4e76-b93a-a90965fd0e9d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold endorsements_cancellations'.'Cancellation Effective Date'
+	toColumn: LocalDateTable_a6866dff-d7f2-45c9-b576-34d2571c1e0b.Date
+
+relationship 4e7d7b78-49f3-42f2-a348-f48017fefccd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold premiums_coverage'.'Endorsement Effective Date'
+	toColumn: LocalDateTable_3a7dfdc2-b7ea-43de-a19a-92d85066f7c5.Date
+
+relationship 04cc2272-3285-4b37-8e63-7014d4eb7f6e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold premiums_coverage'.'Cancellation Effective Date'
+	toColumn: LocalDateTable_0bd6d663-799b-4318-86f8-8184fc55a09f.Date
+
+relationship 0cc14eb1-0808-4ea6-3565-f817a9456f9b
+	fromColumn: 'gold coverage_view'.'Inception Date'
+	toColumn: 'Date Table'.Date
+
+relationship cace4c06-2013-59ff-7374-f47e4453b1f2
+	fromColumn: 'gold premiums_coverage'.'Inception Date'
+	toColumn: 'Date Table'.Date
+
+relationship 1d05ac8d-aee5-7ad3-3986-b5a46ea119ea
+	fromColumn: 'gold premiums_coverage'.'Coverage Policy'
+	toColumn: 'gold dim_coverage_policy'.'Coverage Policy'
+
+relationship fbdaa77f-f316-4cab-90cb-d91edb78ebf2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold coverage_view'.'Bound Date'
+	toColumn: LocalDateTable_f13860a3-d8e3-4670-972e-b2c3e37b8647.Date
+
+relationship 9ff13a59-a005-4e52-87d4-85b7f1b9aa7b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold endorsements_cancellations'.'Bound Date'
+	toColumn: LocalDateTable_878e6721-3592-46af-9655-7d7c8dc9e25d.Date
+
+relationship a961cf8a-3af7-48bc-936e-de979c347180
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold premiums_coverage'.'Bound Date'
+	toColumn: LocalDateTable_440ccd03-2b6d-45bb-8d6c-0392cfb58b07.Date
+
+relationship a8840808-8c1a-497d-a08b-fd4d1f19faf6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.retroactive_date
+	toColumn: LocalDateTable_857c7d45-65d0-4e5f-8838-66dd4e2b8bea.Date
+
+relationship b9a4274a-31c0-4616-b0cc-072b7d420a02
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.date_bound
+	toColumn: LocalDateTable_b03bac34-e451-4e04-9afc-5b31c601297e.Date
+
+relationship 924639c8-7d62-4e2f-97ba-21aee97662d6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.expiration_date
+	toColumn: LocalDateTable_fc8aa7a5-18e4-4456-8369-68087c90863d.Date
+
+relationship c2a7df1f-38cd-4ba3-b3be-e6d8fb4d0e6a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.cancellation_date
+	toColumn: LocalDateTable_add5849a-8993-4bc7-97fd-5075c4221f17.Date
+
+relationship 87e2a4f3-0e3f-4c2e-a2b0-d646f2f15d2d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.payment_due_date
+	toColumn: LocalDateTable_7dd1998f-da5d-44c7-891b-3306b2d70b5c.Date
+
+relationship 4520ae5f-55bb-4a16-bbdb-a0e4e1459786
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.date_quoted
+	toColumn: LocalDateTable_352b3cc8-8360-48b2-9e81-998869decc0c.Date
+
+relationship cdf2beac-be5c-47a7-aa7a-85f2f60cbbf8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: bi_coverage_level_view.rate_month
+	toColumn: LocalDateTable_6d871435-c4e0-4b16-a6e8-71aa421f7fea.Date
+
+relationship AutoDetected_aefe6cd3-e674-442b-9ac2-fb5ae0c563be
+	fromColumn: bi_coverage_level_view.coverage_id
+	toColumn: 'gold dim coverage c'.coverage_id
+
+relationship 5a6d85ee-1527-7c66-330c-62e2ea2594f4
+	fromColumn: bi_coverage_level_view.inception_date
+	toColumn: 'Date Table'.Date
+
+relationship AutoDetected_75834533-0565-449a-805d-9e59bc385ca7
+	fromColumn: bi_coverage_level_view.'Coverage Policy'
+	toColumn: 'gold dim_coverage_policy'.'Coverage Policy'
+
+relationship ccf9d51b-5884-f278-725c-47f55c7cbe50
+	fromColumn: bi_coverage_level_view.opportunity_record_type
+	toColumn: 'gold dim_record_type'.record_type
+
+relationship AutoDetected_47467898-9e20-4ea7-98fd-9cb1c623c237
+	fromColumn: bi_coverage_level_view.'Record Bucket'
+	toColumn: 'gold dim_record_buckets'.'Record Bucket'
+
+relationship 711c156d-8bc4-9772-fbe9-780ca0c2072d
+	fromColumn: bi_coverage_level_view.coverage
+	toColumn: 'gold dim_coverage'.Coverage
+
+relationship d207ce7e-4118-3a19-06b5-eba2beabbc7d
+	fromColumn: bi_coverage_level_view.line_of_business
+	toColumn: 'gold dim_line_of_business'.LoB
+
+relationship d4a06d77-b8dd-4d50-a1d5-868b68fe93f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_opportunity_current'.sfdc_created_date
+	toColumn: LocalDateTable_4f297635-9e5c-47dc-bd02-360a007e8cde.Date
+
+relationship abd356ad-8f18-4f19-97fe-186aac8b7ac0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_opportunity_current'.sfdc_last_modified_date
+	toColumn: LocalDateTable_cfe3a656-de22-4f5c-9cdc-4709049fa87f.Date
+
+relationship e9fe025c-271d-4bc0-b939-06b6ea691bdf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_opportunity_current'.created_on
+	toColumn: LocalDateTable_01279801-0d07-45ac-944c-b61a259cdd5d.Date
+
+relationship 44c71f55-0a57-426a-ada4-bc82ffa7b4f3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_opportunity_current'.last_updated_on
+	toColumn: LocalDateTable_8bb34891-706f-46ff-8160-713944e09932.Date
+
+relationship 36d6b23d-d643-4501-a7aa-4a68d802a26d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_policy_current'.sfdc_created_date
+	toColumn: LocalDateTable_444ca029-7d94-45eb-bde2-4ac984fc19c4.Date
+
+relationship efe2d996-a27f-4cb8-a7bb-be746aad754a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_policy_current'.sfdc_last_modified_date
+	toColumn: LocalDateTable_f340b60a-17e1-4f95-98e9-d3ad7fbda107.Date
+
+relationship 9c63646a-51bb-4e12-9414-14cb6ade549f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_policy_current'.created_on
+	toColumn: LocalDateTable_aeecd45a-3def-4429-afc3-e6f0f451e437.Date
+
+relationship 6178c247-b303-41a7-bc4d-e73325b7a3df
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_policy_current'.last_updated_on
+	toColumn: LocalDateTable_2d5f2974-42a2-42ae-83c9-a21bbdfa176c.Date
+
+relationship AutoDetected_c9d4f2b7-5d35-4e3f-bb16-abc0cd02d0db
+	fromColumn: bi_coverage_level_view.insurance_policy_id
+	toColumn: 'gold dim_policy_current'.insurance_policy_id
+
+relationship AutoDetected_0cd14cb7-bc6b-489d-9941-c8c0414b0cd4
+	isActive: false
+	fromColumn: bi_coverage_level_view.opportunity_id
+	toColumn: 'gold dim_opportunity_current'.opportunity_id
+
+relationship 28add74b-1506-4fbc-abab-43c89206bccf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.last_review
+	toColumn: LocalDateTable_88643b37-e86b-42d7-ae8d-5c0c39924522.Date
+
+relationship 20d70a55-84a0-4e73-966d-f24cefd657c8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.next_review
+	toColumn: LocalDateTable_b93502b2-ea83-4729-9f6f-91182707e799.Date
+
+relationship 192cb187-45ea-4368-b5e4-07fb912a461e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.status_change_date
+	toColumn: LocalDateTable_443d8687-0164-43de-8c6e-23a0bd4e6408.Date
+
+relationship 7a51c9ad-55b1-4ba9-8b26-31aec14bdca8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.sfdc_created_on
+	toColumn: LocalDateTable_46c73f4b-91f0-4418-8f21-062f3ddab74f.Date
+
+relationship 7d6f839e-ab1e-4a6f-b012-0d188b670282
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.sfdc_last_modified_date
+	toColumn: LocalDateTable_538c426f-1b71-4cd1-9f63-dc1cfd64b00c.Date
+
+relationship 577ee018-8664-4a70-8120-f0ebf8e08c60
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.created_on
+	toColumn: LocalDateTable_a6e2f0af-39b0-4fbc-ac17-a2a0c7b87e2a.Date
+
+relationship 3e888867-88b7-4ad3-bc1f-57b3a7a975e4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'gold dim_client_account_current'.last_updated_on
+	toColumn: LocalDateTable_4c35cfd3-a14a-423c-8baf-ad220cb8ab98.Date
+
+relationship 4471f0e2-df0b-9063-b2b1-8fdb1c314bb8
+	isActive: false
+	fromColumn: bi_coverage_level_view.insured_id
+	toColumn: 'gold dim_client_account_current'.client_account_id
+
+relationship a03c3adc-c704-b4d1-7fb8-74b0c16f72ec
+	fromColumn: bi_coverage_level_view.opportunity_id
+	toColumn: 'Opportunity Table'.opportunity_id
+
+relationship c6cfd63a-ec24-7571-8092-db5dd615a42e
+	fromColumn: 'gold premiums_coverage'.'Opportunity Name'
+	toColumn: 'Opportunity Table'.opportunity_name
+
+relationship 71538e89-8e73-0458-bc7a-eb197cad53f9
+	toCardinality: many
+	fromColumn: 'gold premiums_coverage'.'Policy Number'
+	toColumn: 'gold dim_policy_current'.policy_number
+
+relationship 827bc3b7-71c6-4ed5-74fd-c24925f468fe
+	fromColumn: bi_coverage_level_view.relm_sector_id
+	toColumn: 'gold dim_relm_sector'.sector_id
+
+relationship 46b57d2c-a5f8-7770-37e8-b4a0145fe80a
+	fromColumn: bi_coverage_level_view.insured_name
+	toColumn: 'Account Table'.account_name
+
+relationship 0f1e2272-19f3-be0e-7eb2-c063db3e94c5
+	fromColumn: 'gold premiums_coverage'.'Account Name'
+	toColumn: 'Account Table'.account_name
+
+relationship e8909144-4b1a-d50e-3d51-bdca1f8c50a6
+	fromColumn: bi_coverage_level_view.underwriter
+	toColumn: 'gold dim_underwriters'.peopleid
+
+relationship ba1ae006-d55a-2a33-1983-a2926d4b37d6
+	fromColumn: bi_coverage_level_view.relm_entity
+	toColumn: 'gold dim_entity'.entity_id
+

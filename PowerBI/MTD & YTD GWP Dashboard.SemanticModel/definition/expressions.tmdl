@@ -1,0 +1,7 @@
+expression p_SQL_Server = "rbpfflblpqbexoxdqfojnughkm-ojoknkfyssgenov7szuuzukcsq.datawarehouse.fabric.microsoft.com" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 930d0e80-4a08-4bc9-b20f-856b47201499
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

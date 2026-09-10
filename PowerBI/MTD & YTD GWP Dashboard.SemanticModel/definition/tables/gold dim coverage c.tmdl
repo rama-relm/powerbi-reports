@@ -1,0 +1,142 @@
+table 'gold dim coverage c'
+	lineageTag: f721adda-62e5-4c29-a09a-7a4f30c7fc21
+
+	column coverage__c
+		dataType: string
+		lineageTag: e42a8263-783a-475d-8446-122f2e3a138e
+		summarizeBy: none
+		sourceColumn: coverage__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_id
+		dataType: string
+		lineageTag: 0bfbf40d-f6ec-4f7d-af54-6d3c54a0ebd8
+		summarizeBy: none
+		sourceColumn: coverage_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 2e6070c0-f2d1-442e-9ced-49ff541b93ad
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_coverage__c
+		dataType: string
+		lineageTag: 02747792-2093-4ab1-b524-b5fc0fc52e22
+		summarizeBy: none
+		sourceColumn: sub_coverage__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column coverage_code__c
+		dataType: string
+		lineageTag: ff22bcd8-2b89-4cb8-8159-4c92fe44c68f
+		summarizeBy: none
+		sourceColumn: coverage_code__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column package_policy__c
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4e58d569-6751-41c9-8785-83825683a0bf
+		summarizeBy: none
+		sourceColumn: package_policy__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_of_business__c
+		dataType: string
+		lineageTag: d4b38f6c-9320-4f67-9ab2-4a34935c9040
+		summarizeBy: none
+		sourceColumn: line_of_business__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_business_unit__c
+		dataType: string
+		lineageTag: 5a047a0b-3acf-40b7-b8d0-3c497b373c7c
+		summarizeBy: none
+		sourceColumn: sub_business_unit__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_line_manager__c
+		dataType: string
+		lineageTag: 5ae6790a-cb11-4725-b9ac-c154766672fb
+		summarizeBy: none
+		sourceColumn: product_line_manager__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_unit__c
+		dataType: string
+		lineageTag: 391f6d8c-653f-4f8f-89a9-fdeab8613f33
+		summarizeBy: none
+		sourceColumn: business_unit__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column reporting_coverage__c
+		dataType: string
+		lineageTag: 9ecba62c-224f-4145-8e80-0c0f5796313a
+		summarizeBy: none
+		sourceColumn: reporting_coverage__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment__c
+		dataType: string
+		lineageTag: 5864676f-1003-4611-8b08-9e8b57cfc112
+		summarizeBy: none
+		sourceColumn: segment__c
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 434f3171-1b74-44c7-9090-b782566fcc97
+		summarizeBy: none
+		sourceColumn: created_on
+
+		variation Variation
+			isDefault
+			relationship: 9df361f7-f948-4057-b1fe-48b2318bbe0a
+			defaultHierarchy: LocalDateTable_d4862884-4601-4361-9547-14b0ef8d75db.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e18640d2-ec47-4898-ac8e-e1d3fb428048
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		variation Variation
+			isDefault
+			relationship: bc832e6a-02ae-4ba6-af05-f71e4e7714fc
+			defaultHierarchy: LocalDateTable_f89b4d4d-9a61-437a-b6d0-50d001d87735.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim coverage c' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(p_SQL_Server, "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_coverage__c"]}[Data],
+				    #"Removed Duplicates" = Table.Distinct(gold_coverage_view, {"coverage__c"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
