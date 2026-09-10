@@ -1,9 +1,0 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "47bca9783043facda7ca",
-  "displayName": "Audit Compliance Report",
-  "displayOption": "FitToPage",
-  "height": 900,
-  "width": 1490,
-  "visibility": "HiddenInViewMode"
-}

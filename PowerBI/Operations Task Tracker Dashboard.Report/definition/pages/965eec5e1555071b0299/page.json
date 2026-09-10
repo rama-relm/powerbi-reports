@@ -1,9 +1,0 @@
-{
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "965eec5e1555071b0299",
-  "displayName": "Live Audit Tracker",
-  "displayOption": "FitToPage",
-  "height": 1200,
-  "width": 1490,
-  "visibility": "HiddenInViewMode"
-}
