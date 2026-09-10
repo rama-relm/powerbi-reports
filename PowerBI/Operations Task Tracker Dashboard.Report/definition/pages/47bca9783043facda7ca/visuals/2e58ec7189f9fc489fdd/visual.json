@@ -1,0 +1,696 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "2e58ec7189f9fc489fdd",
+  "position": {
+    "x": 0,
+    "y": 458.31822241467972,
+    "z": 4000,
+    "height": 441.94971447129831,
+    "width": 1490.3136756069177,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "audit_master_consolidation"
+                    }
+                  },
+                  "Property": "Original Account Name"
+                }
+              },
+              "queryRef": "audit_master_consolidation.Original Account Name",
+              "nativeQueryRef": "Original Account Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "audit_master_consolidation"
+                    }
+                  },
+                  "Property": "Policy #"
+                }
+              },
+              "queryRef": "audit_master_consolidation.Policy #",
+              "nativeQueryRef": "Policy #",
+              "displayName": "Policy #"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Quote"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Quote)",
+              "nativeQueryRef": "First Quote",
+              "displayName": "Quote"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Binder"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Binder)",
+              "nativeQueryRef": "First Binder",
+              "displayName": "Binder"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Invoice"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Invoice)",
+              "nativeQueryRef": "Invoice",
+              "displayName": "Invoice"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Policy _Ops issue policies 10-20 business days after bind order received_"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Policy _Ops issue policies 10-20 business days after bind order received_)",
+              "nativeQueryRef": "Policy 10-20 day Issuance",
+              "displayName": "Policy 10-20 day Issuance"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Approval Document by UW"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Approval Document by UW)",
+              "nativeQueryRef": "Approval Document by UW",
+              "displayName": "Approval Document by UW"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Raters"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Raters)",
+              "nativeQueryRef": "Raters",
+              "displayName": "Raters"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "UW Summary"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.UW Summary)",
+              "nativeQueryRef": "UW Summary",
+              "displayName": "UW Summary"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Internal/External Loss Runs"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Internal/External Loss Runs)",
+              "nativeQueryRef": "Internal/External Loss Runs",
+              "displayName": "Internal/External Loss Runs"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Warranty"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Warranty)",
+              "nativeQueryRef": "Warranty",
+              "displayName": "Warranty"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Submission docs _including applications_"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Submission docs _including applications_)",
+              "nativeQueryRef": "Submission docs including applications",
+              "displayName": "Submission docs including applications"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "Communication"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.Communication)",
+              "nativeQueryRef": "Communication",
+              "displayName": "Communication"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "audit_master_consolidation"
+                    }
+                  },
+                  "Property": "Account Name changed"
+                }
+              },
+              "queryRef": "audit_master_consolidation.Account Name changed",
+              "nativeQueryRef": "Account Name changed"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "audit_master_consolidation"
+                        }
+                      },
+                      "Property": "OFAC check"
+                    }
+                  },
+                  "Function": 3
+                }
+              },
+              "queryRef": "Min(audit_master_consolidation.OFAC check)",
+              "nativeQueryRef": "OFAC check",
+              "displayName": "OFAC check"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Bind order received by UW)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Quote)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Binder)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Invoice)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Policy _Ops issue policies 10-20 business days after bind order received_)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Approval Document by UW)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Raters)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.UW Summary)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Internal/External Loss Runs)"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Warranty)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Submission docs _including applications_)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Communication)"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.OFAC check)"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "audit_master_consolidation.Original Account Name"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "audit_master_consolidation.Policy #"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "144.0273648088753D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Approval Document by UW)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.80680183535628D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Policy _Ops issue policies 10-20 business days after bind order received_)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "133.67394660014148D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Internal/External Loss Runs)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "159.56838674243215D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Min(audit_master_consolidation.Submission docs _including applications_)"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

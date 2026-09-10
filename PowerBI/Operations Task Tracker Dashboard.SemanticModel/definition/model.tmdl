@@ -1,0 +1,43 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["ops_tracking_data","gold dim_date","ops_tracking_metadata","audit_master_consolidation","logs pipeline_last_run","audit_master_metadata","gold pipeline_run"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table ops_tracking_data
+ref table DateTableTemplate_3086fa1c-d5c1-4368-8fbc-5bb831a34b89
+ref table LocalDateTable_c3a7c872-9f8e-4e69-b755-6ac741b002c0
+ref table LocalDateTable_92fa1b0e-a924-41a6-884e-d6b613e0894f
+ref table 'gold dim_date'
+ref table LocalDateTable_3089e70b-af0d-490f-bc5d-7de9b7a7a558
+ref table LocalDateTable_acfa8c37-c500-4db7-85a5-e2521e7b4293
+ref table LocalDateTable_79742014-13ce-4d1b-8f31-baf780bf8966
+ref table 'Date Table'
+ref table 'Team Slicer'
+ref table ops_tracking_metadata
+ref table LocalDateTable_6099d560-0a1e-4542-9abb-56a3443d22e8
+ref table audit_master_consolidation
+ref table LocalDateTable_83a9b4f1-6f0c-48bb-90e8-e47226e97b82
+ref table LocalDateTable_4cedf03d-25c7-472a-8f2a-33ab75abc860
+ref table Document_Type
+ref table 'logs pipeline_last_run'
+ref table LocalDateTable_03bb8b22-1b71-46bc-a1c3-d6382d66dfd0
+ref table LocalDateTable_b778b379-d3fe-4825-ab00-aae09a6715e7
+ref table audit_master_metadata
+ref table LocalDateTable_4f7a9fca-38fa-437a-927b-7cebbb0f3c0c
+ref table 'gold pipeline_run'
+ref table LocalDateTable_3be27a41-58fa-45e8-b7b3-c7bc940da5d1
+ref table LocalDateTable_fe9a4068-02f2-4b53-b112-1a0f26581ea4
+ref table LocalDateTable_5da5e3fd-fcce-4e34-8803-f5a67ad52ffe
+ref table LocalDateTable_07a1f76f-f367-42cf-adce-41657cece729
+
+ref cultureInfo en-US
+
