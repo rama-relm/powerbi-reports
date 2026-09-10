@@ -1,0 +1,194 @@
+table 'gold dim_underwriter_adj'
+	lineageTag: c0f55ccd-48c0-4010-bf8b-7aed019259d2
+
+	measure 'Creator Name' =
+			
+			LOOKUPVALUE(
+			    'gold dim_underwriter_adj'[name],
+			    'gold dim_underwriter_adj'[peopleid],
+			    SELECTEDVALUE('gold dim_broker'[sfdc_created_by])
+			)
+		lineageTag: 3f380025-4565-402e-8575-a7beb9143805
+
+	column peopleid
+		dataType: string
+		lineageTag: 419a8c00-8971-4111-9f0d-7e4e76666124
+		summarizeBy: none
+		sourceColumn: peopleid
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 4c45e76e-4b60-46df-8f00-7478d0d07528
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: 03cad161-14fe-4244-bc1d-946c884e9dcf
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column department
+		dataType: string
+		lineageTag: d2a742b2-593f-4211-8934-ca9e3ba285c5
+		summarizeBy: none
+		sourceColumn: department
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: e71f5b9a-4962-470a-b6a3-341e24097183
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 0d6273c3-875d-4a34-a225-d5b9fa2971c8
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: b4dee475-cd5f-4e5e-9581-345b9c7b80e1
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: d483c326-e216-4c6a-8688-ddb7e457dd4f
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobile_phone
+		dataType: string
+		lineageTag: b5990e50-e089-4d51-8bd9-00e146192f6d
+		summarizeBy: none
+		sourceColumn: mobile_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a7cdd9d0-439c-4b46-b3be-fb661f92d3d5
+		summarizeBy: none
+		sourceColumn: created_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0f46dc39-27bd-45ce-87cb-649b43c65bda
+		summarizeBy: none
+		sourceColumn: last_modified_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column about_me
+		dataType: string
+		lineageTag: ba8f25a5-5863-4709-934d-26caf84f0c94
+		summarizeBy: none
+		sourceColumn: about_me
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89e99dac-62ec-4b5e-95d2-c023292b16c0
+		summarizeBy: none
+		sourceColumn: audit_created_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column audit_last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4ee55748-9caf-455b-90d2-4c0cd32b432c
+		summarizeBy: none
+		sourceColumn: audit_last_updated_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_underwriter
+		dataType: string
+		lineageTag: e6b6ac20-1ee8-4ab8-8177-2d89289b54e2
+		summarizeBy: none
+		sourceColumn: reported_underwriter
+
+		annotation SummarizationSetBy = Automatic
+
+	column reported_underwriter_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: c51d828f-e4e5-4edf-a6c4-bcd83d5b2875
+		summarizeBy: none
+		sourceColumn: reported_underwriter_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column underwriter_region
+		dataType: string
+		lineageTag: 8f0baa8b-9c14-4da4-b687-cb7ab4a31777
+		summarizeBy: none
+		sourceColumn: underwriter_region
+
+		annotation SummarizationSetBy = Automatic
+
+	column UK_underwriters
+		dataType: string
+		lineageTag: d1d366ef-8527-4799-aac5-75a31eaf09bd
+		summarizeBy: none
+		sourceColumn: UK_underwriters
+
+		annotation SummarizationSetBy = Automatic
+
+	column UK_underwriters_sort
+		dataType: int64
+		formatString: 0
+		lineageTag: 4aea1a4e-b466-43cc-abe0-c63cfa692ba4
+		summarizeBy: none
+		sourceColumn: UK_underwriters_sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Broker Creator' =
+			
+			LOOKUPVALUE(
+			    'gold dim_underwriter_adj'[name],
+			    'gold dim_underwriter_adj'[peopleid], 'gold dim_broker'[sfdc_created_by]
+			)
+		lineageTag: c5febc4e-5563-4889-9924-5f8adaf6fd9c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_underwriter_adj' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_underwriter_adj"]}[Data]
+				in
+				    gold_coverage_view
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

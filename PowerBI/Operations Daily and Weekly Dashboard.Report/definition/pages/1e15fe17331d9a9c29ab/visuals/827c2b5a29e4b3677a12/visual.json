@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "827c2b5a29e4b3677a12",
+  "position": {
+    "x": 0,
+    "y": 1275.6564888359894,
+    "z": 21000,
+    "height": 56.993851012383232,
+    "width": 536.41271541066567,
+    "tabOrder": 21000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Canada Total Opportunities Submitted:",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#0068ff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

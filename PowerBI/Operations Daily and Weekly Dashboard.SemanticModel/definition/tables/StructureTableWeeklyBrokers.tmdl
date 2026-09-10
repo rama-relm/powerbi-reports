@@ -1,0 +1,44 @@
+table StructureTableWeeklyBrokers
+	lineageTag: b5e341a1-f6da-4630-93ea-b450e00daf0d
+
+	column MetricName
+		lineageTag: 738c8525-8caa-4e10-960f-bd907c3a9eed
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MetricName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		formatString: 0
+		lineageTag: 3acde3c2-ef07-44b7-b54c-10a1ca0aa04d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Amount]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format
+		lineageTag: 20f31b69-d199-4772-8178-6d1728be0a88
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Format]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition StructureTableWeeklyBrokers = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "MetricName", STRING,
+				    "Amount", INTEGER,
+				    "Format", STRING,
+				    {
+				        {"New Brokers Added by Christian's Team", 1, "#,0"},
+				        {"New Brokers Added by other UWs", 2, "#,0"}
+				    }
+				)
+
+	annotation PBI_Id = 9b42ef176541481c8276609f92d2725f
+

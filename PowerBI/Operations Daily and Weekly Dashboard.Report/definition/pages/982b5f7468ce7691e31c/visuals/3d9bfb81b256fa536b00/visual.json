@@ -1,0 +1,288 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "3d9bfb81b256fa536b00",
+  "position": {
+    "x": 0,
+    "y": 197.59928977034792,
+    "z": 7001,
+    "height": 522.81478751737893,
+    "width": 1280.2787316370459,
+    "tabOrder": 7001
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold coverage_view"
+                    }
+                  },
+                  "Property": "sfdc_created_date"
+                }
+              },
+              "queryRef": "gold coverage_view.sfdc_created_date",
+              "nativeQueryRef": "Created Date",
+              "displayName": "Created Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold coverage_view"
+                    }
+                  },
+                  "Property": "opportunity_name"
+                }
+              },
+              "queryRef": "gold coverage_view.opportunity_name",
+              "nativeQueryRef": "Opportunity Name",
+              "displayName": "Opportunity Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold coverage_view"
+                    }
+                  },
+                  "Property": "created_by_name"
+                }
+              },
+              "queryRef": "gold coverage_view.created_by_name",
+              "nativeQueryRef": "Submissions team",
+              "displayName": "Submissions team"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "gold coverage_view"
+                    }
+                  },
+                  "Property": "Opportunity Category"
+                }
+              },
+              "queryRef": "gold coverage_view.Opportunity Category",
+              "nativeQueryRef": "Region",
+              "displayName": "Region"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Last Run Time"
+                    }
+                  },
+                  "Property": "Total_New_Opportunities"
+                }
+              },
+              "queryRef": "Last Run Time.Total_New_Opportunities",
+              "nativeQueryRef": " ",
+              "displayName": " "
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "gold coverage_view"
+                  }
+                },
+                "Property": "opportunity_name"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.sfdc_created_date"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.opportunity_name"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.created_by_name"
+          }
+        },
+        {
+          "properties": {
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.Opportunity Category"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "147.88869283865935D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.sfdc_created_date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "236.1859542653533D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.created_by_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "596.9216246405459D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.opportunity_name"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "275.7239204502856D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "gold coverage_view.Opportunity Category"
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

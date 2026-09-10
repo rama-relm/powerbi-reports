@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "2d4ea88009c1851d5494",
+  "position": {
+    "x": 255.55555555555554,
+    "y": 0,
+    "z": 1000,
+    "height": 65.555555555555557,
+    "width": 1024.4444444444443,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "\t\t\t\t\t\t\t"
+                  },
+                  {
+                    "value": "Daily Report",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontFamily": "inherit",
+                      "fontSize": "28pt",
+                      "color": "#0068ff"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

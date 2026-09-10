@@ -1,0 +1,58 @@
+table 'gold dim relm_entity'
+	lineageTag: 964afde1-47ac-4e42-b1fe-9b63d49e3d3d
+
+	column entity_id
+		dataType: string
+		lineageTag: 1d0e7168-6c96-4914-a1af-e913867c1151
+		summarizeBy: none
+		sourceColumn: entity_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column entity_code
+		dataType: string
+		lineageTag: b59fc574-62c3-4079-8896-60a2bfd00c33
+		summarizeBy: none
+		sourceColumn: entity_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column entity_description
+		dataType: string
+		lineageTag: a17f2a6e-e690-4073-9213-909b3c3b4597
+		summarizeBy: none
+		sourceColumn: entity_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 872edaf8-b903-4a9a-ac55-e58f8111c7d6
+		summarizeBy: none
+		sourceColumn: created_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e55d53a5-c953-4de9-9528-e099c72896e5
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim relm_entity' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_relm_entity"]}[Data]
+				in
+				    gold_coverage_view
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

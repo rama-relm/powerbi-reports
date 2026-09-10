@@ -1,0 +1,278 @@
+table 'gold dim_date'
+	lineageTag: 9b291d41-f79d-4aae-a9d3-793172faea7c
+	dataCategory: Time
+
+	column date_key
+		dataType: int64
+		formatString: 0
+		lineageTag: d70c20da-507a-48a0-8a8c-3e3b6dc675c7
+		summarizeBy: sum
+		sourceColumn: date_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		isKey
+		formatString: Short Date
+		lineageTag: 1d238e70-2c39-474e-9b76-7541b14af225
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column day_of_the_week
+		dataType: string
+		lineageTag: e92e7679-186f-4a4a-8f39-6e1b4353cf40
+		summarizeBy: none
+		sourceColumn: day_of_the_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_number_of_the_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 22043860-43e2-4ac2-b46b-5cb46ea962aa
+		summarizeBy: sum
+		sourceColumn: day_number_of_the_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_number_of_the_month
+		dataType: int64
+		formatString: 0
+		lineageTag: a9d09a25-f2e6-491a-b0e3-6b328f653b32
+		summarizeBy: sum
+		sourceColumn: day_number_of_the_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_number_of_the_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 276adf12-7787-43a2-b56e-1872440832ab
+		summarizeBy: sum
+		sourceColumn: day_number_of_the_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_day_in_month_indicator
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cd124f11-3d43-4ef4-a8c0-3d77373e3cb4
+		summarizeBy: none
+		sourceColumn: last_day_in_month_indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_week_ending_date
+		dataType: string
+		lineageTag: 0fe7c91d-8e8b-4f6c-bc5e-923c22730004
+		summarizeBy: none
+		sourceColumn: calender_week_ending_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_month_name
+		dataType: string
+		lineageTag: 94eed6c5-0032-4273-b3e6-abd3c2d2d720
+		summarizeBy: none
+		sourceColumn: calender_month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_week_number_in_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 70913014-fabd-4ae5-b9ab-14157e29d981
+		summarizeBy: sum
+		sourceColumn: calender_week_number_in_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_month_number_in_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 345c4c76-37a5-4ad5-8aae-4803e8160f58
+		summarizeBy: sum
+		sourceColumn: calender_month_number_in_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_year_month
+		dataType: string
+		lineageTag: 6f0a38fa-c1b6-4015-be58-ffa2f7fd0067
+		summarizeBy: none
+		sourceColumn: calender_year_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: c5489159-79e2-44b4-9cdc-bd193b010100
+		summarizeBy: sum
+		sourceColumn: calender_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_year_quarter
+		dataType: string
+		lineageTag: 27186153-f51b-4a9e-89b1-8dc8fcc91158
+		summarizeBy: none
+		sourceColumn: calender_year_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column calender_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 324abc6c-979b-4c14-bb75-b8c822b4f77d
+		summarizeBy: sum
+		sourceColumn: calender_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column weekday_indicator
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1beaffab-6a43-4ed0-b9c6-8a3b8ca07eac
+		summarizeBy: none
+		sourceColumn: weekday_indicator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 30f6c5ec-0fa3-41c9-a8d2-9eb2ce0cc004
+		summarizeBy: none
+		sourceColumn: Created_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf7fd757-4823-41ec-875a-f1467db5a79a
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Week' =
+			
+			IF(
+			    WEEKNUM('gold dim_date'[date], 21) = WEEKNUM(TODAY(), 21) &&
+			    YEAR('gold dim_date'[date]) = YEAR(TODAY()),
+			    "Current Week",
+			    "Week " & FORMAT(WEEKNUM('gold dim_date'[date], 21), "00")
+			)
+		lineageTag: d6022359-a3a8-4a87-9b1b-361d7638c0c2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Year' = ```
+			IF(  
+			    YEAR('gold dim_date'[date]) = YEAR(TODAY()),
+			    
+			    "Current Year", "Not Current"
+			    
+			)
+			```
+		lineageTag: 761184f1-b647-4e15-982a-9981afce2ab3
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Start (Mon)' =
+			
+			'gold dim_date'[date] - WEEKDAY('gold dim_date'[date], 2) + 1
+		formatString: General Date
+		lineageTag: 0fb8bf9f-6915-41fe-92d2-03f056029a52
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week End (Fri)' =
+			
+			'gold dim_date'[Week Start (Mon)] + 4
+		formatString: General Date
+		lineageTag: 95a1bcdb-3b8f-4ab5-8b3a-c35e826626ea
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Range Label' = ```
+			
+			VAR StartDate = 'gold dim_date'[Week Start (Mon)]
+			VAR EndDate = 'gold dim_date'[Week End (Fri)]
+			
+			VAR CurrentWeekStart =
+			    TODAY() - WEEKDAY(TODAY(), 2) + 1
+			
+			VAR DateRange =
+			    FORMAT(StartDate, "ddd dd/mmm/yy") 
+			    & " - " & 
+			    FORMAT(EndDate, "ddd dd/mmm/yy")
+			
+			RETURN
+			IF(
+			    StartDate = CurrentWeekStart,
+			    "Current Week (" & DateRange & ")",
+			    DateRange
+			)
+			```
+		lineageTag: 3f266511-e9d0-4c72-84f5-a491eb0be4b6
+		summarizeBy: none
+		sortByColumn: 'Week Sort'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Current Week' =
+			
+			IF(
+			    'gold dim_date'[Week Start (Mon)] =
+			        TODAY() - WEEKDAY(TODAY(), 2) + 1,
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: cd7b82c7-4fdd-404d-aba4-307e650f278a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Week Sort' =
+			
+			IF(
+			    'gold dim_date'[Week Start (Mon)] =
+			        TODAY() - WEEKDAY(TODAY(), 2) + 1,
+			    0,
+			    'gold dim_date'[Week Start (Mon)]
+			)
+		lineageTag: b5e0a79a-c339-4b4e-a3cc-5fe1d33473f5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'gold dim_date' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_date"]}[Data]
+				in
+				    gold_coverage_view
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+

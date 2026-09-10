@@ -1,0 +1,49 @@
+table StructureTableWeekly
+	lineageTag: 969c498c-9e84-4089-8a66-ed427c37e8bb
+
+	column MetricName
+		lineageTag: 6ed4e500-21bb-46b6-ab06-935d078a4678
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MetricName]
+		sortByColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		formatString: 0
+		lineageTag: 225bc151-3629-4755-b3fc-4d5c877f2f7c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Amount]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Format
+		lineageTag: a1276b23-b58f-4b6a-a38c-09956010b504
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Format]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition StructureTableWeekly = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "MetricName", STRING,
+				    "Amount", INTEGER,
+				    "Format", STRING,
+				    {
+				        {"BDA Total Opportunities Submitted", 1, "#,0"},
+				        {"MENA Total Opportunities Submitted", 2, "#,0"},
+				        {"UK Total Opportunities Submitted", 3, "#,0"},
+				        {"Renewal Total Opportunities Submitted", 4, "#,0"},
+				        {"US MGA Total Opportunities Submitted", 5, "#,0"},
+				        {"Canada Total Opportunities Submitted", 6, "#,0"}
+				    }
+				)
+
+	annotation PBI_Id = d6899dc3342a4dcd97e30c2c122571f3
+

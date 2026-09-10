@@ -1,0 +1,677 @@
+table 'gold dim_broker'
+	lineageTag: 0f653459-50c0-4ed0-9b98-8d397a8a438f
+
+	measure 'New of Brokers Added by other UWs' = CALCULATE(COUNT('gold dim_broker'[broker_id]))
+		formatString: 0
+		lineageTag: 48c8795e-c4a7-42ea-91e4-be1ded02c45e
+
+	measure 'BDA Total Brokers' = ```
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold dim_broker'[sfdc_created_on]),
+			    'gold dim_broker'[relm_entity] = "Relm Insurance Ltd." && 
+			        ('gold dim_broker'[broker_mailing_country] = "Bermuda" || 
+			          NOT('gold dim_broker'[broker_mailing_country] IN {"United States", "United Kingdom", "United Arab Emirates"}))
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: d800b4c2-7591-4c2c-b298-14ff2f213ae5
+
+	measure 'MENA Total Brokers' = ```
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold dim_broker'[sfdc_created_on]),
+			    ('gold dim_broker'[relm_entity] = "Relm Insurance MENA Ltd." 
+			        && 'gold dim_broker'[client_billing_country] = "United Arab Emirates") 
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 61233b38-f168-4401-a60f-6eb8c54a6085
+
+	measure 'UK Total Brokers' = ```
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold dim_broker'[sfdc_created_on]),
+			    ('gold dim_broker'[relm_entity] = "Relm Insurance Ltd." 
+			        && 'gold dim_broker'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold dim_broker'[client_billing_country] <> "United Kingdom") 
+			        
+			        || 
+			    
+			    ('gold dim_broker'[relm_entity] = "Relm Ins UK Ltd" 
+			        && 'gold dim_broker'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold dim_broker'[client_billing_country] = "United Kingdom")
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 255c400b-5aa3-4754-b3c9-dc8e2bb9f372
+
+	measure 'US MGA RIAI Brokers' = ```
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold dim_broker'[sfdc_created_on]),
+			    ('gold dim_broker'[broker_mailing_country] = "United States" 
+			        && 'gold dim_broker'[client_billing_country] = "United States" 
+			        && 'gold dim_broker'[relm_entity] = "Relm Insurance Agency Inc." 
+			        && 'gold dim_broker'[assigned_us_home_state] = "CA")
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 0648d197-affb-4215-b82e-024450008ad1
+
+	measure 'US MGA RUIA Brokers' = ```
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold dim_broker'[sfdc_created_on]),
+			    ('gold dim_broker'[broker_mailing_country] = "United States" 
+			        && 'gold dim_broker'[client_billing_country] = "United States" 
+			        && 'gold dim_broker'[relm_entity] = "Relm US Insurance Agency" 
+			        && 'gold dim_broker'[assigned_us_home_state] = "NY")
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 8eec11cc-2ed5-4cf9-b406-57694d45cc16
+
+	measure 'US MGA RUISI Brokers' = ```
+			
+			
+			CALCULATE(
+			    DISTINCTCOUNT('gold dim_broker'[sfdc_created_by]),
+			    ('gold dim_broker'[broker_mailing_country] = "United States" 
+			        && 'gold dim_broker'[client_billing_country] = "United States" 
+			        && 'gold dim_broker'[relm_entity] = "Relm US Insurance Solutions Inc." 
+			        && NOT('gold dim_broker'[assigned_us_home_state] IN {"CA", "NY"})
+			        && NOT(ISBLANK('gold dim_broker'[assigned_us_home_state])))
+			        
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 6d2279ba-f732-4373-b538-56f0d89927fe
+
+	measure 'US MGA Total Brokers' = [US MGA RIAI Brokers] + [US MGA RUIA Brokers] + [US MGA RUISI Brokers]
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: f77955cb-bb40-49d1-b71d-e4f112d8e7e7
+
+	measure SelectedMeasureValueBrokers = ```
+			
+			SWITCH(
+			    SELECTEDVALUE(StructureTableWeeklyBrokers[MetricName]),
+			    "New Brokers Added by Christian's Team", [Brokers Added by Christian's Team], 
+			    "New Brokers Added by other UWs", [Brokers Added by Other UW's], 
+			    BLANK()
+			)
+			```
+		formatString: 0
+		lineageTag: fe3ec853-cc58-41a0-9517-99f3f4cb3c42
+
+	measure 'New Brokers Added by Christian''s Team' = FORMAT(CALCULATE(COUNT('gold dim_broker'[broker_id]),'gold dim_underwriter_adj'[name]= "Christian Davies"),"#,#0")
+		lineageTag: 8bbb024c-451f-4ba5-945c-2df3998bcf47
+
+	measure 'New Brokers Added by Other Teams' =
+			COALESCE( FORMAT(
+			CALCULATE(
+			    COUNT('gold dim_broker'[broker_id]),
+			    'gold dim_underwriter_adj'[name] <> "Christian Davies"
+			),"#,#0"),0)
+		formatString: 0
+		lineageTag: 3ce8d7b5-42a0-4dab-ae8e-71d8750261d2
+
+	measure 'Total Brokers' = COALESCE(FORMAT(CALCULATE(COUNT('gold dim_broker'[broker_id])), "#,#0"),0)
+		lineageTag: 24bb297a-58b0-47e6-95dc-6598a011f161
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Creator =
+			
+			LOOKUPVALUE(
+			    'gold dim_underwriter_adj'[name],
+			    'gold dim_underwriter_adj'[peopleid],
+			    SELECTEDVALUE('gold dim_broker'[sfdc_created_by])
+			)
+		lineageTag: dacff26c-61db-4fd3-a7b1-171988a13536
+
+	measure 'Broking House Name' =
+			
+			LOOKUPVALUE(
+			    'gold coverage_view'[broking_house_name],
+			    'gold coverage_view'[broker_id],
+			    'gold dim_broker'[broker_id]
+			)
+		displayFolder: Old Measures
+		lineageTag: 205853ee-0913-442e-b401-dac62016f6a5
+
+	measure 'New Brokers Added by Other UW''s' =
+			
+			FORMAT(
+			    CALCULATE(
+			        COUNT('gold dim_broker'[broker_id]),
+			        'gold dim_broker'[sfdc_created_by] <> '005Hp00000hXC8IIAW'
+			    ),
+			    "#,##0"
+			)
+		displayFolder: Old Measures
+		lineageTag: 9d6e4990-43c9-472a-97f5-b4ff135e4545
+
+	measure 'Brokers Added by Christian''s Team' =
+			
+			CALCULATE(
+			    COUNT('gold dim_broker'[broker_id]),
+			    'gold dim_broker'[Created_By_Christian's Team] = 1
+			)
+		formatString: 0
+		lineageTag: b3597c3e-bc99-4a10-8018-356a47ea559f
+
+	measure 'Brokers Added by Other UW''s' =
+			
+			CALCULATE(
+			    COUNT('gold dim_broker'[broker_id]),
+			    'gold dim_broker'[Created_By_Christian's Team] = 0
+			)
+		formatString: 0
+		lineageTag: 71fae681-9b98-4eb6-843f-80a4eb07e054
+
+	column broker_id
+		dataType: string
+		lineageTag: df1bf7df-cf63-4629-8b9b-6aca0b02f77a
+		summarizeBy: none
+		sourceColumn: broker_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_name
+		dataType: string
+		lineageTag: 52f0946d-bb0b-4fe0-8497-4f97310dc020
+		summarizeBy: none
+		sourceColumn: broker_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_type_id
+		dataType: string
+		lineageTag: ffcbba4f-1439-459a-a960-0559ca387e16
+		summarizeBy: none
+		sourceColumn: broker_type_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_type_description
+		dataType: string
+		lineageTag: 4da4276a-af7c-4420-b55e-27cb76209d13
+		summarizeBy: none
+		sourceColumn: broker_type_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column salutation
+		dataType: string
+		lineageTag: f416d73f-31e1-4a50-9947-1f0fc2fb8977
+		summarizeBy: none
+		sourceColumn: salutation
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 445fdc77-d50d-4cbe-9938-71e5dbafe0e2
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 041af54f-1e03-4e91-aa17-b5d6c8336837
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column surplus_line_number_producer
+		dataType: string
+		lineageTag: 78225e57-90c1-4a57-b7ac-9a84e6814130
+		summarizeBy: none
+		sourceColumn: surplus_line_number_producer
+
+		annotation SummarizationSetBy = Automatic
+
+	column mobile
+		dataType: string
+		lineageTag: 1a94b2c2-0832-4a59-ac6a-9c78b7bfb1f8
+		summarizeBy: none
+		sourceColumn: mobile
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 44a4e55a-8c91-4405-9beb-7bf450fce60f
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: da1f41dc-bfaa-43af-a15b-ce432e003462
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_street
+		dataType: string
+		lineageTag: be586a74-a86c-475a-ba86-72e321234523
+		summarizeBy: none
+		sourceColumn: mailing_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_city
+		dataType: string
+		lineageTag: 79061a51-94d1-4a2d-a775-966ebc110f20
+		summarizeBy: none
+		sourceColumn: mailing_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_state
+		dataType: string
+		lineageTag: 24fe8c0d-f849-42a3-8c64-45420f98eb3d
+		summarizeBy: none
+		sourceColumn: mailing_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_state_code
+		dataType: string
+		lineageTag: a672038b-a75b-4301-b7b1-27cef296cde2
+		summarizeBy: none
+		sourceColumn: mailing_state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_postal_code
+		dataType: string
+		lineageTag: b0cd7d55-d7f1-4234-b122-958c25bc5d64
+		summarizeBy: none
+		sourceColumn: mailing_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_country
+		dataType: string
+		lineageTag: 180d2b48-2cf0-49de-acaf-8ae32ccc3a40
+		summarizeBy: none
+		sourceColumn: mailing_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column mailing_country_code
+		dataType: string
+		lineageTag: 700d8de0-3b83-492a-8a7a-40e8dd9517a7
+		summarizeBy: none
+		sourceColumn: mailing_country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 7e1a7a3e-0d90-444a-9e5e-dff494b406cc
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_phone
+		dataType: string
+		lineageTag: 972f8389-6194-4769-a50d-fd2f7935cc6b
+		summarizeBy: none
+		sourceColumn: other_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column email_opt_out
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8ab2657a-486e-4147-bcce-14fa0473992b
+		summarizeBy: none
+		sourceColumn: email_opt_out
+
+		annotation SummarizationSetBy = Automatic
+
+	column do_not_call
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f938cc38-aefe-4953-8387-39db55f950f2
+		summarizeBy: none
+		sourceColumn: do_not_call
+
+		annotation SummarizationSetBy = Automatic
+
+	column inactive_contact
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: eee06723-2922-47b9-8ad5-b4d11e049a36
+		summarizeBy: none
+		sourceColumn: inactive_contact
+
+		annotation SummarizationSetBy = Automatic
+
+	column broker_specialities
+		dataType: string
+		lineageTag: 47141943-2282-496c-8f9b-15a50093124a
+		summarizeBy: none
+		sourceColumn: broker_specialities
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a34669e6-8d5b-4ef2-ae7e-3e6dfa5923b8
+		summarizeBy: none
+		sourceColumn: sfdc_last_modified_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_on
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 28258ee1-16ec-415c-8414-7e7776b40184
+		summarizeBy: none
+		sourceColumn: sfdc_created_on
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column broker_specialties_group_id
+		dataType: string
+		lineageTag: 3d98b2cc-9255-407d-91eb-3d4130105d83
+		summarizeBy: none
+		sourceColumn: broker_specialties_group_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_hash
+		dataType: string
+		lineageTag: 74643931-1bb5-45d9-b03d-b371a55a7dae
+		summarizeBy: none
+		sourceColumn: row_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 92339cc7-1beb-47d6-87d0-9354401d52cb
+		summarizeBy: none
+		sourceColumn: created_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 56359500-4b61-45e3-891a-aeefc3d05abc
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_address
+		dataType: string
+		lineageTag: 86b87e56-b9ce-4615-9678-54a9eafbce29
+		summarizeBy: none
+		sourceColumn: billing_address
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_referrer
+		dataType: string
+		lineageTag: 5b68ebb8-a6e3-4788-aa67-35f8f0516db8
+		summarizeBy: none
+		sourceColumn: internal_referrer
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_referred
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 71748d67-6581-4342-999b-2ec5cc0a22db
+		summarizeBy: none
+		sourceColumn: date_referred
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_by
+		dataType: string
+		lineageTag: 6a37d11e-4fe5-4e72-9b8b-8c1b47044a52
+		summarizeBy: none
+		sourceColumn: sfdc_created_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MENA Brokers Filter' = ```
+			
+			
+			IF(
+			    ('gold dim_broker'[relm_entity] = "Relm Insurance MENA Ltd." 
+			        && 'gold dim_broker'[client_billing_country] = "United Arab Emirates"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 1d2fa890-e548-41bc-975b-a24cd55aa9c0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UK Brokers Filter' = ```
+			
+			
+			IF(
+			    ('gold dim_broker'[relm_entity] = "Relm Insurance Ltd." 
+			        && 'gold dim_broker'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold dim_broker'[client_billing_country] <> "United Kingdom") 
+			        
+			        || 
+			    
+			    ('gold dim_broker'[relm_entity] = "Relm Ins UK Ltd" 
+			        && 'gold dim_broker'[broker_mailing_country] = "United Kingdom" 
+			        && 'gold dim_broker'[client_billing_country] = "United Kingdom"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: d0d69e67-7a34-459a-9b52-c60c383c142d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BDA Brokers Filter' = ```
+			
+			
+			IF(
+			    'gold dim_broker'[relm_entity] = "Relm Insurance Ltd." && 
+			        ('gold dim_broker'[broker_mailing_country] = "Bermuda" || 
+			          NOT('gold dim_broker'[broker_mailing_country] IN {"United States", "United Kingdom", "United Arab Emirates"})),
+			
+			          1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 4c11101d-c830-4b0e-a1c7-2c7973d4aedf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US MGA RIAI Brokers Filter' = ```
+			
+			
+			IF(
+			    ('gold dim_broker'[broker_mailing_country] = "United States" 
+			        && 'gold dim_broker'[client_billing_country] = "United States" 
+			        && 'gold dim_broker'[relm_entity] = "Relm Insurance Agency Inc." 
+			        && 'gold dim_broker'[assigned_us_home_state] = "CA"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: 8c0954aa-a280-424d-83aa-c97073f23012
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US MGA RUIA Brokers Filter' = ```
+			
+			
+			IF(
+			    ('gold dim_broker'[broker_mailing_country] = "United States" 
+			        && 'gold dim_broker'[client_billing_country] = "United States" 
+			        && 'gold dim_broker'[relm_entity] = "Relm US Insurance Agency" 
+			        && 'gold dim_broker'[assigned_us_home_state] = "NY"),
+			
+			        1,0
+			
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: faf48a04-4c9c-41d6-b42d-9701174e5c86
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US MGA RUISI Brokers Filter' = ```
+			
+			
+			IF(
+			    ('gold dim_broker'[broker_mailing_country] = "United States" 
+			        && 'gold dim_broker'[client_billing_country] = "United States" 
+			        && 'gold dim_broker'[relm_entity] = "Relm US Insurance Solutions Inc." 
+			        && NOT('gold dim_broker'[assigned_us_home_state] IN {"CA", "NY"})
+			        && NOT(ISBLANK('gold dim_broker'[assigned_us_home_state]))),
+			
+			        1,0
+			        
+			)
+			```
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: d6d6bc63-beb6-4718-8623-7a01d57ec4d9
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'US MGA Brokers Filter' = IF('gold dim_broker'[US MGA RIAI Brokers Filter] || 'gold dim_broker'[US MGA RUIA Brokers Filter] || 'gold dim_broker'[US MGA RUISI Brokers Filter], 1, 0)
+		formatString: 0
+		displayFolder: Old Measures
+		lineageTag: d4be2717-a542-46fa-9c4e-962cca52511c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Broker Category' =
+			
+			IF(
+			    'Broker'[created_by] = "Christian",
+			    "Added by Christian",
+			    "Added by Others"
+			)
+		displayFolder: Old Measures
+		lineageTag: 5b7ba3dd-fbe1-4a92-a5d9-25d00c34ffc5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Created_By_Christian''s Team' =
+			
+			IF(
+			    'gold dim_broker'[sfdc_created_by] IN  {"005Hp00000hXC8IIAW", "005WR000002eu3xYAA"},
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 6ef81cd8-af92-4c81-af71-9d35dac613a2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Creator_Name =
+			
+			LOOKUPVALUE(
+			    'gold dim_underwriter_adj'[name],
+			    'gold dim_underwriter_adj'[peopleid],
+			    'gold dim_broker'[sfdc_created_by]
+			)
+		lineageTag: d3debc07-6ec7-43d5-9036-0f398101bb79
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Broking_House_Name =
+			
+			LOOKUPVALUE(
+			    'gold coverage_view'[broking_house_name],
+			    'gold coverage_view'[broker_id],
+			    'gold dim_broker'[broker_id]
+			)
+		displayFolder: Old Measures
+		lineageTag: e40ca711-f0c5-4f19-87d8-110e951163cf
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_id
+		dataType: string
+		lineageTag: 278e874c-2c42-4852-9a7e-3e6739972b46
+		summarizeBy: none
+		sourceColumn: broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_broker' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_coverage_view = Source{[Schema="gold",Item="dim_broker"]}[Data],
+				    #"Extracted Date" = Table.TransformColumns(gold_coverage_view,{{"sfdc_created_on", DateTime.Date, type date}}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Extracted Date",{{"sfdc_created_on", type date}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"broker_id"}, #"gold coverage_view", {"broker_id"}, "gold coverage_view", JoinKind.LeftOuter)
+				in
+				    #"Merged Queries"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

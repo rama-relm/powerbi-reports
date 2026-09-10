@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["gold coverage_view","gold dim_date","gold dim_broker","gold dim relm_entity","Last Run Time","gold dim_underwriter_adj","gold dim_broking_house_current","gold broking_house_parent","gold dim_broking_house_scd"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'gold coverage_view'
+ref table 'gold dim_date'
+ref table 'gold dim_broker'
+ref table 'gold dim relm_entity'
+ref table StructureTableWeekly
+ref table 'Last Run Time'
+ref table 'gold dim_underwriter_adj'
+ref table StructureTableWeeklyBrokers
+ref table 'gold dim_broking_house_current'
+ref table 'gold broking_house_parent'
+ref table 'gold dim_broking_house_scd'
+ref table 'Date Table'
+
+ref cultureInfo en-US
+

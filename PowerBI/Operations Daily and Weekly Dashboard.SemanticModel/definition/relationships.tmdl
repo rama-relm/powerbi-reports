@@ -1,0 +1,32 @@
+relationship fdc13133-df56-9f2f-e240-e4208d567352
+	fromColumn: 'gold coverage_view'.relm_entity
+	toColumn: 'gold dim relm_entity'.entity_description
+
+relationship 6f6f1a85-b85c-1358-98e5-ab94a18bff69
+	fromColumn: 'gold coverage_view'.sfdc_created_date
+	toColumn: 'gold dim_date'.date
+
+relationship 82a15bcb-1686-59d3-49fb-49868e0701bb
+	isActive: false
+	fromColumn: 'gold dim_broker'.sfdc_created_by
+	toColumn: 'gold dim_underwriter_adj'.peopleid
+
+relationship a314628a-de85-cb26-cda5-ad8c514ef52f
+	fromColumn: 'gold dim_broker'.sfdc_created_on
+	toColumn: 'gold dim_date'.date
+
+relationship df6febb1-2fa2-4f0c-a711-7c708498bb03
+	isActive: false
+	fromColumn: 'gold coverage_view'.broker_id
+	toColumn: 'gold dim_broker'.broker_id
+
+	annotation PBI_IsFromSource = FS
+
+relationship c818ce76-b39f-1d22-ae98-0009921e54b5
+	fromColumn: 'gold coverage_view'.sfdc_created_date
+	toColumn: 'Date Table'.Date
+
+relationship 5f9aa38d-7059-f1e1-c34a-1e4cff1d6087
+	fromColumn: 'gold coverage_view'.sfdc_created_by
+	toColumn: 'gold dim_underwriter_adj'.peopleid
+

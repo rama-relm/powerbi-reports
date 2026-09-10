@@ -1,0 +1,267 @@
+table 'gold dim_broking_house_current'
+	lineageTag: 11489830-c446-43a8-aa14-adc5a6ee2e95
+
+	column broking_house_id
+		dataType: string
+		lineageTag: f176aeb3-1e1b-43da-8448-9edec05a1e2e
+		summarizeBy: none
+		sourceColumn: broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column broking_house_name
+		dataType: string
+		lineageTag: ac0612ab-a6c7-4f72-92c5-3309fd90b2d6
+		summarizeBy: none
+		sourceColumn: broking_house_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column website
+		dataType: string
+		lineageTag: db25b3ed-e5c2-42cd-9a93-fecca81290d4
+		summarizeBy: none
+		sourceColumn: website
+
+		annotation SummarizationSetBy = Automatic
+
+	column rating
+		dataType: string
+		lineageTag: 67c25aae-0555-4eae-818e-a36f7a2bc3fa
+		summarizeBy: none
+		sourceColumn: rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c1f42665-d41f-4ca1-b757-8afa0a4a6e19
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column surplus_lines_number
+		dataType: string
+		lineageTag: 77df5152-9073-4131-aad8-2bfc5f2c6f80
+		summarizeBy: none
+		sourceColumn: surplus_lines_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_url
+		dataType: string
+		lineageTag: 52c1c367-f80c-4117-8127-3c798067d682
+		summarizeBy: none
+		sourceColumn: company_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column appetite_description
+		dataType: string
+		lineageTag: 2c67737a-0aa1-46a1-99dd-c39a38e080ef
+		summarizeBy: none
+		sourceColumn: appetite_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column industry_description
+		dataType: string
+		lineageTag: 052ea472-f3d0-48db-952d-e224fd3eda86
+		summarizeBy: none
+		sourceColumn: industry_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column important_notes
+		dataType: string
+		lineageTag: 3797f51e-a4c6-4060-b9b4-93b447d1d185
+		summarizeBy: none
+		sourceColumn: important_notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_description
+		dataType: string
+		lineageTag: 1cfc55de-f244-440f-802a-d676fe9c1734
+		summarizeBy: none
+		sourceColumn: account_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_street
+		dataType: string
+		lineageTag: a8e0dc8d-5bcb-4e58-b72a-0e7131559809
+		summarizeBy: none
+		sourceColumn: billing_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_city
+		dataType: string
+		lineageTag: b9fa43dd-dfa6-41db-98f8-f628ff59ce6d
+		summarizeBy: none
+		sourceColumn: billing_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_state
+		dataType: string
+		lineageTag: 483cb1b1-e2f7-46f5-8e05-2a80cc9b2642
+		summarizeBy: none
+		sourceColumn: billing_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_postal_code
+		dataType: string
+		lineageTag: 7f5f3691-a75d-41b8-8754-bd9cfb53d4d5
+		summarizeBy: none
+		sourceColumn: billing_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_country
+		dataType: string
+		lineageTag: 1d567cc7-ba44-46a0-a979-de994b07f962
+		summarizeBy: none
+		sourceColumn: billing_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_state_code
+		dataType: string
+		lineageTag: 9b314e09-f39d-416e-a980-19c770c96e0c
+		summarizeBy: none
+		sourceColumn: billing_state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column billing_country_code
+		dataType: string
+		lineageTag: 0d06ca93-ecab-4e29-9df6-4d4bbe7c5433
+		summarizeBy: none
+		sourceColumn: billing_country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_street
+		dataType: string
+		lineageTag: a4336fab-a8e2-40fc-b9cb-cf2f7291bf41
+		summarizeBy: none
+		sourceColumn: shipping_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_city
+		dataType: string
+		lineageTag: 5890e3a2-0c2d-4d72-b4b1-a01623fdf575
+		summarizeBy: none
+		sourceColumn: shipping_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_state
+		dataType: string
+		lineageTag: 8a0ef0d2-43f0-4185-b772-1125b371ce93
+		summarizeBy: none
+		sourceColumn: shipping_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_postal_code
+		dataType: string
+		lineageTag: 849df5e6-d82d-4202-a04f-129b22996d13
+		summarizeBy: none
+		sourceColumn: shipping_postal_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_country
+		dataType: string
+		lineageTag: 40bad4ad-83ad-421a-b58f-672943438ee9
+		summarizeBy: none
+		sourceColumn: shipping_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_state_code
+		dataType: string
+		lineageTag: f7ef8042-e45f-48c6-96fc-62a7a42b88c6
+		summarizeBy: none
+		sourceColumn: shipping_state_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_country_code
+		dataType: string
+		lineageTag: a87f68e0-aa64-44d1-bfad-61cdedb75d6e
+		summarizeBy: none
+		sourceColumn: shipping_country_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: dc7ad621-f0b9-47c9-965b-75d211c242a0
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_last_modified_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7a30aedb-fd19-4a3f-819b-4f9a1fac27fd
+		summarizeBy: none
+		sourceColumn: sfdc_last_modified_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column sfdc_created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 68b53b8c-def8-4770-8180-b490086c6496
+		summarizeBy: none
+		sourceColumn: sfdc_created_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column row_hash
+		dataType: string
+		lineageTag: 6a6ccf3e-97ef-4958-9edf-6e1815171971
+		summarizeBy: none
+		sourceColumn: row_hash
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f144f55b-5cc5-4061-a3cf-c2220f598342
+		summarizeBy: none
+		sourceColumn: created_on
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_updated_on
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 86f7d282-4925-4170-88f7-43b82f7f8d11
+		summarizeBy: none
+		sourceColumn: last_updated_on
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold dim_broking_house_current' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_dim_broking_house_current = Source{[Schema="gold",Item="dim_broking_house_current"]}[Data]
+				in
+				    gold_dim_broking_house_current
+
+	annotation PBI_ResultType = Exception
+

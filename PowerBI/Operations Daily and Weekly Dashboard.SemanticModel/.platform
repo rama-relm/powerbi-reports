@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Operations Daily and Weekly Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "72564f67-2199-b243-48a3-e0e94ddcbff1"
+  }
+}

@@ -1,0 +1,44 @@
+table 'gold broking_house_parent'
+	lineageTag: 231eb0d8-12fb-43e4-b9e5-8fba52d339c5
+
+	column child_broking_house_id
+		dataType: string
+		lineageTag: 2dc0dbd2-ddea-4dc7-af38-21e989308157
+		summarizeBy: none
+		sourceColumn: child_broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column child_broking_house_name
+		dataType: string
+		lineageTag: adac3a22-6f14-4d0c-9ace-0adc61cda568
+		summarizeBy: none
+		sourceColumn: child_broking_house_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_broking_house
+		dataType: string
+		lineageTag: 1ae575a9-6d18-4f70-85e5-2d8a8f68b6af
+		summarizeBy: none
+		sourceColumn: parent_broking_house
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_broking_house_id
+		dataType: string
+		lineageTag: cc7be006-16de-4b20-993e-eb73ce99c32e
+		summarizeBy: none
+		sourceColumn: parent_broking_house_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'gold broking_house_parent' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("rbpfflblpqbexoxdqfojnughkm-dpzk4gkakaye7iptuqwpz53c44.datawarehouse.fabric.microsoft.com", "Relm_Gold_Warehouse"),
+				    gold_broking_house_parent = Source{[Schema="gold",Item="broking_house_parent"]}[Data]
+				in
+				    gold_broking_house_parent
+
